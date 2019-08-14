@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'BYekan';
+    src: url('../fonts/BYekan.eot?#') format('eot'),
+    url('../fonts/BYekan.woff?#') format('woff'),
+    url('../fonts/BYekan.ttf?#') format('truetype');
+
+}
+
+body {
+    direction: rtl;
+    overflow-x: hidden;
+}
+
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #627bff;
+    text-decoration: none;
+}
+
+.col-lg-1 {
+    float: left;
+}
+
+.form-control {
+    height: 37px !important;
+    font-size: 14px;
+}
+
+.en-icon {
+    margin-right: -58px;
+    float: right;
+}
+
+.navbar-default {
+    background-color: #007ee5;
+    border-color: #007ee5;
+    height: 55px;
+    border-right: 1px solid #1372bf;
+}
+
+.dropdown-toggle .icon-user {
+    width: 43px;
+    height: 44px;
+    border-radius: 100%;
+    float: left;
+    color: #fff;
+    background-color: #a5a5a5;
+    margin-top: 3px;
+    padding-top: 2px;
+    font-size: 26px;
+    padding-left: 10px;
+}
+
+.dropdown-toggle:after {
+    border-right: 0px !important;
+    border-left: 0px !important;
+}
+
+.top-right {
+    float: right;
+    font-size: 41px;
+    color: #fff;
+}
+
+#sidebar {
+    height: 620px;
+    width: 250px;
+    background-color: #fff;
+    top: 55px;
+    z-index: 999;
+    right: 0;
+    font-size: 13px;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 2px #eee;
+}
+
+.col-lg-6 {
+    float: right;
+}
+
+label {
+    float: right;
+}
+
+.col-lg-3 {
+    float: left;
+}
+
+#sidebar ul li {
+    color: #fff;
+    line-height: 70px;
+}
+
+#sidebar ul li i {
+    margin-left: 16px;
+
+}
+
+#sidebar ul {
+    text-align: right;
+}
+
+/*----------admincontent--------------*/
+
+.main-icon1 {
+    background: #007ee5b8;
+    height: 110px;
+    box-shadow: 2px 2px 1px #b5aaaa;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.iconuser {
+    font-size: 37px;
+    padding-top: 23px;
+    left: 33px;
+    position: absolute
+}
+
+.main-icon1 p {
+    padding-top: 82px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.font {
+    position: absolute;
+    margin-left: 69px;
+    left: 52px;
+    margin-top: 39px;
+    font-size: 18px;
+}
+
+.content {
+    height: 144px;
+    background-color: #007ee5;
+    box-shadow: 3px 2px 1px #dad9d9;
+    border-radius: 3px;
+}
