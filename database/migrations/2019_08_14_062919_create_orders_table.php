@@ -15,8 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('address_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('address_id');
             $table->enum('order_status', ['پرداخت شد', 'ارسال شد', 'کنسل شد', 'تسویه شد']);
             $table->string('id_orders');
             $table->unsignedInteger('trans_id');

@@ -15,8 +15,8 @@ class CreateBrandProductTable extends Migration
     {
         Schema::create('brand_product', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('brand_id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('product_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

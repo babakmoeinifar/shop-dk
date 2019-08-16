@@ -15,9 +15,9 @@ class CreateOrderUserTable extends Migration
     {
         Schema::create('order_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('order_id');
+            $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

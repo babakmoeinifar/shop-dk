@@ -15,8 +15,8 @@ class CreateAttributeProductTable extends Migration
     {
         Schema::create('attribute_product', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('attribute_id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedBigInteger('attribute_id');
+            $table->unsignedBigInteger('product_id');
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

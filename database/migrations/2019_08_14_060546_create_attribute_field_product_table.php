@@ -15,8 +15,8 @@ class CreateAttributeFieldProductTable extends Migration
     {
         Schema::create('attribute_field_product', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('attribute_field_id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedBigInteger('attribute_field_id');
+            $table->unsignedBigInteger('product_id');
             $table->foreign('attribute_field_id')->references('id')->on('attribute_fields')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
