@@ -15,7 +15,7 @@ class CreateBannersTable extends Migration
     {
         Schema::create('banners', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('image');
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

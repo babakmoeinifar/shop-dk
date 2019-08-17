@@ -1,17 +1,13 @@
-<div class="col-lg-3" style="float:right;  margin-top: 25px;  max-width: 23% !important;">
+<div class="col-md-3" style="float:right;max-width: 23% !important;">
     <aside id="sidebar">
 
         <ul>
-            <li><a href=""><i class="icon-dashboard"></i>داشبورد</a></li>
-            <li data-toggle="collapse" data-target="#menu"><a href="javascript:"><i class="icon-tasks"></i>مدیریت
+            <li><a href=""><i class="fas fa-tachometer-alt"></i>داشبورد</a></li>
+            <li><a href="{{ url('shoppy/categories') }}"><i class="fa fa-list"></i>مدیریت
                     دسته ها</a>
-                <ul id="menu" class="collapse">
-                    <li><a href="#">ایجاد دسته </a></li>
-                    <li><a href="#">مشاهده دسته ها </a></li>
-                </ul>
             </li>
 
-            <li data-toggle="collapse" data-target="#menu1"><a href="javascript:"><i class="icon-tasks"></i>مدیریت
+            <li data-toggle="collapse" data-target="#menu1"><a href="javascript:"><i class="fa fa-users"></i>مدیریت
                     کاربران </a>
                 <ul id="menu1" class="collapse">
                     <li><a href="#">ایجاد کاربر</a></li>
@@ -19,16 +15,16 @@
                 </ul>
             </li>
 
-            <li><a href="javascript:"><i class="icon-tasks"></i>مدیریت سفارشات</a></li>
+            <li><a href="javascript:"><i class="fa fa-th-list"></i>مدیریت سفارشات</a></li>
 
-            <li data-toggle="collapse" data-target="#menu2"><a href="javascript:"><i class="icon-tasks"></i>مدیریت تخفیف </a>
+            <li data-toggle="collapse" data-target="#menu2"><a href="javascript:"><i class="fa fa-cubes"></i>مدیریت تخفیف </a>
                 <ul id="menu" class="collapse">
                     <li><a href="#">ایجاد تخفیف </a></li>
                     <li><a href="#">مشاهده تخفیف </a></li>
                 </ul>
             </li>
 
-            <li><a href="javascript:"><i class="icon-tasks"></i>گفتگو ها </a></li>
+            <li><a href="javascript:"><i class="fa fa-comments"></i>گفتگو ها </a></li>
         </ul>
 
     </aside>

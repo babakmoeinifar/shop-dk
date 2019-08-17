@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', 'Admin\DashboardController@index');
+Route::group(['prefix' => 'shoppy'], function () {
+    Route::get('dashboard', 'Admin\DashboardController@index');
+    Route::resource('categories', 'Admin\CategoryController');
+});

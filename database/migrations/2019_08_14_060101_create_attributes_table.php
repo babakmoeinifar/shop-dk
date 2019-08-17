@@ -15,7 +15,7 @@ class CreateAttributesTable extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('attribute_groups_id');
+            $table->unsignedBigInteger('attribute_groups_id');
             $table->string('name')->comment('attribute name');
 
             $table->foreign('attribute_groups_id')->references('id')->on('attribute_groups')->onDelete('cascade');
