@@ -2,10 +2,11 @@
     <div>
         <form @submit.prevent="form.id ? updateCategory() : addCategory()"
               @keydown="form.onKeydown($event)">
+
             <div class="row mt-3">
                 <div class="form-group col-md-6">
                     <label for="name" class="pb-2">نام
-                    <span class="text-danger font-weight-bold"> * </span>
+                        <span class="text-danger font-weight-bold"> * </span>
                     </label>
                     <input type="text" :class="{'is-danger': form.errors.has('name')}"
                            id="name" name="name" v-model="form.name" class="form-control">
@@ -24,6 +25,7 @@
                     <div class="text-danger" v-if="form.errors.has('slug')">
                         {{ form.errors.get('slug') }}
                     </div>
+
                 </div>
             </div>
 
@@ -56,9 +58,11 @@
                         <option value="1">فعال</option>
                         <option value="0">غیرفعال</option>
                     </select>
+
                     <div class="text-danger" v-if="form.errors.has('is_active')">
                         {{ form.errors.get('is_active') }}
                     </div>
+
                 </div>
             </div>
 

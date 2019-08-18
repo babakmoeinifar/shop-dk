@@ -38,8 +38,8 @@
 </div>
 
 
-
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/html_message_fa.js') }}"></script>
 
 @yield('scripts')
 </body>

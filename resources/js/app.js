@@ -10,6 +10,7 @@ window.Vue = require('vue');
 window.Fire = new Vue();
 import { Form, HasError, AlertError } from 'vform';
 import Swal from 'sweetalert2';
+require('lazysizes');
 
 //variables
 window.Form = Form;

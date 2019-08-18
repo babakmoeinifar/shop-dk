@@ -103,6 +103,8 @@ return array(
         'email' => 'پست الکترونیکی',
         'first_name' => 'نام',
         'last_name' => 'نام خانوادگی',
+        'fname' => 'نام',
+        'lname' => 'نام خانوادگی',
         'password' => 'رمز عبور',
         'passwordLogin' => 'رمز عبور',
         'password_confirmation' => 'تاییدیه ی رمز عبور',
