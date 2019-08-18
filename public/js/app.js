@@ -1782,6 +1782,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['buttontext'],
   data: function data() {
@@ -1794,11 +1803,9 @@ __webpack_require__.r(__webpack_exports__);
         meta_title: "",
         meta_description: "",
         meta_keywords: "",
+        id: "",
         categories: [],
-        catid: "" // deleteCategory: "",
-        // updatecat: "",
-        // updatecat1: "",
-
+        catSlugUpdate: ''
       })
     };
   },
@@ -1822,8 +1829,6 @@ __webpack_require__.r(__webpack_exports__);
         meta_keywords: this.form.meta_keywords // image: image
 
       }).then(function () {
-        _this.getvaluecayegory();
-
         Toast.fire({
           title: "با موفقیت ذخیره شد ",
           type: 'success'
@@ -1833,83 +1838,49 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {
         _this.error = 1;
         Toast.fire({
-          title: "مشکلی به وجود آمده ",
+          title: "اطلاعات ورودی خود را به دقت بررسی نمایید ",
           type: 'error'
         });
       });
     },
-    // /********updatecategory***************/
-    //
-    //
-    //
-    // updatecategory: function (id) {
-    //
-    //     axios.post('updatecategory', {
-    //
-    //         name: this.updatecat,
-    //         parent_id: this.updatecat1,
-    //         id: id
-    //
-    //
-    //     }).then(response => {
-    //
-    //         this.getvaluecayegory();
-    //
-    //         swal("با موفقیت ویرایش شد ");
-    //
-    //
-    //     }, response => {
-    //         this.error = 1;
-    //         console.log("error");
-    //     });
-    //
-    //
-    // },
-    //
-    // /********************deletecategory*************************************/
-    //
-    // deletecategory1: function (id) {
-    //
-    //
-    //     axios.post('deletecat1', {
-    //
-    //         id: id
-    //
-    //
-    //     }).then(response => {
-    //
-    //         this.getvaluecayegory();
-    //
-    //         swal("با موفقیت حذف شد ");
-    //
-    //
-    //     }, response => {
-    //         this.error = 1;
-    //         console.log("error");
-    //     });
-    //
-    //
-    // },
-    //
-    getvaluecayegory: function getvaluecayegory() {
+    updateCategory: function updateCategory() {
       var _this2 = this;
 
+      this.form.put("/shoppy/categories/" + this.form.catSlugUpdate).then(function () {
+        Toast.fire({
+          title: "با موفقیت ویرایش شد ",
+          type: 'success'
+        }).then(function () {
+          window.location.href = '/shoppy/categories';
+        });
+      })["catch"](function () {
+        _this2.error = 1;
+        Toast.fire({
+          title: "اطلاعات ورودی خود را به دقت بررسی نمایید ",
+          type: 'error'
+        });
+      });
+    },
+    getvaluecayegory: function getvaluecayegory() {
+      var _this3 = this;
+
       axios.get(window.location.href).then(function (response) {
-        _this2.form.catid = response.data.id;
-        _this2.form.name = response.data.name;
-        _this2.form.slug = response.data.slug;
-        _this2.form.parent_id = response.data.parent_id;
-        _this2.form.is_active = response.data.is_active;
-        _this2.form.meta_title = response.data.meta_title;
-        _this2.form.meta_keywords = response.data.meta_keywords;
-        _this2.form.meta_description = response.data.meta_description;
+        _this3.form.id = response.data.id;
+        _this3.form.name = response.data.name;
+        _this3.form.slug = response.data.slug;
+        _this3.form.catSlugUpdate = response.data.slug;
+        _this3.form.parent_id = response.data.parent_id;
+        _this3.form.is_active = response.data.is_active;
+        _this3.form.meta_title = response.data.meta_title;
+        _this3.form.meta_keywords = response.data.meta_keywords;
+        _this3.form.meta_description = response.data.meta_description;
       });
     },
     getCategories: function getCategories() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('/shoppy/categories').then(function (response) {
-        _this3.form.categories = response.data;
+        _this4.form.categories = response.data;
       });
     }
   }
@@ -41147,7 +41118,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.addCategory($event)
+            _vm.form.id ? _vm.updateCategory() : _vm.addCategory()
           },
           keydown: function($event) {
             return _vm.form.onKeydown($event)
@@ -41157,9 +41128,7 @@ var render = function() {
       [
         _c("div", { staticClass: "row mt-3" }, [
           _c("div", { staticClass: "form-group col-md-6" }, [
-            _c("label", { staticClass: "pb-2", attrs: { for: "name" } }, [
-              _vm._v("نام")
-            ]),
+            _vm._m(0),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -41196,9 +41165,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-md-6" }, [
-            _c("label", { staticClass: "pb-2", attrs: { for: "slug" } }, [
-              _vm._v("نامک")
-            ]),
+            _vm._m(1),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -41237,9 +41204,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "form-group col-md-6" }, [
-            _c("label", { staticClass: "pb-2", attrs: { for: "parent_id" } }, [
-              _vm._v("شاخه")
-            ]),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "select",
@@ -41299,9 +41264,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-md-6" }, [
-            _c("label", { staticClass: "pb-2", attrs: { for: "is_active" } }, [
-              _vm._v("وضعیت")
-            ]),
+            _vm._m(3),
             _vm._v(" "),
             _c(
               "select",
@@ -41459,7 +41422,54 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "pb-2", attrs: { for: "name" } }, [
+      _vm._v("نام\n                "),
+      _c("span", { staticClass: "text-danger font-weight-bold" }, [
+        _vm._v(" * ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "pb-2", attrs: { for: "slug" } }, [
+      _vm._v("نامک\n                    "),
+      _c("small", [_vm._v("(انگلیسی بدون کاراکترهای غیرمجاز)")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-danger font-weight-bold" }, [
+        _vm._v(" * ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "pb-2", attrs: { for: "parent_id" } }, [
+      _vm._v("دسته مادر\n                    "),
+      _c("span", { staticClass: "text-danger font-weight-bold" }, [
+        _vm._v(" * ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "pb-2", attrs: { for: "is_active" } }, [
+      _vm._v("وضعیت\n                    "),
+      _c("span", { staticClass: "text-danger font-weight-bold" }, [
+        _vm._v(" * ")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -1,4 +1,4 @@
-<div class="col-md-3" style="float:right;max-width: 23% !important;">
+<div class="col-xl-2 col-lg-3 col-md-4" style="float:right;">
     <aside id="sidebar">
 
         <ul>

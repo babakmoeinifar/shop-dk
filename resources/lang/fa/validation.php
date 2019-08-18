@@ -170,6 +170,7 @@ return array(
         'discount_percent' => 'درصد تخفیف',
         'msg' => 'مخاطب گیرنده پیام',
         'createdFor' => 'نام ارگان',
+        'parent_id' => 'دسته مادر',
 
 
     ),

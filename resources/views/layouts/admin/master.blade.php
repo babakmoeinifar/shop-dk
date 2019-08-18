@@ -24,10 +24,10 @@
 <div id="app">
     @include('layouts.admin.header')
 
-    <div class="col-md-12">
+    <div class="col-12">
         @include('layouts.admin.sidebar')
 
-        <div class="col-md-9" style="float: left !important; ">
+        <div class="col-xl-10 col-lg-9 col-md-8" style="float: left !important; ">
             <section>
                 @yield('content')
             </section>

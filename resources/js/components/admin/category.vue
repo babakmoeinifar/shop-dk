@@ -1,10 +1,12 @@
 <template>
     <div>
-        <form @submit.prevent="addCategory" @keydown="form.onKeydown($event)">
-
+        <form @submit.prevent="form.id ? updateCategory() : addCategory()"
+              @keydown="form.onKeydown($event)">
             <div class="row mt-3">
                 <div class="form-group col-md-6">
-                    <label for="name" class="pb-2">نام</label>
+                    <label for="name" class="pb-2">نام
+                    <span class="text-danger font-weight-bold"> * </span>
+                    </label>
                     <input type="text" :class="{'is-danger': form.errors.has('name')}"
                            id="name" name="name" v-model="form.name" class="form-control">
                     <div class="text-danger" v-if="form.errors.has('name')">
@@ -13,7 +15,10 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="slug" class="pb-2">نامک</label>
+                    <label for="slug" class="pb-2">نامک
+                        <small>(انگلیسی بدون کاراکترهای غیرمجاز)</small>
+                        <span class="text-danger font-weight-bold"> * </span>
+                    </label>
                     <input type="text" :class="{ 'is-danger': form.errors.has('slug') }"
                            id="slug" name="slug" v-model="form.slug" class="form-control">
                     <div class="text-danger" v-if="form.errors.has('slug')">
@@ -25,7 +30,9 @@
             <div class="row">
 
                 <div class="form-group col-md-6">
-                    <label for="parent_id" class="pb-2">شاخه</label>
+                    <label for="parent_id" class="pb-2">دسته مادر
+                        <span class="text-danger font-weight-bold"> * </span>
+                    </label>
                     <select type="text" :class="{ 'is-danger': form.errors.has('parent_id') }"
                             id="parent_id" name="parent_id" v-model="form.parent_id" class="form-control">
                         <option value="0">اصلی</option>
@@ -39,7 +46,9 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="is_active" class="pb-2">وضعیت</label>
+                    <label for="is_active" class="pb-2">وضعیت
+                        <span class="text-danger font-weight-bold"> * </span>
+                    </label>
 
                     <select name="is_active" id="is_active"
                             :class="{ 'is-danger': form.errors.has('is_active') }"
@@ -97,11 +106,9 @@
                     meta_title: "",
                     meta_description: "",
                     meta_keywords: "",
+                    id: "",
                     categories: [],
-                    catid: "",
-                    // deleteCategory: "",
-                    // updatecat: "",
-                    // updatecat1: "",
+                    catSlugUpdate: ''
                 })
             };
         },
@@ -128,7 +135,6 @@
                     // image: image
                 })
                     .then(() => {
-                        this.getvaluecayegory();
                         Toast.fire({
                             title: "با موفقیت ذخیره شد ",
                             type: 'success',
@@ -139,71 +145,37 @@
                     .catch(() => {
                         this.error = 1;
                         Toast.fire({
-                            title: "مشکلی به وجود آمده ",
+                            title: "اطلاعات ورودی خود را به دقت بررسی نمایید ",
                             type: 'error',
                         });
                     });
-
             },
-            // /********updatecategory***************/
-            //
-            //
-            //
-            // updatecategory: function (id) {
-            //
-            //     axios.post('updatecategory', {
-            //
-            //         name: this.updatecat,
-            //         parent_id: this.updatecat1,
-            //         id: id
-            //
-            //
-            //     }).then(response => {
-            //
-            //         this.getvaluecayegory();
-            //
-            //         swal("با موفقیت ویرایش شد ");
-            //
-            //
-            //     }, response => {
-            //         this.error = 1;
-            //         console.log("error");
-            //     });
-            //
-            //
-            // },
-            //
-            // /********************deletecategory*************************************/
-            //
-            // deletecategory1: function (id) {
-            //
-            //
-            //     axios.post('deletecat1', {
-            //
-            //         id: id
-            //
-            //
-            //     }).then(response => {
-            //
-            //         this.getvaluecayegory();
-            //
-            //         swal("با موفقیت حذف شد ");
-            //
-            //
-            //     }, response => {
-            //         this.error = 1;
-            //         console.log("error");
-            //     });
-            //
-            //
-            // },
-            //
+
+            updateCategory() {
+                this.form.put("/shoppy/categories/" + this.form.catSlugUpdate)
+                    .then(() => {
+                        Toast.fire({
+                            title: "با موفقیت ویرایش شد ",
+                            type: 'success',
+                        }).then(() => {
+                            window.location.href = '/shoppy/categories';
+                        });
+                    })
+                    .catch(() => {
+                        this.error = 1;
+                        Toast.fire({
+                            title: "اطلاعات ورودی خود را به دقت بررسی نمایید ",
+                            type: 'error',
+                        });
+                    });
+            },
 
             getvaluecayegory() {
                 axios.get(window.location.href).then(response => {
-                    this.form.catid = response.data.id;
+                    this.form.id = response.data.id;
                     this.form.name = response.data.name;
                     this.form.slug = response.data.slug;
+                    this.form.catSlugUpdate = response.data.slug;
                     this.form.parent_id = response.data.parent_id;
                     this.form.is_active = response.data.is_active;
                     this.form.meta_title = response.data.meta_title;
@@ -217,30 +189,6 @@
                     this.form.categories = response.data;
                 });
             },
-            // /***************deletecategory********************/
-            //
-            // deletecat: function () {
-            //
-            //     axios.post('deletecategory', {
-            //
-            //         cat: this.DeleteCategory
-            //
-            //
-            //     }).then(response => {
-            //
-            //         this.getvaluecayegory();
-            //
-            //         swal("با موفقیت حذف شد ");
-            //
-            //
-            //     }, response => {
-            //         this.error = 1;
-            //         console.log("error");
-            //     });
-            //
-            //
-            // },
-
         }
     }
 </script>

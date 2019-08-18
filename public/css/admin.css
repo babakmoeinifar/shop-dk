@@ -73,7 +73,6 @@ a:hover {
 
 #sidebar {
     height: 620px;
-    width: 250px;
     background-color: #fff;
     top: 55px;
     z-index: 999;
@@ -102,7 +101,6 @@ label {
 
 #sidebar ul li i {
     margin-left: 16px;
-
 }
 
 #sidebar ul {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -18,9 +19,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $categories = Category::orderBy('parent_id')->get();
-        return view('admin.categories.create', ['category' => new Category(),
-            'categories' => $categories]);
+        return view('admin.categories.create');
     }
 
     public function store()
@@ -36,9 +35,6 @@ class CategoryController extends Controller
                     'meta_description' => 'nullable',
                 ])
         );
-
-        cache()->forget('categories');
-
         return response('دسته بندی ایجاد شد');
     }
 
@@ -57,15 +53,14 @@ class CategoryController extends Controller
             request()->validate([
                 'name' => 'required | unique:categories,id,' . $category->id,
                 'slug' => ['required', Rule::unique('categories')->ignore($category->id)],
-                'meta_description' => 'required',
-                'meta_keywords' => 'required',
+                'parent_id' => 'required',
+                'is_active' => 'required | boolean',
+                'meta_title' => 'nullable',
+                'meta_keywords' => 'nullable',
+                'meta_description' => 'nullable',
             ])
         );
-
-        cache()->forget('categories');
-
-        return redirect(url('irenadmin/categories'))
-            ->with('flash', 'دسته بندی ویرایش شد');
+        return response('دسته بندی ویرایش شد');
     }
 
     public function destroy(Category $category)
