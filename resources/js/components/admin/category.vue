@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="form.id ? updateCategory() : addCategory()"
+        <form @submit.prevent="form.id ? update() : add()"
               @keydown="form.onKeydown($event)">
 
             <div class="row mt-3">
@@ -118,12 +118,12 @@
         },
 
         created() {
-            this.getvaluecayegory();
+            this.getCategory();
             this.getCategories();
         },
 
         methods: {
-            addCategory() {
+            add() {
                 // let image = $("#image1").val();
                 // alert(image);
 
@@ -155,7 +155,7 @@
                     });
             },
 
-            updateCategory() {
+            update() {
                 this.form.put("/shoppy/categories/" + this.form.catSlugUpdate)
                     .then(() => {
                         Toast.fire({
@@ -174,7 +174,7 @@
                     });
             },
 
-            getvaluecayegory() {
+            getCategory() {
                 axios.get(window.location.href).then(response => {
                     this.form.id = response.data.id;
                     this.form.name = response.data.name;

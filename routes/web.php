@@ -8,6 +8,8 @@ Route::group(['prefix' => 'shoppy'], function () {
     Route::get('dashboard', 'Admin\DashboardController@index');
     Route::resource('categories', 'Admin\CategoryController');
     Route::resource('users', 'Admin\UserController');
+    Route::resource('products', 'Admin\ProductController');
+    Route::post('add-image-product', 'Admin\ProductController@addImageProduct');
 });
 
 
