@@ -1,18 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('ajax-city/{state_id}', 'HomeController@ajaxCities')->where('state_id', '[0-9]+');
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::group(['prefix' => 'shoppy'], function () {
+    Route::get('dashboard', 'Admin\DashboardController@index');
+    Route::resource('categories', 'Admin\CategoryController');
+    Route::resource('users', 'Admin\UserController');
+    Route::resource('products', 'Admin\ProductController');
+    Route::post('add-image-product', 'Admin\ProductController@addImageProduct');
 });
 
-Route::get('dashboard', 'Admin\DashboardController@index');
+

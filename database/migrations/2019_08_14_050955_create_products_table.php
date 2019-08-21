@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('unit', 20);
             $table->integer('stock')->default('0');
             $table->text('desc')->nullable()->comment('description');
-            $table->boolean('is_active')->default('0');
+            $table->boolean('is_active')->default('1');
             $table->string('meta_keywords', 191)->nullable();
             $table->boolean('feature')->default(0)->comment('check it for feature');
             $table->timestamps();

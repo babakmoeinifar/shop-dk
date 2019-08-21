@@ -21,7 +21,7 @@
                     <ul>
                         <li class="en-icon dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <i class="icon-envelope-alt"
+                                <i class="fa fa-envelope"
                                    style="font-size: 21px; color: #fff;position: absolute;margin-top: 12px;"></i>
                                 <ul class="dropdown-menu" style="margin-top: -19px; text-align: right;">
                                     <li>1</li>
@@ -35,8 +35,8 @@
 
 
             <div class="top-right">
-                <div class="col-lg-1" style="position: absolute;top: -15px;">
-                    <i class="icon-windows"></i>
+                <div class="col-lg-1" style="position: absolute;top: -7px;">
+                    <i class="fab fa-apple"></i>
                 </div>
             </div>
 

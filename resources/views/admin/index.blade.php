@@ -8,7 +8,7 @@
             <div class="col-lg-3">
                 <div class="main-icon1">
                     <span class="font">1</span>
-                    <span class="iconuser"><i class="icon-user"></i></span>
+                    <span class="iconuser"><i class="fa fa-users"></i></span>
                     <p>تعداد کل کاربران</p>
                 </div>
             </div>
@@ -16,7 +16,7 @@
             <div class="col-lg-3">
                 <div class="main-icon1">
                     <span class="font">1</span>
-                    <span class="iconuser"><i class="icon-user"></i></span>
+                    <span class="iconuser"><i class="fa fa-users"></i></span>
                     <p>تعداد کل کاربران</p>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             <div class="col-lg-3">
                 <div class="main-icon1">
                     <span class="font">1</span>
-                    <span class="iconuser"><i class="icon-user"></i></span>
+                    <span class="iconuser"><i class="fa fa-users"></i></span>
                     <p>تعداد کل کاربران</p>
                 </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="col-lg-3">
                 <div class="main-icon1">
                     <span class="font">1</span>
-                    <span class="iconuser"><i class="icon-user"></i></span>
+                    <span class="iconuser"><i class="fa fa-users"></i></span>
                     <p>تعداد کل کاربران</p>
                 </div>
             </div>

@@ -9,6 +9,7 @@
 body {
     direction: rtl;
     overflow-x: hidden;
+    font-family: BYekan, serif;
 }
 
 
@@ -41,10 +42,9 @@ a:hover {
 }
 
 .navbar-default {
-    background-color: #007ee5;
-    border-color: #007ee5;
+    background-color: #50beae;
+    border-color: #2be5a1;
     height: 55px;
-    border-right: 1px solid #1372bf;
 }
 
 .dropdown-toggle .icon-user {
@@ -55,7 +55,7 @@ a:hover {
     color: #fff;
     background-color: #a5a5a5;
     margin-top: 3px;
-    padding-top: 2px;
+    padding-top: 6px;
     font-size: 26px;
     padding-left: 10px;
 }
@@ -73,7 +73,6 @@ a:hover {
 
 #sidebar {
     height: 620px;
-    width: 250px;
     background-color: #fff;
     top: 55px;
     z-index: 999;
@@ -102,7 +101,6 @@ label {
 
 #sidebar ul li i {
     margin-left: 16px;
-
 }
 
 #sidebar ul {
