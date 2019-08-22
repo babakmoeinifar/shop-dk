@@ -12,19 +12,18 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
-    <style>
-        input.is-danger {
-            border-color: orangered;
-        }
-    </style>
+
+
+    <style>input.is-danger {border-color: orangered;}</style>
     @yield('styles')
+
 </head>
 <body>
 
 <div id="app">
     @include('layouts.admin.header')
 
-    <div class="col-12">
+    <div class="container-fluid">
         @include('layouts.admin.sidebar')
 
         <div class="col-xl-10 col-lg-9 col-md-8" style="float: left !important; ">
@@ -38,7 +37,7 @@
 </div>
 
 
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/html_message_fa.js') }}"></script>
 
 @yield('scripts')

@@ -1808,9 +1808,9 @@ __webpack_require__.r(__webpack_exports__);
         meta_description: "",
         meta_keywords: "",
         id: "",
-        categories: [],
         catSlugUpdate: ''
-      })
+      }),
+      categories: []
     };
   },
   created: function created() {
@@ -1823,16 +1823,7 @@ __webpack_require__.r(__webpack_exports__);
 
       // let image = $("#image1").val();
       // alert(image);
-      this.form.post('/shoppy/categories', {
-        name: this.form.name,
-        parent_id: this.form.parent_id,
-        is_active: this.form.is_active,
-        slug: this.form.slug,
-        meta_title: this.form.meta_title,
-        meta_description: this.form.meta_description,
-        meta_keywords: this.form.meta_keywords // image: image
-
-      }).then(function () {
+      this.form.post('/shoppy/categories').then(function () {
         Toast.fire({
           title: "با موفقیت ذخیره شد ",
           type: 'success'
@@ -2241,6 +2232,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf_token'],
   data: function data() {
@@ -2250,11 +2248,12 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         price: '',
         stock: '',
+        country: '',
+        unit: '',
         code: '',
-        desc: $("#editor").text(),
+        desc: '',
         meta_keywords: "",
         image: "",
-        // imageurl: 'test',
         attributegroup_id: '',
         itemid: ''
       }),
@@ -2272,7 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
       var file = el.target.files[0];
       var reader = new FileReader();
 
-      if (file['size'] < 15111775) {
+      if (file['size'] < 20111775) {
         reader.onloadend = function (file) {
           _this.form.image = reader.result;
         };
@@ -2290,12 +2289,13 @@ __webpack_require__.r(__webpack_exports__);
     add: function add() {
       var _this2 = this;
 
+      this.form.desc = $("#editor").text();
       this.form.post('/shoppy/products').then(function () {
         Toast.fire({
           title: "با موفقیت ذخیره شد ",
-          type: 'success' // }).then(() => {
-          //     window.location.href = '/shoppy/products';
-
+          type: 'success'
+        }).then(function () {
+          window.location.href = '/shoppy/products';
         });
       })["catch"](function () {
         _this2.error = 1;
@@ -42417,7 +42417,7 @@ var render = function() {
               [
                 _c("option", { attrs: { value: "0" } }, [_vm._v("اصلی")]),
                 _vm._v(" "),
-                _vm._l(_vm.form.categories, function(category) {
+                _vm._l(_vm.categories, function(category) {
                   return [
                     _c("option", { domProps: { value: category.id } }, [
                       _vm._v(_vm._s(category.name))
@@ -43023,7 +43023,7 @@ var render = function() {
             "text-align": "center"
           }
         },
-        [_vm._v("\n            اضافه کردن کالا به فروشگاه\n        ")]
+        [_vm._v("\n        اضافه کردن کالا به فروشگاه\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -43061,137 +43061,60 @@ var render = function() {
                       [_vm._v("تصویر محصول")]
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-10" }, [
+                    _c("input", {
+                      staticClass: "dropify",
+                      attrs: {
+                        type: "file",
+                        "data-show-loader": "true",
+                        id: "image",
+                        "data-max-file-size": "15M",
+                        "data-allowed-file-extensions": "jpg png jpeg gif",
+                        name: "image"
+                      },
+                      on: { change: _vm.updatePhoto }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row mt-2" }, [
+                    _c("div", { staticClass: "col-lg-4 form-group" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
                       _c("input", {
-                        staticClass: "form-control-file",
-                        attrs: { type: "file", id: "image", name: "image" },
-                        on: { change: _vm.updatePhoto }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row mt-2" }, [
-                    _c("div", { staticClass: "col-lg-4" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.name,
-                              expression: "form.name"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: { "is-danger": _vm.form.errors.has("name") },
-                          attrs: { id: "name", type: "text" },
-                          domProps: { value: _vm.form.name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "name", $event.target.value)
-                            }
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.name,
+                            expression: "form.name"
                           }
-                        }),
-                        _vm._v(" "),
-                        _vm.form.errors.has("name")
-                          ? _c("div", { staticClass: "text-danger" }, [
-                              _vm._v(
-                                "\n                                        " +
-                                  _vm._s(_vm.form.errors.get("name")) +
-                                  "\n                                    "
-                              )
-                            ])
-                          : _vm._e()
-                      ])
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-danger": _vm.form.errors.has("name") },
+                        attrs: { id: "name", type: "text" },
+                        domProps: { value: _vm.form.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "name", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.form.errors.has("name")
+                        ? _c("div", { staticClass: "text-danger" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(_vm.form.errors.get("name")) +
+                                "\n                            "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-lg-4" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "code" } }, [_vm._v("کد")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.code,
-                              expression: "form.code"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: { "is-danger": _vm.form.errors.has("code") },
-                          attrs: { id: "code", type: "text" },
-                          domProps: { value: _vm.form.code },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "code", $event.target.value)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm.form.errors.has("code")
-                          ? _c("div", { staticClass: "text-danger" }, [
-                              _vm._v(
-                                "\n                                        " +
-                                  _vm._s(_vm.form.errors.get("code")) +
-                                  "\n                                    "
-                              )
-                            ])
-                          : _vm._e()
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-lg-4" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.price,
-                              expression: "form.price"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: { "is-danger": _vm.form.errors.has("price") },
-                          attrs: { id: "price", type: "text" },
-                          domProps: { value: _vm.form.price },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "price", $event.target.value)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm.form.errors.has("price")
-                          ? _c("div", { staticClass: "text-danger" }, [
-                              _vm._v(
-                                "\n                                        " +
-                                  _vm._s(_vm.form.errors.get("price")) +
-                                  "\n                                    "
-                              )
-                            ])
-                          : _vm._e()
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row mt-2" }, [
-                    _c("div", { staticClass: "col-lg-3 form-group" }, [
-                      _vm._m(3),
+                    _c("div", { staticClass: "col-lg-2 form-group" }, [
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -43217,18 +43140,94 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _vm.form.errors.has("stock")
-                        ? _c("div", { staticClass: "text-danger" }, [
+                        ? _c("div", { staticClass: "text-danger small" }, [
                             _vm._v(
-                              "\n                                    " +
+                              "\n                                " +
                                 _vm._s(_vm.form.errors.get("stock")) +
-                                "\n                                "
+                                "\n                            "
                             )
                           ])
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-lg-5 form-group" }, [
+                    _c("div", { staticClass: "col-lg-2 form-group" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.unit,
+                            expression: "form.unit"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-danger": _vm.form.errors.has("unit") },
+                        attrs: { type: "text", id: "unit" },
+                        domProps: { value: _vm.form.unit },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "unit", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.form.errors.has("unit")
+                        ? _c("div", { staticClass: "text-danger small" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(_vm.form.errors.get("unit")) +
+                                "\n                            "
+                            )
+                          ])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-lg-4 form-group" }, [
                       _vm._m(4),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.price,
+                            expression: "form.price"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-danger": _vm.form.errors.has("price") },
+                        attrs: { id: "price", type: "number", min: "0" },
+                        domProps: { value: _vm.form.price },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "price", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.form.errors.has("price")
+                        ? _c("div", { staticClass: "text-danger" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(_vm.form.errors.get("price")) +
+                                "\n                            "
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row mt-2" }, [
+                    _c("div", { staticClass: "col-lg-4 form-group" }, [
+                      _vm._m(5),
                       _vm._v(" "),
                       _c(
                         "select",
@@ -43267,7 +43266,7 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", [
+                          _c("option", { attrs: { value: "", disabled: "" } }, [
                             _vm._v("یک دسته بندی را انتخاب نمایید")
                           ]),
                           _vm._v(" "),
@@ -43287,9 +43286,85 @@ var render = function() {
                       _vm.form.errors.has("category_id")
                         ? _c("div", { staticClass: "text-danger" }, [
                             _vm._v(
-                              "\n                                    " +
+                              "\n                                " +
                                 _vm._s(_vm.form.errors.get("category_id")) +
-                                "\n                                "
+                                "\n                            "
+                            )
+                          ])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-lg-2 form-group" }, [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.country,
+                            expression: "form.country"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-danger": _vm.form.errors.has("country") },
+                        attrs: { type: "text", id: "country" },
+                        domProps: { value: _vm.form.country },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "country", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.form.errors.has("country")
+                        ? _c("div", { staticClass: "text-danger small" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(_vm.form.errors.get("country")) +
+                                "\n                            "
+                            )
+                          ])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-lg-2 form-group" }, [
+                      _c("label", { attrs: { for: "code" } }, [
+                        _vm._v("کد محصول")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.code,
+                            expression: "form.code"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-danger": _vm.form.errors.has("code") },
+                        attrs: { id: "code", type: "text" },
+                        domProps: { value: _vm.form.code },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "code", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.form.errors.has("code")
+                        ? _c("div", { staticClass: "text-danger" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(_vm.form.errors.get("code")) +
+                                "\n                            "
                             )
                           ])
                         : _vm._e()
@@ -43297,9 +43372,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group col-md-4" }, [
                       _c("label", { attrs: { for: "meta_keywords" } }, [
-                        _vm._v(
-                          "کلمات\n                                    کلیدی"
-                        )
+                        _vm._v("کلمات\n                                کلیدی")
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -43334,14 +43407,14 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(5),
+                  _vm._m(7),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-6 form-group" }, [
                     _c(
                       "button",
                       {
                         staticClass: "btn btn-success",
-                        attrs: { type: "button" },
+                        attrs: { disabled: _vm.form.busy, type: "submit" },
                         on: {
                           click: function($event) {
                             return _vm.add()
@@ -43349,9 +43422,7 @@ var render = function() {
                         }
                       },
                       [
-                        _vm._v(
-                          "اضافه کردن کالا\n                                "
-                        ),
+                        _vm._v("اضافه کردن کالا\n                            "),
                         _c("i", { staticClass: "fa fa-plus" })
                       ]
                     )
@@ -43361,7 +43432,7 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(6),
+          _vm._m(8),
           _vm._v(" "),
           _c(
             "div",
@@ -43394,7 +43465,7 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#add", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("اضافه\n                        کردن کالا")]
+            [_vm._v("اضافه\n                    کردن کالا")]
           )
         ]),
         _vm._v(" "),
@@ -43406,7 +43477,7 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#uploadpic", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("آپلود\n                        عکس اضافی")]
+            [_vm._v("آپلود\n                    عکس اضافی")]
           )
         ]),
         _vm._v(" "),
@@ -43418,7 +43489,7 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#attr", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("اضافه کردن\n                        خصوصیت ها")]
+            [_vm._v("اضافه کردن\n                    خصوصیت ها")]
           )
         ])
       ]
@@ -43429,18 +43500,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "name" } }, [
-      _vm._v("نام کالا\n                                        "),
-      _c("span", { staticClass: "text-danger font-weight-bold" }, [
-        _vm._v(" * ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "price" } }, [
-      _vm._v("قیمت\n                                        "),
+      _vm._v("نام کالا\n                                "),
       _c("span", { staticClass: "text-danger font-weight-bold" }, [
         _vm._v(" * ")
       ])
@@ -43451,7 +43511,29 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "stock" } }, [
-      _vm._v("تعداد در انبار\n                                    "),
+      _vm._v("موجودی انبار\n                                "),
+      _c("span", { staticClass: "text-danger font-weight-bold" }, [
+        _vm._v(" * ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "unit" } }, [
+      _vm._v("واحد شمارش\n                                "),
+      _c("span", { staticClass: "text-danger font-weight-bold" }, [
+        _vm._v(" * ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "price" } }, [
+      _vm._v("قیمت (تومان)\n                                "),
       _c("span", { staticClass: "text-danger font-weight-bold" }, [
         _vm._v(" * ")
       ])
@@ -43462,7 +43544,18 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "category" } }, [
-      _vm._v("انتخاب دسته کالا\n                                    "),
+      _vm._v("انتخاب دسته کالا\n                                "),
+      _c("span", { staticClass: "text-danger font-weight-bold" }, [
+        _vm._v(" * ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "country" } }, [
+      _vm._v("کشور سازنده\n                                "),
       _c("span", { staticClass: "text-danger font-weight-bold" }, [
         _vm._v(" * ")
       ])
@@ -55653,20 +55746,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! lazysizes */ "./node_modules/lazysizes/lazysizes.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.Fire = new Vue();
 
-
-
-__webpack_require__(/*! lazysizes */ "./node_modules/lazysizes/lazysizes.js"); //variables
-
+ //variables
 
 window.Form = vform__WEBPACK_IMPORTED_MODULE_0__["Form"];
 window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a;
@@ -55676,35 +55763,11 @@ window.Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.mixin({
   showConfirmButton: false,
   timer: 2000
 });
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
 Vue.component('category', __webpack_require__(/*! ./components/admin/category */ "./resources/js/components/admin/category.vue")["default"]);
 Vue.component('product', __webpack_require__(/*! ./components/admin/products/product */ "./resources/js/components/admin/products/product.vue")["default"]);
 Vue.component('add-attr', __webpack_require__(/*! ./components/admin/products/addAttr */ "./resources/js/components/admin/products/addAttr.vue")["default"]);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 var app = new Vue({
-  el: '#app' // imageurl: "",
-  // users: [],
-  // groupName: "",
-  // brandName: "",
-  // itemid: "",
-  // attributegroup_id: "",
-  // atributeGroup: "",
-  // attributeItem: "",
-  // Name_Attr1: "",
+  el: '#app' // users: [],
   // name: "",
   // value: "",
   // code: "",
@@ -55746,8 +55809,6 @@ var app = new Vue({
   //     this.showattributeitems();
   // },
   // methods: {
-
-  /************AddCart*************/
   //
   // addCart: function (id) {
   //     alert(id);
@@ -55765,21 +55826,6 @@ var app = new Vue({
   //
   // },
   //
-  // /********************/
-  //
-  // status: function (data) {
-  //     var checkBox = document.getElementById("check_status");
-  //     if (checkBox.checked == true) {
-  //         if (data.count == 0) {
-  //             return false;
-  //         } else {
-  //             return true;
-  //         }
-  //
-  //     } else {
-  //         return true;
-  //     }
-  // },
   //
   // filterattribute: function (data) {
   //     console.log(this.checkattribute.includes(data.name1));
@@ -55821,15 +55867,7 @@ var app = new Vue({
   //     return this.product.sort(function (a) {
   //         return b.price - a.price;
   //     })
-  //
-  //
   // },
-  //
-  //
-  // /********************************/
-  //
-  //
-  //
 
 });
 

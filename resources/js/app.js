@@ -1,16 +1,10 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+require('lazysizes');
 
 window.Vue = require('vue');
 window.Fire = new Vue();
-import { Form, HasError, AlertError } from 'vform';
+import { Form } from 'vform';
 import Swal from 'sweetalert2';
-require('lazysizes');
 
 //variables
 window.Form = Form;
@@ -22,39 +16,15 @@ window.Toast = Swal.mixin({
     timer: 2000
 });
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
 Vue.component('category', require('./components/admin/category').default);
 Vue.component('product', require('./components/admin/products/product').default);
 Vue.component('add-attr', require('./components/admin/products/addAttr').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
 const app = new Vue({
     el: '#app',
 
-            // imageurl: "",
             // users: [],
-            // groupName: "",
-            // brandName: "",
-            // itemid: "",
-            // attributegroup_id: "",
-            // atributeGroup: "",
-            // attributeItem: "",
-            // Name_Attr1: "",
             // name: "",
             // value: "",
             // code: "",
@@ -103,7 +73,6 @@ const app = new Vue({
     // methods: {
 
 
-        /************AddCart*************/
         //
         // addCart: function (id) {
         //     alert(id);
@@ -121,22 +90,8 @@ const app = new Vue({
         //
         // },
         //
-        // /********************/
         //
-        // status: function (data) {
-        //     var checkBox = document.getElementById("check_status");
-        //     if (checkBox.checked == true) {
-        //         if (data.count == 0) {
-        //             return false;
-        //         } else {
-        //             return true;
-        //         }
-        //
-        //     } else {
-        //         return true;
-        //     }
-        // },
-        //
+
         // filterattribute: function (data) {
         //     console.log(this.checkattribute.includes(data.name1));
         //
@@ -177,15 +132,6 @@ const app = new Vue({
         //     return this.product.sort(function (a) {
         //         return b.price - a.price;
         //     })
-        //
-        //
         // },
-        //
-        //
-        // /********************************/
-        //
-        //
-        //
-
 
 });

@@ -27,87 +27,72 @@
 
                 <div role="tabpanel" class="tab-pane active" id="add">
 
-<!--                    <div class="form-group">-->
-<!--                        <label for="oneupload">آپلود عکس اصلی</label>-->
-<!--                        <form method="post" action="/shoppy/add-image-product" enctype="multipart/form-data"-->
-<!--                              class="dropzone" id="oneupload">-->
-<!--                            <input type="hidden" :value="csrf_token" name="_token">-->
-<!--                        </form>-->
-<!--                    </div>-->
-
-                    <form @submit.prevent="add()"
-                          @keydown="form.onKeydown($event)">
-
-<!--                        <input type="hidden" v-model="form.imageurl" name="image">-->
+                    <form @submit.prevent="add()" @keydown="form.onKeydown($event)">
 
                         <div class="form-group">
                             <label for="image" class="col-sm-2 control-label">تصویر محصول</label>
 
-                            <div class="col-sm-10">
-                                <input type="file" class="form-control-file" id="image" name="image"
-                                     @change="updatePhoto">
-                            </div>
+                                <input type="file" class="dropify" data-show-loader="true" id="image"
+                                       data-max-file-size="15M" data-allowed-file-extensions="jpg png jpeg gif"
+                                       name="image" @change="updatePhoto">
                         </div>
 
                         <div class="row mt-2">
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label for="name">نام کالا
-                                        <span class="text-danger font-weight-bold"> * </span>
-                                    </label>
-                                    <input id="name" type="text" class="form-control"
-                                           :class="{'is-danger': form.errors.has('name')}" v-model="form.name">
-                                    <div class="text-danger" v-if="form.errors.has('name')">
-                                        {{ form.errors.get('name') }}
-                                    </div>
+                            <div class="col-lg-4 form-group">
+                                <label for="name">نام کالا
+                                    <span class="text-danger font-weight-bold"> * </span>
+                                </label>
+                                <input id="name" type="text" class="form-control"
+                                       :class="{'is-danger': form.errors.has('name')}" v-model="form.name">
+                                <div class="text-danger" v-if="form.errors.has('name')">
+                                    {{ form.errors.get('name') }}
                                 </div>
                             </div>
 
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label for="code">کد</label>
-                                    <input id="code" type="text" class="form-control"
-                                           :class="{'is-danger': form.errors.has('code')}" v-model="form.code">
-                                    <div class="text-danger" v-if="form.errors.has('code')">
-                                        {{ form.errors.get('code') }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label for="price">قیمت
-                                        <span class="text-danger font-weight-bold"> * </span>
-                                    </label>
-                                    <input id="price" type="text" class="form-control"
-                                           :class="{'is-danger': form.errors.has('price')}" v-model="form.price">
-                                    <div class="text-danger" v-if="form.errors.has('price')">
-                                        {{ form.errors.get('price') }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mt-2">
-                            <div class="col-lg-3 form-group">
-                                <label for="stock">تعداد در انبار
+                            <div class="col-lg-2 form-group">
+                                <label for="stock">موجودی انبار
                                     <span class="text-danger font-weight-bold"> * </span>
                                 </label>
                                 <input type="number" class="form-control" id="stock" min="0"
                                        :class="{'is-danger': form.errors.has('stock')}" v-model="form.stock">
-                                <div class="text-danger" v-if="form.errors.has('stock')">
+                                <div class="text-danger small" v-if="form.errors.has('stock')">
                                     {{ form.errors.get('stock') }}
                                 </div>
                             </div>
 
-                            <div class="col-lg-5 form-group">
+                            <div class="col-lg-2 form-group">
+                                <label for="unit">واحد شمارش
+                                    <span class="text-danger font-weight-bold"> * </span>
+                                </label>
+                                <input type="text" class="form-control" id="unit"
+                                       :class="{'is-danger': form.errors.has('unit')}" v-model="form.unit">
+                                <div class="text-danger small" v-if="form.errors.has('unit')">
+                                    {{ form.errors.get('unit') }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="price">قیمت (تومان)
+                                    <span class="text-danger font-weight-bold"> * </span>
+                                </label>
+                                <input id="price" type="number" min="0" class="form-control"
+                                       :class="{'is-danger': form.errors.has('price')}" v-model="form.price">
+                                <div class="text-danger" v-if="form.errors.has('price')">
+                                    {{ form.errors.get('price') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+
+                            <div class="col-lg-4 form-group">
                                 <label for="category">انتخاب دسته کالا
                                     <span class="text-danger font-weight-bold"> * </span>
                                 </label>
                                 <select id="category" class="form-control" name="category_id"
                                         :class="{'border-danger': form.errors.has('category_id')}"
                                         v-model="form.category_id">
-                                    <option>یک دسته بندی را انتخاب نمایید</option>
+                                    <option value="" disabled>یک دسته بندی را انتخاب نمایید</option>
                                     <template v-for="category in categories">
                                         <option :value="category.id">{{ category.name }}</option>
                                     </template>
@@ -116,6 +101,27 @@
                                     {{ form.errors.get('category_id') }}
                                 </div>
                             </div>
+
+                            <div class="col-lg-2 form-group">
+                                <label for="country">کشور سازنده
+                                    <span class="text-danger font-weight-bold"> * </span>
+                                </label>
+                                <input type="text" class="form-control" id="country"
+                                       :class="{'is-danger': form.errors.has('country')}" v-model="form.country">
+                                <div class="text-danger small" v-if="form.errors.has('country')">
+                                    {{ form.errors.get('country') }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 form-group">
+                                <label for="code">کد محصول</label>
+                                <input id="code" type="text" class="form-control"
+                                       :class="{'is-danger': form.errors.has('code')}" v-model="form.code">
+                                <div class="text-danger" v-if="form.errors.has('code')">
+                                    {{ form.errors.get('code') }}
+                                </div>
+                            </div>
+
 
                             <div class="form-group col-md-4">
                                 <label for="meta_keywords">کلمات
@@ -133,7 +139,8 @@
                         </div>
 
                         <div class="col-lg-6 form-group">
-                            <button type="button" class="btn btn-success" @click="add()">اضافه کردن کالا
+                            <button :disabled="form.busy" type="submit"
+                                    class="btn btn-success" @click="add()">اضافه کردن کالا
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
@@ -173,11 +180,12 @@
                     name: '',
                     price: '',
                     stock: '',
+                    country: '',
+                    unit: '',
                     code: '',
-                    desc: $("#editor").text(),
+                    desc: '',
                     meta_keywords: "",
                     image: "",
-                    // imageurl: 'test',
 
                     attributegroup_id: '',
                     itemid: '',
@@ -197,7 +205,7 @@
                 /*web base64*/
                 let file = el.target.files[0];
                 let reader = new FileReader();
-                if (file['size'] < 15111775) {
+                if (file['size'] < 20111775) {
                     reader.onloadend = (file) => {
                         this.form.image = reader.result;
                     };
@@ -213,12 +221,13 @@
             },
 
             add() {
+                this.form.desc = $("#editor").text();
                 this.form.post('/shoppy/products').then(() => {
                     Toast.fire({
                         title: "با موفقیت ذخیره شد ",
                         type: 'success',
-                        // }).then(() => {
-                        //     window.location.href = '/shoppy/products';
+                        }).then(() => {
+                            window.location.href = '/shoppy/products';
                     });
                 })
                     .catch(() => {

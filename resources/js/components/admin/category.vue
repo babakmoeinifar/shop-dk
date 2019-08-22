@@ -38,7 +38,7 @@
                     <select type="text" :class="{ 'is-danger': form.errors.has('parent_id') }"
                             id="parent_id" name="parent_id" v-model="form.parent_id" class="form-control">
                         <option value="0">اصلی</option>
-                        <template v-for="category in form.categories">
+                        <template v-for="category in categories">
                             <option :value="category.id">{{ category.name }}</option>
                         </template>
                     </select>
@@ -111,9 +111,10 @@
                     meta_description: "",
                     meta_keywords: "",
                     id: "",
-                    categories: [],
                     catSlugUpdate: ''
-                })
+                }),
+                categories: [],
+
             };
         },
 
@@ -127,17 +128,7 @@
                 // let image = $("#image1").val();
                 // alert(image);
 
-                this.form.post('/shoppy/categories', {
-
-                    name: this.form.name,
-                    parent_id: this.form.parent_id,
-                    is_active: this.form.is_active,
-                    slug: this.form.slug,
-                    meta_title: this.form.meta_title,
-                    meta_description: this.form.meta_description,
-                    meta_keywords: this.form.meta_keywords,
-                    // image: image
-                })
+                this.form.post('/shoppy/categories')
                     .then(() => {
                         Toast.fire({
                             title: "با موفقیت ذخیره شد ",

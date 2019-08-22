@@ -15,27 +15,32 @@ class ProductController extends Controller
 
     public function store()
     {
-        Product::create(
+        if (request('image')) {
+            $name = time() . '.'
+                . explode('/',
+                    explode(':',
+                        substr(request('image'), 0,
+                            strpos(request('image'), ';')))[1])[1];
+
+            Image::make(request('image'))->resize(540, 420)->encode('webp')->save(public_path('images/products/') . $name);
+            request()->merge(['image' => 'images/products/' . $name]);
+        }
+
+        $product = Product::create(
             request()->validate([
                 'name' => 'required',
                 'category_id' => 'required',
                 'code' => 'nullable',
                 'price' => 'required',
                 'stock' => 'required',
+                'unit' => 'required',
+                'country' => 'required',
                 'desc' => 'nullable',
                 'image' => 'required',
                 'meta_keywords' => 'nullable',
             ])
         );
 
-//        Image::make(request()->file('image'))->resize(540, 420)->encode('webp')->save(request('image'));
-
-        return response('کالا ایجاد شد');
-    }
-
-    public function addImageProduct()
-    {
-        $filename = rand(1111, 99999) . '.' . 'webp';
-        return 'images/products/' . $filename;
+        return $product;
     }
 }
