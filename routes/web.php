@@ -9,7 +9,7 @@ Route::group(['prefix' => 'shoppy'], function () {
     Route::resource('categories', 'Admin\CategoryController');
     Route::resource('users', 'Admin\UserController');
     Route::resource('products', 'Admin\ProductController');
-    Route::post('add-image-product', 'Admin\ProductController@addImageProduct');
+    Route::post('add-images-product', 'Admin\ProductController@addImagesProduct');
 });
 
 

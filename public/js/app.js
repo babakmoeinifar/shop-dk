@@ -2239,6 +2239,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf_token'],
   data: function data() {
@@ -2253,10 +2254,10 @@ __webpack_require__.r(__webpack_exports__);
         code: '',
         desc: '',
         meta_keywords: "",
-        image: "",
-        attributegroup_id: '',
-        itemid: ''
+        image: ""
       }),
+      attributegroup_id: '',
+      itemid: '',
       categories: []
     };
   },
@@ -2290,12 +2291,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.form.desc = $("#editor").text();
-      this.form.post('/shoppy/products').then(function () {
+      this.form.post('/shoppy/products').then(function (response) {
+        $('#productid').val(response.data.id);
         Toast.fire({
           title: "با موفقیت ذخیره شد ",
-          type: 'success'
-        }).then(function () {
-          window.location.href = '/shoppy/products';
+          type: 'success' // }).then(() => {
+          //     window.location.href = '/shoppy/products';
+
         });
       })["catch"](function () {
         _this2.error = 1;
@@ -43432,7 +43434,45 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(8),
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade",
+              attrs: { role: "tabpanel", id: "uploadpic" }
+            },
+            [
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "myDropzone" } }, [
+                    _vm._v("آپلود عکس های اضافی در صفحه کالا")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      staticClass: "dropzone",
+                      attrs: {
+                        method: "post",
+                        action: "/shoppy/add-images-product",
+                        enctype: "multipart/form-data",
+                        id: "myDropzone"
+                      }
+                    },
+                    [
+                      _c("input", {
+                        attrs: { type: "hidden", id: "productid", name: "id" }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: _vm.csrf_token }
+                      })
+                    ]
+                  )
+                ])
+              ])
+            ]
+          ),
           _vm._v(" "),
           _c(
             "div",
@@ -43576,19 +43616,6 @@ var staticRenderFns = [
         attrs: { id: "editor" }
       })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane fade",
-        attrs: { role: "tabpanel", id: "uploadpic" }
-      },
-      [_c("div", { staticClass: "col-lg-12" })]
-    )
   }
 ]
 render._withStripped = true

@@ -150,13 +150,14 @@
 
                 <div role="tabpanel" class="tab-pane fade" id="uploadpic">
                     <div class="col-lg-12">
-                        <!--                        <div class="form-group">-->
-                        <!--                            <label for="myDropzone">آپلود عکس های اضافی در صفحه کالا</label>-->
-                        <!--                            <form method="post" action="/" enctype="multipart/form-data"-->
-                        <!--                                  class="dropzone" id="myDropzone">-->
-                        <!--                                <input type="hidden" id="productid" name="id">-->
-                        <!--                            </form>-->
-                        <!--                        </div>-->
+                        <div class="form-group">
+                            <label for="myDropzone">آپلود عکس های اضافی در صفحه کالا</label>
+                            <form method="post" action="/shoppy/add-images-product" enctype="multipart/form-data"
+                                  class="dropzone" id="myDropzone">
+                                <input type="hidden" id="productid" name="id">
+                                <input type="hidden" :value="csrf_token" name="_token">
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -186,10 +187,9 @@
                     desc: '',
                     meta_keywords: "",
                     image: "",
-
-                    attributegroup_id: '',
-                    itemid: '',
                 }),
+                attributegroup_id: '',
+                itemid: '',
                 categories: [],
 
 
@@ -222,12 +222,13 @@
 
             add() {
                 this.form.desc = $("#editor").text();
-                this.form.post('/shoppy/products').then(() => {
+                this.form.post('/shoppy/products').then((response) => {
+                    $('#productid').val(response.data.id);
                     Toast.fire({
                         title: "با موفقیت ذخیره شد ",
                         type: 'success',
-                        }).then(() => {
-                            window.location.href = '/shoppy/products';
+                        // }).then(() => {
+                        //     window.location.href = '/shoppy/products';
                     });
                 })
                     .catch(() => {

@@ -4,13 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Product;
+use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        return view('admin.products.index');
+        $products = Product::orderByDesc('id')->get();
+        return view('admin.products.index', compact('products'));
+    }
+
+    public function create()
+    {
+        return view('admin.products.create');
     }
 
     public function store()
@@ -42,5 +49,27 @@ class ProductController extends Controller
         );
 
         return $product;
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return back()->with('flash', 'محصول حذف شد');
+    }
+
+    public function addImagesProduct(Request $request)
+    {
+        $product = Product::findOrFail(request('id'));
+
+        $image = new \App\Image();
+        $filename = rand(1111, 99999) . '.' . 'webp';
+        $image_path = 'images/products/extra/' . $filename;
+        Image::make($request->file('file'))->resize(540, 420)->encode('webp')->save($image_path);
+
+        $image->path = $image_path;
+        $image->save();
+
+        $image = \App\Image::find($image->id);
+        return $product->images()->attach($image->id);
     }
 }
