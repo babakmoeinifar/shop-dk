@@ -59,17 +59,22 @@ class ProductController extends Controller
 
     public function addImagesProduct(Request $request)
     {
-        $product = Product::findOrFail(request('id'));
+        if (request('id')) {
+            $product = Product::findOrFail(request('id'));
 
-        $image = new \App\Image();
-        $filename = rand(1111, 99999) . '.' . 'webp';
-        $image_path = 'images/products/extra/' . $filename;
-        Image::make($request->file('file'))->resize(540, 420)->encode('webp')->save($image_path);
+            $image = new \App\Image();
+            $filename = rand(1111, 99999) . '.' . 'webp';
+            $image_path = 'images/products/extra/' . $filename;
+            Image::make($request->file('file'))->resize(540, 420)->encode('webp')->save($image_path);
 
-        $image->path = $image_path;
-        $image->save();
+            $image->path = $image_path;
+            $image->save();
 
-        $image = \App\Image::find($image->id);
-        return $product->images()->attach($image->id);
+            $image = \App\Image::find($image->id);
+            return $product->images()->attach($image->id);
+        } else {
+            return response('ابتدا یک محصول ثبت نمایید', 400);
+        }
+
     }
 }
