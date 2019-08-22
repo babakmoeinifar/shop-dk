@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
+    protected $fillable = ['name' , 'attribute_groups_id'];
+
     public $timestamps = false;
 
     public function products()

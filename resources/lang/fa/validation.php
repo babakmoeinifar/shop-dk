@@ -177,6 +177,7 @@ return array(
         'price' => 'قیمت',
         'unit' => 'واحد شمارش',
         'attr_group_name' => 'گروه کالایی',
+        'attribute_groups_id' => 'گروه کالایی',
 
 
     ),

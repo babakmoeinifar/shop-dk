@@ -13,6 +13,7 @@ Route::group(['prefix' => 'shoppy'], function () {
     Route::post('add-images-product', 'Admin\ProductController@addImagesProduct');
 
     Route::post('add-attr-group', 'Admin\AttributeController@addAttrGroup');
+    Route::post('add-attribute', 'Admin\AttributeController@addAttribute');
 });
 
 

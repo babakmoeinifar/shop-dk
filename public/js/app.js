@@ -2020,31 +2020,41 @@ __webpack_require__.r(__webpack_exports__);
       product_brand: ''
     };
   },
+  created: function created() {
+    this.getAttrGroups();
+  },
   methods: {
-    addAttrGroup: function addAttrGroup() {
+    getAttrGroups: function getAttrGroups() {
       var _this = this;
 
-      this.attr_group_form.post('/shoppy/add-attr-group').then(function () {
-        _this.toastSuccess();
-      })["catch"](function () {
-        _this.toastError();
+      axios.get('/api/attribute-groups').then(function (response) {
+        _this.attr_groups = response.data;
       });
     },
-    addAttribute: function addAttribute() {
+    addAttrGroup: function addAttrGroup() {
       var _this2 = this;
 
-      axios.post('/admin/attribute', {
-        name: this.attr_name,
-        category_id: this.attr_groups_cat_id,
-        product_id: this.product_id
-      }).then(function () {
+      this.attr_group_form.post('/shoppy/add-attr-group').then(function () {
         _this2.toastSuccess();
+
+        _this2.getAttrGroups();
       })["catch"](function () {
         _this2.toastError();
       });
     },
-    addBrand: function addBrand() {
+    addAttribute: function addAttribute() {
       var _this3 = this;
+
+      this.attr_form.post('/shoppy/add-attribute', {
+        product_id: this.product_id
+      }).then(function () {
+        _this3.toastSuccess();
+      })["catch"](function () {
+        _this3.toastError();
+      });
+    },
+    addBrand: function addBrand() {
+      var _this4 = this;
 
       var image = $("#brandimage").val();
       axios.post('/admin/addbrand', {
@@ -2054,22 +2064,22 @@ __webpack_require__.r(__webpack_exports__);
         Ename: this.Ename,
         product_id: this.product_id
       }).then(function () {
-        _this3.toastSuccess();
+        _this4.toastSuccess();
       })["catch"](function () {
-        _this3.toastError();
+        _this4.toastError();
       });
     },
     addAttributeField: function addAttributeField() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.post('/admin/attributeitem', {
         name: this.attr_field_name,
         attribute_id: this.field_id,
         product_id: this.product_id
       }).then(function () {
-        _this4.toastSuccess();
+        _this5.toastSuccess();
       })["catch"](function () {
-        _this4.toastError();
+        _this5.toastError();
       });
     },
     toastSuccess: function toastSuccess() {
@@ -42954,10 +42964,10 @@ var render = function() {
                       [_vm._v("انتخاب کنید")]
                     ),
                     _vm._v(" "),
-                    _vm._l(_vm.categories, function(category) {
+                    _vm._l(_vm.attr_groups, function(group) {
                       return [
-                        _c("option", { domProps: { value: category.id } }, [
-                          _vm._v(_vm._s(category.name))
+                        _c("option", { domProps: { value: group.id } }, [
+                          _vm._v(_vm._s(group.attr_group_name))
                         ])
                       ]
                     })

@@ -42,8 +42,8 @@
                     <select class="form-control" v-model="attr_form.attribute_groups_id"
                             :class="{'border border-danger': attr_form.errors.has('attribute_groups_id')}">
                         <option value="" selected="selected">انتخاب کنید</option>
-                        <template v-for="category in categories">
-                            <option :value="category.id">{{ category.name }}</option>
+                        <template v-for="group in attr_groups">
+                            <option :value="group.id">{{ group.attr_group_name }}</option>
                         </template>
                     </select>
                 </div>
@@ -131,12 +131,22 @@
             };
         },
 
+        created() {
+            this.getAttrGroups();
+        },
+
         methods: {
+            getAttrGroups() {
+                axios.get('/api/attribute-groups').then(response => {
+                    this.attr_groups = response.data;
+                });
+            },
 
             addAttrGroup() {
                 this.attr_group_form.post('/shoppy/add-attr-group')
                     .then(() => {
                         this.toastSuccess();
+                        this.getAttrGroups();
                     })
                     .catch(() => {
                         this.toastError();
@@ -144,9 +154,7 @@
             },
 
             addAttribute() {
-                axios.post('/admin/attribute', {
-                    name: this.attr_name,
-                    category_id: this.attr_groups_cat_id,
+                this.attr_form.post('/shoppy/add-attribute', {
                     product_id: this.product_id
                 })
                     .then(() => {
