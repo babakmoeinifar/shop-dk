@@ -27,18 +27,27 @@
 
                 <div role="tabpanel" class="tab-pane active" id="add">
 
-                    <div class="form-group">
-                        <label for="oneupload">آپلود عکس اصلی</label>
-                        <form method="post" action="/shoppy/add-image-product" enctype="multipart/form-data"
-                              class="dropzone" id="oneupload">
-                            <input type="hidden" :value="csrf_token" name="_token">
-                        </form>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="oneupload">آپلود عکس اصلی</label>-->
+<!--                        <form method="post" action="/shoppy/add-image-product" enctype="multipart/form-data"-->
+<!--                              class="dropzone" id="oneupload">-->
+<!--                            <input type="hidden" :value="csrf_token" name="_token">-->
+<!--                        </form>-->
+<!--                    </div>-->
 
                     <form @submit.prevent="add()"
                           @keydown="form.onKeydown($event)">
 
-                        <input type="hidden" v-model="form.imageurl" name="image">
+<!--                        <input type="hidden" v-model="form.imageurl" name="image">-->
+
+                        <div class="form-group">
+                            <label for="image" class="col-sm-2 control-label">تصویر محصول</label>
+
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control-file" id="image" name="image"
+                                     @change="updatePhoto">
+                            </div>
+                        </div>
 
                         <div class="row mt-2">
                             <div class="col-lg-4">
@@ -167,7 +176,8 @@
                     code: '',
                     desc: $("#editor").text(),
                     meta_keywords: "",
-                    imageurl: 'test',
+                    image: "",
+                    // imageurl: 'test',
 
                     attributegroup_id: '',
                     itemid: '',
@@ -183,6 +193,25 @@
         },
 
         methods: {
+            updatePhoto(el) {
+                /*web base64*/
+                let file = el.target.files[0];
+                let reader = new FileReader();
+                if (file['size'] < 15111775) {
+                    reader.onloadend = (file) => {
+                        this.form.image = reader.result;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'حجم زیاد',
+                        text: 'حجم عکس انتخابی باید کمتر از 15 مگابایت باشد',
+                        confirmButtonText: 'باشه'
+                    })
+                }
+            },
+
             add() {
                 this.form.post('/shoppy/products').then(() => {
                     Toast.fire({

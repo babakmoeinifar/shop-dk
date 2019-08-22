@@ -15,7 +15,6 @@ class ProductController extends Controller
 
     public function store()
     {
-        dd(request()->all());
         Product::create(
             request()->validate([
                 'name' => 'required',
@@ -24,7 +23,7 @@ class ProductController extends Controller
                 'price' => 'required',
                 'stock' => 'required',
                 'desc' => 'nullable',
-                'image' => 'nullable',
+                'image' => 'required',
                 'meta_keywords' => 'nullable',
             ])
         );

@@ -2232,6 +2232,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf_token'],
   data: function data() {
@@ -2244,7 +2253,8 @@ __webpack_require__.r(__webpack_exports__);
         code: '',
         desc: $("#editor").text(),
         meta_keywords: "",
-        imageurl: 'test',
+        image: "",
+        // imageurl: 'test',
         attributegroup_id: '',
         itemid: ''
       }),
@@ -2255,8 +2265,30 @@ __webpack_require__.r(__webpack_exports__);
     this.getCategories();
   },
   methods: {
-    add: function add() {
+    updatePhoto: function updatePhoto(el) {
       var _this = this;
+
+      /*web base64*/
+      var file = el.target.files[0];
+      var reader = new FileReader();
+
+      if (file['size'] < 15111775) {
+        reader.onloadend = function (file) {
+          _this.form.image = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        Swal.fire({
+          type: 'error',
+          title: 'حجم زیاد',
+          text: 'حجم عکس انتخابی باید کمتر از 15 مگابایت باشد',
+          confirmButtonText: 'باشه'
+        });
+      }
+    },
+    add: function add() {
+      var _this2 = this;
 
       this.form.post('/shoppy/products').then(function () {
         Toast.fire({
@@ -2266,7 +2298,7 @@ __webpack_require__.r(__webpack_exports__);
 
         });
       })["catch"](function () {
-        _this.error = 1;
+        _this2.error = 1;
         Toast.fire({
           title: "اطلاعات ورودی خود را به دقت بررسی نمایید ",
           type: 'error'
@@ -2274,10 +2306,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getCategories: function getCategories() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/shoppy/categories').then(function (response) {
-        _this2.categories = response.data;
+        _this3.categories = response.data;
       });
     }
   }
@@ -42991,7 +43023,7 @@ var render = function() {
             "text-align": "center"
           }
         },
-        [_vm._v("\n        اضافه کردن کالا به فروشگاه\n    ")]
+        [_vm._v("\n            اضافه کردن کالا به فروشگاه\n        ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -43005,31 +43037,6 @@ var render = function() {
               attrs: { role: "tabpanel", id: "add" }
             },
             [
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "oneupload" } }, [
-                  _vm._v("آپلود عکس اصلی")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "form",
-                  {
-                    staticClass: "dropzone",
-                    attrs: {
-                      method: "post",
-                      action: "/shoppy/add-image-product",
-                      enctype: "multipart/form-data",
-                      id: "oneupload"
-                    }
-                  },
-                  [
-                    _c("input", {
-                      attrs: { type: "hidden", name: "_token" },
-                      domProps: { value: _vm.csrf_token }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
               _c(
                 "form",
                 {
@@ -43044,26 +43051,24 @@ var render = function() {
                   }
                 },
                 [
-                  _c("input", {
-                    directives: [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
                       {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.imageurl,
-                        expression: "form.imageurl"
-                      }
-                    ],
-                    attrs: { type: "hidden", name: "image" },
-                    domProps: { value: _vm.form.imageurl },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "imageurl", $event.target.value)
-                      }
-                    }
-                  }),
+                        staticClass: "col-sm-2 control-label",
+                        attrs: { for: "image" }
+                      },
+                      [_vm._v("تصویر محصول")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-10" }, [
+                      _c("input", {
+                        staticClass: "form-control-file",
+                        attrs: { type: "file", id: "image", name: "image" },
+                        on: { change: _vm.updatePhoto }
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row mt-2" }, [
                     _c("div", { staticClass: "col-lg-4" }, [
@@ -43096,9 +43101,9 @@ var render = function() {
                         _vm.form.errors.has("name")
                           ? _c("div", { staticClass: "text-danger" }, [
                               _vm._v(
-                                "\n                                    " +
+                                "\n                                        " +
                                   _vm._s(_vm.form.errors.get("name")) +
-                                  "\n                                "
+                                  "\n                                    "
                               )
                             ])
                           : _vm._e()
@@ -43135,9 +43140,9 @@ var render = function() {
                         _vm.form.errors.has("code")
                           ? _c("div", { staticClass: "text-danger" }, [
                               _vm._v(
-                                "\n                                    " +
+                                "\n                                        " +
                                   _vm._s(_vm.form.errors.get("code")) +
-                                  "\n                                "
+                                  "\n                                    "
                               )
                             ])
                           : _vm._e()
@@ -43174,9 +43179,9 @@ var render = function() {
                         _vm.form.errors.has("price")
                           ? _c("div", { staticClass: "text-danger" }, [
                               _vm._v(
-                                "\n                                    " +
+                                "\n                                        " +
                                   _vm._s(_vm.form.errors.get("price")) +
-                                  "\n                                "
+                                  "\n                                    "
                               )
                             ])
                           : _vm._e()
@@ -43214,9 +43219,9 @@ var render = function() {
                       _vm.form.errors.has("stock")
                         ? _c("div", { staticClass: "text-danger" }, [
                             _vm._v(
-                              "\n                                " +
+                              "\n                                    " +
                                 _vm._s(_vm.form.errors.get("stock")) +
-                                "\n                            "
+                                "\n                                "
                             )
                           ])
                         : _vm._e()
@@ -43282,9 +43287,9 @@ var render = function() {
                       _vm.form.errors.has("category_id")
                         ? _c("div", { staticClass: "text-danger" }, [
                             _vm._v(
-                              "\n                                " +
+                              "\n                                    " +
                                 _vm._s(_vm.form.errors.get("category_id")) +
-                                "\n                            "
+                                "\n                                "
                             )
                           ])
                         : _vm._e()
@@ -43292,7 +43297,9 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group col-md-4" }, [
                       _c("label", { attrs: { for: "meta_keywords" } }, [
-                        _vm._v("کلمات\n                                کلیدی")
+                        _vm._v(
+                          "کلمات\n                                    کلیدی"
+                        )
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -43342,7 +43349,9 @@ var render = function() {
                         }
                       },
                       [
-                        _vm._v("اضافه کردن کالا\n                            "),
+                        _vm._v(
+                          "اضافه کردن کالا\n                                "
+                        ),
                         _c("i", { staticClass: "fa fa-plus" })
                       ]
                     )
@@ -43385,7 +43394,7 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#add", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("اضافه\n                    کردن کالا")]
+            [_vm._v("اضافه\n                        کردن کالا")]
           )
         ]),
         _vm._v(" "),
@@ -43397,7 +43406,7 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#uploadpic", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("آپلود\n                    عکس اضافی")]
+            [_vm._v("آپلود\n                        عکس اضافی")]
           )
         ]),
         _vm._v(" "),
@@ -43409,7 +43418,7 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#attr", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("اضافه کردن\n                    خصوصیت ها")]
+            [_vm._v("اضافه کردن\n                        خصوصیت ها")]
           )
         ])
       ]
@@ -43420,7 +43429,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "name" } }, [
-      _vm._v("نام کالا\n                                    "),
+      _vm._v("نام کالا\n                                        "),
       _c("span", { staticClass: "text-danger font-weight-bold" }, [
         _vm._v(" * ")
       ])
@@ -43431,7 +43440,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "price" } }, [
-      _vm._v("قیمت\n                                    "),
+      _vm._v("قیمت\n                                        "),
       _c("span", { staticClass: "text-danger font-weight-bold" }, [
         _vm._v(" * ")
       ])
@@ -43442,7 +43451,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "stock" } }, [
-      _vm._v("تعداد در انبار\n                                "),
+      _vm._v("تعداد در انبار\n                                    "),
       _c("span", { staticClass: "text-danger font-weight-bold" }, [
         _vm._v(" * ")
       ])
@@ -43453,7 +43462,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "category" } }, [
-      _vm._v("انتخاب دسته کالا\n                                "),
+      _vm._v("انتخاب دسته کالا\n                                    "),
       _c("span", { staticClass: "text-danger font-weight-bold" }, [
         _vm._v(" * ")
       ])
