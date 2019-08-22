@@ -16,7 +16,7 @@ class CreateAttributeFieldsTable extends Migration
         Schema::create('attribute_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('attribute_id');
-            $table->string('name')->comment('field name');
+            $table->string('attr_field_name')->comment('field name');
 
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
         });

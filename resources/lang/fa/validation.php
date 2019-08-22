@@ -176,6 +176,7 @@ return array(
         'stock' => 'موجودی انبار',
         'price' => 'قیمت',
         'unit' => 'واحد شمارش',
+        'attr_group_name' => 'گروه کالایی',
 
 
     ),

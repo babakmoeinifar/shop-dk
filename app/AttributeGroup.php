@@ -8,4 +8,10 @@ class AttributeGroup extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = ['attr_group_name', 'category_id'];
+
+    public function attributes()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
 }

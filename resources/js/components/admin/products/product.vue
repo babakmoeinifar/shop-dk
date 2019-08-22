@@ -9,16 +9,28 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#add" role="tab" data-toggle="tab" style="font-size: 12px;">اضافه
-                        کردن کالا</a>
+                    <a class="nav-link active" href="#add" role="tab" data-toggle="tab" style="font-size: 12px;">
+                        <p>
+                            <span class="badge badge-primary">1</span>
+                            اضافه کردن کالا
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#uploadpic" role="tab" data-toggle="tab" style="font-size: 12px;">آپلود
-                        عکس اضافی</a>
+                    <a class="nav-link" href="#uploadpic" role="tab" data-toggle="tab" style="font-size: 12px;">
+                        <p>
+                            <span class="badge badge-primary">2</span>
+                            آپلود عکس اضافی
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#attr" role="tab" data-toggle="tab" style="font-size: 12px;">اضافه کردن
-                        خصوصیت ها</a>
+                    <a class="nav-link" href="#attr" role="tab" data-toggle="tab" style="font-size: 12px;">
+                        <p>
+                            <span class="badge badge-primary">3</span>
+                            اضافه کردن خصوصیت ها
+                        </p>
+                    </a>
                 </li>
             </ul>
 
@@ -29,12 +41,14 @@
 
                     <form @submit.prevent="add()" @keydown="form.onKeydown($event)">
 
-                        <div class="form-group">
+                        <div class="form-group" :class="{'border border-danger': form.errors.has('image')}">
                             <label for="image" class="col-sm-2 control-label">تصویر محصول</label>
-
-                                <input type="file" class="dropify" data-show-loader="true" id="image"
-                                       data-max-file-size="15M" data-allowed-file-extensions="jpg png jpeg gif"
-                                       name="image" @change="updatePhoto">
+                            <div class="text-danger" v-if="form.errors.has('image')">
+                                {{ form.errors.get('image') }}
+                            </div>
+                            <input type="file" class="dropify" data-show-loader="true" id="image"
+                                   data-max-file-size="15M" data-allowed-file-extensions="jpg png jpeg gif"
+                                   name="image" @change="updatePhoto">
                         </div>
 
                         <div class="row mt-2">
@@ -150,19 +164,21 @@
 
                 <div role="tabpanel" class="tab-pane fade" id="uploadpic">
                     <div class="col-lg-12">
+                        <h4 v-if="product_id === ''" class="text-center p-3 text-danger">ابتدا کالا را تعریف و ثبت کنید</h4>
                         <div class="form-group">
-                            <label for="myDropzone">آپلود عکس های اضافی در صفحه کالا</label>
+                            <label for="myDropzone" class="p-3">آپلود عکس های اضافی در صفحه کالا</label>
                             <form method="post" action="/shoppy/add-images-product" enctype="multipart/form-data"
-                                  class="dropzone" id="myDropzone">
-                                <input type="hidden" id="productid" name="id">
+                                   class="dropzone" id="myDropzone">
+                                <input type="hidden" v-model="product_id" name="id">
                                 <input type="hidden" :value="csrf_token" name="_token">
                             </form>
                         </div>
                     </div>
+
                 </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="attr">
-                    <add-attr></add-attr>
+                    <add-attr :product_id="product_id" :categories="categories"></add-attr>
                 </div>
 
             </div>
@@ -188,11 +204,8 @@
                     meta_keywords: "",
                     image: "",
                 }),
-                attributegroup_id: '',
-                itemid: '',
+                product_id: "",
                 categories: [],
-
-
             };
         },
 
@@ -223,7 +236,7 @@
             add() {
                 this.form.desc = $("#editor").text();
                 this.form.post('/shoppy/products').then((response) => {
-                    $('#productid').val(response.data.id);
+                    this.product_id = response.data.id;
                     Toast.fire({
                         title: "با موفقیت ذخیره شد ",
                         type: 'success',

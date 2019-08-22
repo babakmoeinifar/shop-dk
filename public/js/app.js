@@ -1973,53 +1973,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['product_id', 'categories'],
   data: function data() {
     return {
-      form: new Form({
-        groupName: '',
-        category: '',
-        categories: [],
-        attr_name: '',
-        attr_group: '',
-        productid: '',
-        attributeField: '',
-        groups: [],
-        items: [],
-        country: '',
-        brandName: '',
-        itemid: '',
-        productBrand: ''
-      })
+      attr_group_form: new Form({
+        attr_group_name: '',
+        category_id: ''
+      }),
+      attr_form: new Form({
+        name: '',
+        attribute_groups_id: ''
+      }),
+      attr_groups: [],
+      attr_name: '',
+      attr_field_name: '',
+      groups: [],
+      fields: [],
+      brand_name: '',
+      brand_country: '',
+      field_id: '',
+      product_brand: ''
     };
   },
   methods: {
-    addGroup: function addGroup() {
+    addAttrGroup: function addAttrGroup() {
       var _this = this;
 
-      axios.post('/admin/atrrgroup', {
-        name: this.form.groupName,
-        id: this.attributegroup_id
-      }).then(function (response) {
-        swal("با موفقیت ذخیره شد ");
-      }, function (response) {
-        _this.error = 1;
-        console.log("error");
+      this.attr_group_form.post('/shoppy/add-attr-group').then(function () {
+        _this.toastSuccess();
+      })["catch"](function () {
+        _this.toastError();
       });
     },
     addAttribute: function addAttribute() {
       var _this2 = this;
 
-      var productid = $("#productid1").val();
       axios.post('/admin/attribute', {
-        name: this["for"].attr_name,
-        id: this.form.attr_group,
-        productid: this.form.productid
-      }).then(function (response) {
-        swal("با موفقیت ذخیره شد ");
-      }, function (response) {
-        _this2.error = 1;
-        console.log("error");
+        name: this.attr_name,
+        category_id: this.attr_groups_cat_id,
+        product_id: this.product_id
+      }).then(function () {
+        _this2.toastSuccess();
+      })["catch"](function () {
+        _this2.toastError();
       });
     },
     addBrand: function addBrand() {
@@ -2027,31 +2048,40 @@ __webpack_require__.r(__webpack_exports__);
 
       var image = $("#brandimage").val();
       axios.post('/admin/addbrand', {
-        name: this.form.brandName,
-        country: this.form.country,
+        name: this.brand_name,
+        country: this.brand_country,
+        image: image,
         Ename: this.Ename,
-        product_id: this.form.productBrand,
-        image: image
-      }).then(function (response) {
-        swal("با موفقیت ذخیره شد ");
-      }, function (response) {
-        _this3.error = 1;
-        console.log("error");
+        product_id: this.product_id
+      }).then(function () {
+        _this3.toastSuccess();
+      })["catch"](function () {
+        _this3.toastError();
       });
     },
     addAttributeField: function addAttributeField() {
       var _this4 = this;
 
-      var productid = $("#productid1").val();
       axios.post('/admin/attributeitem', {
-        attributeitem: this.form.attributeField,
-        itemid: this.form.itemid,
-        productid: productid
-      }).then(function (response) {
-        swal("با موفقیت ذخیره شد ");
-      }, function (response) {
-        _this4.error = 1;
-        console.log("error");
+        name: this.attr_field_name,
+        attribute_id: this.field_id,
+        product_id: this.product_id
+      }).then(function () {
+        _this4.toastSuccess();
+      })["catch"](function () {
+        _this4.toastError();
+      });
+    },
+    toastSuccess: function toastSuccess() {
+      Toast.fire({
+        title: "با موفقیت ذخیره شد ",
+        type: 'success'
+      });
+    },
+    toastError: function toastError() {
+      Toast.fire({
+        title: "اطلاعات ورودی خود را به دقت بررسی نمایید ",
+        type: 'error'
       });
     }
   }
@@ -2240,6 +2270,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['csrf_token'],
   data: function data() {
@@ -2256,8 +2302,7 @@ __webpack_require__.r(__webpack_exports__);
         meta_keywords: "",
         image: ""
       }),
-      attributegroup_id: '',
-      itemid: '',
+      product_id: "",
       categories: []
     };
   },
@@ -2292,7 +2337,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.desc = $("#editor").text();
       this.form.post('/shoppy/products').then(function (response) {
-        $('#productid').val(response.data.id);
+        _this2.product_id = response.data.id;
         Toast.fire({
           title: "با موفقیت ذخیره شد ",
           type: 'success' // }).then(() => {
@@ -42669,323 +42714,433 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-lg-12" }, [
-    _c("div", { staticClass: "col-lg-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("گروه کالایی")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
+  return _c("div", [
+    _vm.product_id !== ""
+      ? _c("div", [
+          _c(
+            "form",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.category,
-              expression: "form.category"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "گروه کالایی را بنویسید..." },
-          domProps: { value: _vm.form.category },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+              staticClass: "col-lg-6 text-right",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addAttrGroup()
+                },
+                keydown: function($event) {
+                  return _vm.form.onKeydown($event)
+                }
               }
-              _vm.$set(_vm.form, "category", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.attributegroup_id,
-                expression: "form.attributegroup_id "
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("گروه کالایی")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.attr_group_form.attr_group_name,
+                      expression: "attr_group_form.attr_group_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  class: {
+                    "is-danger": _vm.attr_group_form.errors.has(
+                      "attr_group_name"
+                    )
+                  },
+                  attrs: {
+                    type: "text",
+                    placeholder: "گروه کالایی را بنویسید"
+                  },
+                  domProps: { value: _vm.attr_group_form.attr_group_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.attr_group_form,
+                        "attr_group_name",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.attr_group_form.category_id,
+                        expression: "attr_group_form.category_id"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: {
+                      "border border-danger": _vm.attr_group_form.errors.has(
+                        "category_id"
+                      )
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.attr_group_form,
+                          "category_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "option",
+                      { attrs: { value: "", selected: "selected" } },
+                      [_vm._v("انتخاب کنید")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.categories, function(category) {
+                      return [
+                        _c("option", { domProps: { value: category.id } }, [
+                          _vm._v(_vm._s(category.name))
+                        ])
+                      ]
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _vm.attr_group_form.errors.has("attr_group_name")
+                  ? _c("div", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(
+                            _vm.attr_group_form.errors.get("attr_group_name")
+                          ) +
+                          "\n                "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.attr_group_form.errors.has("category_id")
+                  ? _c("div", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(
+                            _vm.attr_group_form.errors.get("category_id")
+                          ) +
+                          "\n                "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  staticClass: "btn btn-primary",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.attr_group_form.busy,
+                    value: "اضافه کردن"
+                  }
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "col-lg-6 text-right",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addAttribute()
+                },
+                keydown: function($event) {
+                  return _vm.form.onKeydown($event)
+                }
               }
-            ],
-            staticClass: "form-control",
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "attributegroup_id",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("خصوصیت ها")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.attr_form.name,
+                      expression: "attr_form.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  class: { "is-danger": _vm.attr_form.errors.has("name") },
+                  attrs: {
+                    type: "text",
+                    placeholder: "نام خصوصیت را بنویسید..."
+                  },
+                  domProps: { value: _vm.attr_form.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.attr_form, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.attr_form.attribute_groups_id,
+                        expression: "attr_form.attribute_groups_id"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: {
+                      "border border-danger": _vm.attr_form.errors.has(
+                        "attribute_groups_id"
+                      )
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.attr_form,
+                          "attribute_groups_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "option",
+                      { attrs: { value: "", selected: "selected" } },
+                      [_vm._v("انتخاب کنید")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.categories, function(category) {
+                      return [
+                        _c("option", { domProps: { value: category.id } }, [
+                          _vm._v(_vm._s(category.name))
+                        ])
+                      ]
+                    })
+                  ],
+                  2
                 )
-              }
-            }
-          },
-          [
-            _c("option", { attrs: { value: "", selected: "selected" } }, [
-              _vm._v("انتخاب کنید")
+              ]),
+              _vm._v(" "),
+              _vm.attr_form.errors.has("name")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.attr_form.errors.get("name")) +
+                        "\n            "
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.attr_form.errors.has("attribute_groups_id")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(
+                          _vm.attr_form.errors.get("attribute_groups_id")
+                        ) +
+                        "\n            "
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  staticClass: "btn btn-primary",
+                  attrs: {
+                    type: "submit",
+                    disabled: _vm.attr_form.busy,
+                    value: "اضافه کردن"
+                  }
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("فیلد")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.attr_field_name,
+                    expression: "attr_field_name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "نام فیلد را بنویسید..." },
+                domProps: { value: _vm.attr_field_name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.attr_field_name = $event.target.value
+                  }
+                }
+              })
             ]),
             _vm._v(" "),
-            _vm._l(_vm.form.categories, function(category) {
-              return [
-                _c("option", { domProps: { value: category.id } }, [
-                  _vm._v(_vm._s(category.name))
-                ])
-              ]
-            })
-          ],
-          2
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "btn btn-info",
-          attrs: { type: "submit", value: "اضافه کردن" },
-          on: {
-            click: function($event) {
-              return _vm.addGroup()
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-lg-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("خصوصیت ها")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.attr_name,
-              expression: "form.attr_name"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "نام خصوصیت را بنویسید..." },
-          domProps: { value: _vm.form.attr_name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "attr_name", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.attr_group,
-                expression: "form.attr_group"
-              }
-            ],
-            staticClass: "form-control",
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.field_id,
+                      expression: "field_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.field_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _vm._l(_vm.fields, function(field) {
+                    return [
+                      _c("option", { domProps: { value: field.id } }, [
+                        _vm._v(_vm._s(field.name))
+                      ])
+                    ]
                   })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "attr_group",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          [
-            _c("option", { attrs: { value: "", selected: "selected" } }, [
-              _vm._v("انتخاب کنید")
+                ],
+                2
+              )
             ]),
             _vm._v(" "),
-            _vm._l(_vm.form.groups, function(group) {
-              return [
-                _c("option", { domProps: { value: group.id } }, [
-                  _vm._v(_vm._s(group.name))
-                ])
-              ]
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text", id: "productid1" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "btn btn-info",
-          attrs: { type: "submit", value: "اضافه کردن" },
-          on: {
-            click: function($event) {
-              return _vm.addAttribute()
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-lg-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("آیتم")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.attributeField,
-              expression: "form.attributeField"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "نام آیتم را بنویسید..." },
-          domProps: { value: _vm.form.attributeField },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "attributeField", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.itemid,
-                expression: "form.itemid"
-              }
-            ],
-            staticClass: "form-control",
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "itemid",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          [
-            _vm._l(_vm.form.items, function(item) {
-              return [
-                _c("option", { domProps: { value: item.id } }, [
-                  _vm._v(_vm._s(item.name))
-                ])
-              ]
-            })
-          ],
-          2
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "btn btn-info",
-          attrs: { type: "submit", value: "اضافه کردن" },
-          on: {
-            click: function($event) {
-              return _vm.addAttributeField()
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-lg-6" }, [
-      _c("label", [_vm._v("انتخاب برند")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.brandName,
-                expression: "form.brandName"
-              }
-            ],
-            staticClass: "form-control",
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "brandName",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          [
-            _c("option", { attrs: { value: "", selected: "selected" } }, [
-              _vm._v("انتخاب کنید")
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                staticClass: "btn btn-primary",
+                attrs: { type: "submit", value: "اضافه کردن" },
+                on: {
+                  click: function($event) {
+                    return _vm.addAttributeField()
+                  }
+                }
+              })
             ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "btn btn-info",
-          attrs: { type: "submit", value: "اضافه کردن" },
-          on: {
-            click: function($event) {
-              return _vm.addBrand()
-            }
-          }
-        })
-      ])
-    ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-6" }, [
+            _c("label", [_vm._v("انتخاب برند")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.brand_name,
+                      expression: "brand_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.brand_name = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "", selected: "selected" } }, [
+                    _vm._v("انتخاب کنید")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                staticClass: "btn btn-primary",
+                attrs: { type: "submit", value: "اضافه کردن" },
+                on: {
+                  click: function($event) {
+                    return _vm.addBrand()
+                  }
+                }
+              })
+            ])
+          ])
+        ])
+      : _c("div", [
+          _c("h4", { staticClass: "text-center p-3 text-danger" }, [
+            _vm._v("ابتدا کالا را تعریف و ثبت کنید")
+          ])
+        ])
   ])
 }
 var staticRenderFns = []
@@ -43053,29 +43208,48 @@ var render = function() {
                   }
                 },
                 [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-sm-2 control-label",
-                        attrs: { for: "image" }
-                      },
-                      [_vm._v("تصویر محصول")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "dropify",
-                      attrs: {
-                        type: "file",
-                        "data-show-loader": "true",
-                        id: "image",
-                        "data-max-file-size": "15M",
-                        "data-allowed-file-extensions": "jpg png jpeg gif",
-                        name: "image"
-                      },
-                      on: { change: _vm.updatePhoto }
-                    })
-                  ]),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      class: {
+                        "border border-danger": _vm.form.errors.has("image")
+                      }
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-2 control-label",
+                          attrs: { for: "image" }
+                        },
+                        [_vm._v("تصویر محصول")]
+                      ),
+                      _vm._v(" "),
+                      _vm.form.errors.has("image")
+                        ? _c("div", { staticClass: "text-danger" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.form.errors.get("image")) +
+                                "\n                        "
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "dropify",
+                        attrs: {
+                          type: "file",
+                          "data-show-loader": "true",
+                          id: "image",
+                          "data-max-file-size": "15M",
+                          "data-allowed-file-extensions": "jpg png jpeg gif",
+                          name: "image"
+                        },
+                        on: { change: _vm.updatePhoto }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "row mt-2" }, [
                     _c("div", { staticClass: "col-lg-4 form-group" }, [
@@ -43442,10 +43616,18 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "col-lg-12" }, [
+                _vm.product_id === ""
+                  ? _c("h4", { staticClass: "text-center p-3 text-danger" }, [
+                      _vm._v("ابتدا کالا را تعریف و ثبت کنید")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "myDropzone" } }, [
-                    _vm._v("آپلود عکس های اضافی در صفحه کالا")
-                  ]),
+                  _c(
+                    "label",
+                    { staticClass: "p-3", attrs: { for: "myDropzone" } },
+                    [_vm._v("آپلود عکس های اضافی در صفحه کالا")]
+                  ),
                   _vm._v(" "),
                   _c(
                     "form",
@@ -43460,7 +43642,24 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        attrs: { type: "hidden", id: "productid", name: "id" }
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.product_id,
+                            expression: "product_id"
+                          }
+                        ],
+                        attrs: { type: "hidden", name: "id" },
+                        domProps: { value: _vm.product_id },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.product_id = $event.target.value
+                          }
+                        }
                       }),
                       _vm._v(" "),
                       _c("input", {
@@ -43480,7 +43679,14 @@ var render = function() {
               staticClass: "tab-pane fade",
               attrs: { role: "tabpanel", id: "attr" }
             },
-            [_c("add-attr")],
+            [
+              _c("add-attr", {
+                attrs: {
+                  product_id: _vm.product_id,
+                  categories: _vm.categories
+                }
+              })
+            ],
             1
           )
         ])
@@ -43505,7 +43711,16 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#add", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("اضافه\n                    کردن کالا")]
+            [
+              _c("p", [
+                _c("span", { staticClass: "badge badge-primary" }, [
+                  _vm._v("1")
+                ]),
+                _vm._v(
+                  "\n                        اضافه کردن کالا\n                    "
+                )
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -43517,7 +43732,16 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#uploadpic", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("آپلود\n                    عکس اضافی")]
+            [
+              _c("p", [
+                _c("span", { staticClass: "badge badge-primary" }, [
+                  _vm._v("2")
+                ]),
+                _vm._v(
+                  "\n                        آپلود عکس اضافی\n                    "
+                )
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -43529,7 +43753,16 @@ var staticRenderFns = [
               staticStyle: { "font-size": "12px" },
               attrs: { href: "#attr", role: "tab", "data-toggle": "tab" }
             },
-            [_vm._v("اضافه کردن\n                    خصوصیت ها")]
+            [
+              _c("p", [
+                _c("span", { staticClass: "badge badge-primary" }, [
+                  _vm._v("3")
+                ]),
+                _vm._v(
+                  "\n                        اضافه کردن خصوصیت ها\n                    "
+                )
+              ])
+            ]
           )
         ])
       ]
@@ -56170,8 +56403,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /mnt/29F11EBF18CEDD29/projects/shoppy/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /mnt/29F11EBF18CEDD29/projects/shoppy/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/babak/data/projects/shop-dk/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/babak/data/projects/shop-dk/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

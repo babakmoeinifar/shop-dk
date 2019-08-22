@@ -16,7 +16,7 @@ class CreateAttributeGroupsTable extends Migration
         Schema::create('attribute_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id');
-            $table->string('name');
+            $table->string('attr_group_name')->unique();
             
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
