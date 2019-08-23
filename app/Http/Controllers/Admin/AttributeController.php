@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Attribute;
+use App\AttributeField;
 use App\AttributeGroup;
 use App\Http\Controllers\Controller;
+use App\Product;
 
 class AttributeController extends Controller
 {
@@ -35,6 +37,25 @@ class AttributeController extends Controller
            'name' => request('name'),
            'attribute_groups_id' => request('attribute_groups_id'),
         ]);
-        return $attribute;
+
+        $product = Product::findOrFail(request('product_id'));
+        $product->attributes()->attach($attribute->id);
+
+        return response('عملیات با موفقیت انجام شد');
+    }
+
+    public function addAttributeField()
+    {
+        request()->validate(
+            [
+                'attr_field_name' => 'required|min:3',
+                'attribute_id' => 'required',
+            ]);
+
+        $attributeField = AttributeField::create([
+           'attr_field_name' => request('attr_field_name'),
+           'attribute_id' => request('attribute_id'),
+        ]);
+        return $attributeField;
     }
 }

@@ -14,6 +14,7 @@ Route::group(['prefix' => 'shoppy'], function () {
 
     Route::post('add-attr-group', 'Admin\AttributeController@addAttrGroup');
     Route::post('add-attribute', 'Admin\AttributeController@addAttribute');
+    Route::post('add-attribute-field', 'Admin\AttributeController@addAttributeField');
 });
 
 

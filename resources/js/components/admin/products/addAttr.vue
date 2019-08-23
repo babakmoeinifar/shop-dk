@@ -32,7 +32,6 @@
 
             <!-- attributes table -->
             <form class="col-lg-6 text-right" @submit.prevent="addAttribute()" @keydown="form.onKeydown($event)">
-
                 <div class="form-group">
                     <label>خصوصیت ها</label>
                     <input type="text" placeholder="نام خصوصیت را بنویسید..." class="form-control"
@@ -60,26 +59,34 @@
             </form>
 
             <!-- attribute_fields table -->
-            <div class="col-lg-6">
+            <form class="col-lg-6 text-right" @submit.prevent="addAttributeField()" @keydown="form.onKeydown($event)">
                 <div class="form-group">
                     <label>فیلد</label>
                     <input type="text" placeholder="نام فیلد را بنویسید..." class="form-control"
-                           v-model="attr_field_name">
+                           :class="{'is-danger': attr_field_form.errors.has('attr_field_name')}"
+                           v-model="attr_field_form.attr_field_name">
                 </div>
 
                 <div class="form-group">
-                    <select class="form-control" v-model="field_id">
+                    <select class="form-control" v-model="attr_field_form.attribute_id"
+                            :class="{'border border-danger': attr_field_form.errors.has('attribute_id')}">
                         <template v-for="field in fields">
                             <option :value="field.id">{{ field.name }}</option>
                         </template>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="اضافه کردن"
-                           @click="addAttributeField()">
+                <div class="text-danger" v-if="attr_form.errors.has('attr_field_name')">
+                    {{ attr_form.errors.get('attr_field_name') }}
                 </div>
-            </div>
+                <div class="text-danger" v-if="attr_form.errors.has('attribute_id')">
+                    {{ attr_form.errors.get('attribute_id') }}
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" :disabled="attr_form.busy" class="btn btn-primary" value="اضافه کردن">
+                </div>
+            </form>
 
             <!-- brands table -->
             <div class="col-lg-6">
@@ -91,6 +98,7 @@
                 </div>
 
                 <div class="form-group">
+
                     <input type="submit" class="btn btn-primary" value="اضافه کردن" @click="addBrand()">
                 </div>
             </div>
@@ -119,14 +127,16 @@
                     attribute_groups_id: '',
                 }),
 
+                attr_field_form: new Form({
+                    attr_field_name: '',
+                    attribute_id: '',
+                }),
+
                 attr_groups: [],
-                attr_name: '',
-                attr_field_name: '',
-                groups: [],
+
                 fields: [],
                 brand_name: '',
                 brand_country: '',
-                field_id: '',
                 product_brand: '',
             };
         },
@@ -154,9 +164,17 @@
             },
 
             addAttribute() {
-                this.attr_form.post('/shoppy/add-attribute', {
-                    product_id: this.product_id
-                })
+                this.attr_form.post('/shoppy/add-attribute?product_id=' + this.product_id)
+                    .then(() => {
+                        this.toastSuccess();
+                    })
+                    .catch(() => {
+                        this.toastError();
+                    });
+            },
+
+            addAttributeField() {
+                this.attr_field_form.post('/shoppy/add-attribute-field?product_id=' + this.product_id)
                     .then(() => {
                         this.toastSuccess();
                     })
@@ -173,21 +191,6 @@
                     image: image,
                     Ename: this.Ename,
                     product_id: this.product_id
-                })
-                    .then(() => {
-                        this.toastSuccess();
-                    })
-                    .catch(() => {
-                        this.toastError();
-                    });
-            },
-
-            addAttributeField() {
-                axios.post('/admin/attributeitem', {
-                    name: this.attr_field_name,
-                    attribute_id: this.field_id,
-                    product_id: this.product_id
-
                 })
                     .then(() => {
                         this.toastSuccess();
