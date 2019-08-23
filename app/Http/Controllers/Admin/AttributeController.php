@@ -40,7 +40,6 @@ class AttributeController extends Controller
 
         $product = Product::findOrFail(request('product_id'));
         $product->attributes()->attach($attribute->id);
-
         return response('عملیات با موفقیت انجام شد');
     }
 
@@ -56,6 +55,9 @@ class AttributeController extends Controller
            'attr_field_name' => request('attr_field_name'),
            'attribute_id' => request('attribute_id'),
         ]);
-        return $attributeField;
+
+        $product = Product::findOrFail(request('product_id'));
+        $product->attributefields()->attach($attributeField->id);
+        return response('عملیات با موفقیت انجام شد');
     }
 }

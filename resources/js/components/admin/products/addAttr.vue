@@ -70,8 +70,8 @@
                 <div class="form-group">
                     <select class="form-control" v-model="attr_field_form.attribute_id"
                             :class="{'border border-danger': attr_field_form.errors.has('attribute_id')}">
-                        <template v-for="field in fields">
-                            <option :value="field.id">{{ field.name }}</option>
+                        <template v-for="attr in attrs">
+                            <option :value="attr.id">{{ attr.name }}</option>
                         </template>
                     </select>
                 </div>
@@ -133,8 +133,8 @@
                 }),
 
                 attr_groups: [],
+                attrs: [],
 
-                fields: [],
                 brand_name: '',
                 brand_country: '',
                 product_brand: '',
@@ -143,12 +143,19 @@
 
         created() {
             this.getAttrGroups();
+            this.getAttrs();
         },
 
         methods: {
             getAttrGroups() {
                 axios.get('/api/attribute-groups').then(response => {
                     this.attr_groups = response.data;
+                });
+            },
+
+            getAttrs() {
+                axios.get('/api/attributes').then(response => {
+                    this.attrs = response.data;
                 });
             },
 

@@ -2022,7 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
         attribute_id: ''
       }),
       attr_groups: [],
-      fields: [],
+      attrs: [],
       brand_name: '',
       brand_country: '',
       product_brand: ''
@@ -2030,6 +2030,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getAttrGroups();
+    this.getAttrs();
   },
   methods: {
     getAttrGroups: function getAttrGroups() {
@@ -2039,37 +2040,44 @@ __webpack_require__.r(__webpack_exports__);
         _this.attr_groups = response.data;
       });
     },
-    addAttrGroup: function addAttrGroup() {
+    getAttrs: function getAttrs() {
       var _this2 = this;
 
-      this.attr_group_form.post('/shoppy/add-attr-group').then(function () {
-        _this2.toastSuccess();
-
-        _this2.getAttrGroups();
-      })["catch"](function () {
-        _this2.toastError();
+      axios.get('/api/attributes').then(function (response) {
+        _this2.attrs = response.data;
       });
     },
-    addAttribute: function addAttribute() {
+    addAttrGroup: function addAttrGroup() {
       var _this3 = this;
 
-      this.attr_form.post('/shoppy/add-attribute?product_id=' + this.product_id).then(function () {
+      this.attr_group_form.post('/shoppy/add-attr-group').then(function () {
         _this3.toastSuccess();
+
+        _this3.getAttrGroups();
       })["catch"](function () {
         _this3.toastError();
       });
     },
-    addAttributeField: function addAttributeField() {
+    addAttribute: function addAttribute() {
       var _this4 = this;
 
-      this.attr_field_form.post('/shoppy/add-attribute-field?product_id=' + this.product_id).then(function () {
+      this.attr_form.post('/shoppy/add-attribute?product_id=' + this.product_id).then(function () {
         _this4.toastSuccess();
       })["catch"](function () {
         _this4.toastError();
       });
     },
-    addBrand: function addBrand() {
+    addAttributeField: function addAttributeField() {
       var _this5 = this;
+
+      this.attr_field_form.post('/shoppy/add-attribute-field?product_id=' + this.product_id).then(function () {
+        _this5.toastSuccess();
+      })["catch"](function () {
+        _this5.toastError();
+      });
+    },
+    addBrand: function addBrand() {
+      var _this6 = this;
 
       var image = $("#brandimage").val();
       axios.post('/admin/addbrand', {
@@ -2079,9 +2087,9 @@ __webpack_require__.r(__webpack_exports__);
         Ename: this.Ename,
         product_id: this.product_id
       }).then(function () {
-        _this5.toastSuccess();
+        _this6.toastSuccess();
       })["catch"](function () {
-        _this5.toastError();
+        _this6.toastError();
       });
     },
     toastSuccess: function toastSuccess() {
@@ -43105,10 +43113,10 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._l(_vm.fields, function(field) {
+                    _vm._l(_vm.attrs, function(attr) {
                       return [
-                        _c("option", { domProps: { value: field.id } }, [
-                          _vm._v(_vm._s(field.name))
+                        _c("option", { domProps: { value: attr.id } }, [
+                          _vm._v(_vm._s(attr.name))
                         ])
                       ]
                     })

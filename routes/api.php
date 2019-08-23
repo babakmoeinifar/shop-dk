@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('attribute-groups', 'Api\ApiController@attributeGroups');
+Route::get('attributes', 'Api\ApiController@attributes');
