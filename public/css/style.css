@@ -297,7 +297,7 @@ a:hover {
 #carousel-indicators li {
     width: 10px !important;
     height: 10px !important;
-    border-radius: 10px !important;
+    border-radius: 100% !important;
 }
 
 .navbar-nav span li {
@@ -343,8 +343,8 @@ li {
     max-width: 21.667% !important;
 }
 
-/*********************************/
-#card {
+/*************** discountSlider ******************/
+#card-discount {
     position: absolute;
     width: 100%;
     height: 410px;
@@ -361,7 +361,6 @@ li {
     right: 12%;
     position: absolute;
 }
-
 
 .carousel-fade .carousel-inner .carousel-item {
     transition-property: opacity;
@@ -421,13 +420,6 @@ li {
     color: #fff !important;
 }
 
-#pager {
-    background: #f1f7fb;
-    width: 100% !important;
-    height: 56px;
-    margin-right: 0% !important;
-    bottom: -5% !important;
-}
 
 .carousel-price {
     text-align: right;

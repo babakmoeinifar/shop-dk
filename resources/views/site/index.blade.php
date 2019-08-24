@@ -35,7 +35,7 @@ use App\Helper;
         </div>
     </div>
 
-    <!------------------ SLIDER ---------------->
+    <!------------------ DiscountSLIDER ---------------->
     <div class="col-lg-12" style="margin-top: 31px; position: relative;">
         <h5 style="font-size: 11px;text-align: right;">لوازم جانبی گوشی موبایل</h5>
         <div id="list_carousel3" class="list_carousel" style="overflow:hidden;">
@@ -78,48 +78,56 @@ use App\Helper;
     </div>
 
     <div class="col-lg-9" style="float: left; margin-top: 15px; left: 2%;max-width: 77% !important;">
-        <div class="card carousel slide carousel-fade" id="card" data-ride="carousel">
+        <div class="card carousel slide carousel-fade" id="card-discount" data-ride="carousel">
             <ul class="carousel-indicators" id="pager">
-                {{$i=1}}
-                @foreach($product as $products)
-                    @foreach($discount as $discounts)
-                        @if($products->id == $discounts->product_id)
-                            <li data-target="#card" data-slide-to="{{$i++}}">
-                                <a href="javascript:;" style="">
-                                    <span>{{$products->name}}</span>
-                                </a>
-                            </li>
-                        @endif
-                    @endforeach
-                @endforeach
+                <li data-target="#card-discount" data-slide-to="0" class="active"></li>
+                <li data-target="#card-discount" data-slide-to="1"></li>
+                {{--                {{$i=1}}--}}
+                {{--                @foreach($product as $products)--}}
+                {{--                    @foreach($discount as $discounts)--}}
+                {{--                        @if($products->id == $discounts->product_id)--}}
+                {{--                            <li data-target="#card-discount" data-slide-to="{{$i++}}">--}}
+                {{--                                <a href="javascript:" style="">--}}
+                {{--                                    <span>{{$products->name}}</span>--}}
+                {{--                                </a>--}}
+                {{--                            </li>--}}
+                {{--                        @endif--}}
+                {{--                    @endforeach--}}
+                {{--                @endforeach--}}
             </ul>
 
             <div class="discount_bar"></div>
 
             <div class="carousel-inner">
-                <div class="carousel-item active" id="carousel-item"></div>
+                <div class="carousel-item active" id="carousel-item">
 
-                @foreach($product as $products)
-                    @foreach($discount as $discounts)
-                        @if($products->id == $discounts->product_id)
-                            <div class="carousel-item " id="carousel-item">
-                                <img src="{{$products->image}}">
-                                <div class="carousel-price">
-                                    <span>{{$products->price}}</span>
-                                    <h4>{{$products->price * $discounts->value /100}} تومان</h4>
-                                    <p>تخفیف {{$discounts->value}}%</p>
-                                </div>
-                                <div class="carousel-title"> {{$products->name}} </div>
-                                <div class="atrr">
-                                    <ul>
-                                        <li>{{Helper::attribute($products->id)}}:{{Helper::item($products->id)}}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                @endforeach
+                    {{--                @foreach($product as $products)--}}
+                    {{--                    @foreach($discount as $discounts)--}}
+                    {{--                        @if($products->id == $discounts->product_id)--}}
+                    {{--                            <div class="carousel-item " id="carousel-item">--}}
+                    {{--                                <img src="{{$products->image}}">--}}
+                    {{--                                <div class="carousel-price">--}}
+                    {{--                                    <span>{{$products->price}}</span>--}}
+                    {{--                                    <h4>{{$products->price * $discounts->value /100}} تومان</h4>--}}
+                    {{--                                    <p>تخفیف {{$discounts->value}}%</p>--}}
+                    {{--                                </div>--}}
+                    {{--                                <div class="carousel-title"> {{$products->name}} </div>--}}
+                    {{--                                <div class="atrr">--}}
+                    {{--                                    <ul>--}}
+                    {{--                                        <li>{{Helper::attribute($products->id)}}:{{Helper::item($products->id)}}</li>--}}
+                    {{--                                    </ul>--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                        @endif--}}
+                    {{--                    @endforeach--}}
+                    {{--                @endforeach--}}
 
+                    <img src="/images/products/1.jpg">
+                </div>
+                <div class="carousel-item" id="carousel-item">
+                    <img src="/images/products/2.jpg">
+
+                </div>
             </div>
 
             <a class="left carousel-control-prev" href="#card" data-slide="prev" id="prev">
