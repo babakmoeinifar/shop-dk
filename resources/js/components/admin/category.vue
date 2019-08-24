@@ -181,7 +181,7 @@
 
             getCategories() {
                 axios.get('/shoppy/categories').then(response => {
-                    this.form.categories = response.data;
+                    this.categories = response.data;
                 });
             },
         }

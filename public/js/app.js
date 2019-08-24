@@ -1875,7 +1875,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.get('/shoppy/categories').then(function (response) {
-        _this4.form.categories = response.data;
+        _this4.categories = response.data;
       });
     }
   }
@@ -56478,8 +56478,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/babak/data/projects/shop-dk/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/babak/data/projects/shop-dk/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /mnt/29F11EBF18CEDD29/projects/shoppy/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /mnt/29F11EBF18CEDD29/projects/shoppy/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
