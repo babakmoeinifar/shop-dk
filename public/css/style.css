@@ -349,6 +349,11 @@ li {
     width: 100%;
     height: 410px;
     overflow: hidden;
+    float: left;
+}
+
+#card-discount .active a span {
+    color: white !important;
 }
 
 .discount_bar {
@@ -384,9 +389,12 @@ li {
 }
 
 .carousel-indicators li {
-    text-indent: 0px !important;
+    text-indent: 0 !important;
     width: auto !important;
     height: auto !important;
+}
+ul#pager.carousel-indicators {
+    height: 52px !important;
 }
 
 #pager {
@@ -399,13 +407,12 @@ li {
     z-index: 15;
     padding-top: 7px;
     padding-bottom: 6px;
-    font-size: 12px;
 }
 
 #pager li {
     float: right;
     margin-right: 33px;
-    padding: 9px;
+    padding: 0 9px 0 9px;
     border-radius: 5px;
 }
 
@@ -419,7 +426,6 @@ li {
     box-shadow: 1px 1px 2px 1px #eee;
     color: #fff !important;
 }
-
 
 .carousel-price {
     text-align: right;
@@ -453,6 +459,8 @@ li {
 .carousel-title {
     text-align: right;
     margin-top: 30px;
+    font-weight: bolder;
+    font-size: 18px;
 }
 
 .carousel-title1 {
@@ -464,17 +472,17 @@ li {
     text-align: right;
     margin-top: 15px;
     padding-right: 24px;
-    right: 38%;
+    right: 35%;
     position: absolute;
 }
 
-.atrr ul li {
-    list-style: unset !important;
-}
+/*.atrr ul li {*/
+/*    list-style: unset !important;*/
+/*}*/
 
 .caroufredsel_wrapper {
 
-    left: 0% !important;
+    left: 0 !important;
     width: 100% !important;
     overflow: visible !important;
 }
@@ -484,7 +492,7 @@ li {
     height: 80px;
     top: 81%;
     position: absolute;
-    background-color: hsla(0, 0%, 100%, .7);
+    background-color: hsla(0, 0%, 100%, .9);
     z-index: 999;
     border-radius: 100%;
     right: -4%;
@@ -504,12 +512,11 @@ li {
 }
 
 #prev {
-
     width: 80px;
     height: 80px;
     top: 81%;
     position: absolute;
-    background-color: hsla(0, 0%, 100%, .7);
+    background-color: hsla(0, 0%, 100%, .9);
     z-index: 999;
     border-radius: 100%;
     left: -4%;
@@ -576,7 +583,6 @@ li {
 }
 
 @media only screen and (max-width: 1000px) {
-
     #list_carousel3 .caroufredsel_wrapper {
         height: 220px !important;
     }
@@ -606,7 +612,7 @@ li {
         display: none;
     }
 
-    #card {
+    #card-discount {
         display: none;
     }
 
@@ -691,7 +697,6 @@ li {
         float: right;
         height: 100%;
         position: fixed;
-        z-index: 1;
         top: 0;
         width: 252px;
         right: 0%;
@@ -700,13 +705,10 @@ li {
         transition: 0.5s;
         box-shadow: 2px 2px 1px 1px #eeeeee;
         z-index: 99999;
-
-
     }
 
 
     .sidenav i {
-
         color: #fff;
         font-size: 17px;
         float: left;
@@ -732,7 +734,7 @@ li {
         display: none;
     }
 
-    #card #ul {
+    #card-discount #ul {
 
         display: block;
 
@@ -765,7 +767,6 @@ li {
 
 #kala .card {
     height: 50px;
-
     margin-top: 304px;
     min-height: 351px;
 
@@ -777,7 +778,6 @@ li {
     width: 100%;
     margin-top: 20px;
     min-height: 351px;
-
 }
 
 #kala2 .card {
@@ -785,57 +785,46 @@ li {
     width: 100%;
     margin-top: 20px;
     min-height: 351px;
-
 }
 
 #foo1 li img {
     width: 79%;
-
 }
 
 #foo2 li img {
     width: 79%;
-
 }
 
 #foo3 li img {
     width: 100%;
-
 }
 
 #foo4 li img {
     width: 100%;
-
 }
 
 #foo5 li img {
     width: 100%;
-
 }
 
 #foo6 li img {
     width: 100%;
-
 }
 
 #foo7 li img {
     width: 100%;
-
 }
 
 #foo8 li img {
     width: 100%;
-
 }
 
 #foo9 li img {
     width: 100%;
-
 }
 
 #foo10 li img {
     width: 100%;
-
 }
 
 #kala2 {
@@ -851,7 +840,6 @@ li {
     width: 100%;
     margin-top: 20px;
     min-height: 351px;
-
 }
 
 #kala3 {
@@ -867,7 +855,6 @@ li {
     width: 100%;
     margin-top: 20px;
     min-height: 351px;
-
 }
 
 #kala4 {
@@ -883,7 +870,6 @@ li {
     width: 100%;
     margin-top: 20px;
     min-height: 243px;
-
 }
 
 #foo11 li img {
@@ -919,7 +905,6 @@ li {
     width: 100%;
     margin-top: 20px;
     min-height: 351px;
-
 }
 
 
@@ -936,7 +921,6 @@ li {
     width: 100%;
     margin-top: 20px;
     min-height: 351px;
-
 }
 
 #kala6 {
@@ -953,8 +937,6 @@ li {
     float: left;
     margin-left: 33px;
     margin-top: -8px;
-
-
 }
 
 .carousel-title1 h6 {
@@ -963,7 +945,6 @@ li {
     margin-right: 38px;
     font-weight: bold;
     border-bottom: 1px solid #ef5661;
-
     width: 10%;
     padding-bottom: 15px;
 }
@@ -1000,7 +981,6 @@ li {
     color: #999;
     text-align: center;
     width: 271px;
-
     padding: 0;
     margin: 6px;
     display: block;
@@ -1025,7 +1005,6 @@ li {
     color: #999;
     text-align: center;
     width: 250px;
-
     padding: 0;
     margin: 6px;
     display: block;
@@ -1039,10 +1018,7 @@ li {
 
 
 #foo2 li .price {
-
     color: #fb3449;
-
-
 }
 
 .caroufredsel_wrapper {
@@ -1050,9 +1026,7 @@ li {
 }
 
 #foo2 li .text {
-
     line-height: 2;
-
 }
 
 .timer {
@@ -1064,7 +1038,6 @@ li {
 
 
 #foo1 li .price {
-
     color: #fb3449;
     line-height: 4;
 }
@@ -1634,10 +1607,10 @@ div.ui-slider {
     right: 0;
 }
 
-.active {
-    background: #3676ff;
-    color: #fff !important;
-}
+/*.active {*/
+/*    background: #3676ff;*/
+/*    color: #fff !important;*/
+/*}*/
 
 #page {
     border-radius: 100%;

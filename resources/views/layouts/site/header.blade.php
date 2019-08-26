@@ -141,8 +141,7 @@
 
 <div class="navigation">
             <span style="font-size: 30px; cursor: pointer; " class="openNav">
-               &#9776
-                <span style="color: #000; font-size: 15px;">دسته بندی ها</span>
+               <i class="fa fa-bars text-secondary"></i>
             </span>
 
     <!-- SEC2 -->
