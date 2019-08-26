@@ -465,7 +465,7 @@ ul#pager.carousel-indicators {
 
 .carousel-title1 {
     text-align: right;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
 }
 
 .atrr {
@@ -898,6 +898,9 @@ ul#pager.carousel-indicators {
 
 .price {
     color: #fb3449;
+    margin-right: 95px;
+    float: right;
+    font-size: 16px;
 }
 
 #kala5 .card {
@@ -995,7 +998,7 @@ ul#pager.carousel-indicators {
 
 .list_carousel1 ul {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     list-style: none;
     display: block;
 }
@@ -1130,80 +1133,45 @@ ul#pager.carousel-indicators {
 
 #prev2 {
     float: right;
-
     position: relative;
-
-    z-index: 9999;
-
     font-size: 34px;
-
     color: #9a9a9a;
-
     margin-top: -209px;
-
     width: 70px;
-
     height: 70px;
-
     border-radius: 100%;
-
     background: #fff;
-
     opacity: 0.8;
-
     box-shadow: 2px 2px 1px 0px #eee;
-
     margin-right: -12px;
-
     overflow: visible;
-
     text-align: center;
-
-    padding-top: 5px;
+    padding-top: 12px;
+    z-index: 9999;
 }
 
 #next2 {
-
-
     float: left;
-
     position: relative;
-
     z-index: 9999;
-
     font-size: 34px;
-
     color: #9a9a9a;
-
     margin-top: -70px;
-
     width: 70px;
-
     height: 70px;
-
     border-radius: 100%;
-
     background: #fff;
-
     opacity: 0.8;
     right: 94%;
-
     box-shadow: 2px 2px 1px 0px #eee;
-
     margin-left: -12px;
-
     overflow: visible;
-
     text-align: center;
-
-    padding-top: 5px;
-
-
+    padding-top: 12px;
 }
 
 
 .dark {
-
     background: #000000;
     opacity: .7;
     height: 2500px;

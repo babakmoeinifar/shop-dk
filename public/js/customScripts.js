@@ -33,8 +33,6 @@ $(document).ready(function () {
 
 
 
-
-
 // $("#ex2").slider({});
 
 $('#foo2,#foo9,#foo10,#foo11').carouFredSel({
