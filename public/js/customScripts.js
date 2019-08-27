@@ -35,10 +35,10 @@ $(document).ready(function () {
 
 // $("#ex2").slider({});
 
-$('#foo2,#foo9,#foo10,#foo11').carouFredSel({
+$('#foo2').carouFredSel({
     auto: false,
-    prev: '#prev2,#prev3',
-    next: '#next2,#next3',
+    prev: '#prev2',
+    next: '#next2',
     mousewheel: true,
     swipe: {
         onMouse: true,
@@ -48,8 +48,8 @@ $('#foo2,#foo9,#foo10,#foo11').carouFredSel({
 
 $('#foo3').carouFredSel({
     auto: false,
-    prev: '#prev3',
-    next: '#next3',
+    prev: '#prevoffer',
+    next: '#nextoffer',
     mousewheel: true,
     swipe: {
         onMouse: true,
@@ -59,8 +59,8 @@ $('#foo3').carouFredSel({
 
 $('#foo5').carouFredSel({
     auto: false,
-    prev: '#prev3',
-    next: '#next3',
+    prev: '#prevslider',
+    next: '#nextslider',
     mousewheel: true,
     swipe: {
         onMouse: true,
@@ -70,8 +70,30 @@ $('#foo5').carouFredSel({
 
 $('#foo6').carouFredSel({
     auto: false,
-    prev: '#prev3',
-    next: '#next3',
+    prev: '#prevbanners2',
+    next: '#nextbanners2',
+    mousewheel: true,
+    swipe: {
+        onMouse: true,
+        onTouch: true
+    }
+});
+
+$('#foo9').carouFredSel({
+    auto: false,
+    prev: '#prevnewest',
+    next: '#nextnewest',
+    mousewheel: true,
+    swipe: {
+        onMouse: true,
+        onTouch: true
+    }
+});
+
+$('#foo11').carouFredSel({
+    auto: false,
+    prev: '#prevbrands',
+    next: '#nextbrands',
     mousewheel: true,
     swipe: {
         onMouse: true,

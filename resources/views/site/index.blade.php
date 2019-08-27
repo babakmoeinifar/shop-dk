@@ -215,7 +215,6 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
 
             </ul>
 
-
             <ul id="ul">
                 <li style="float: right;margin-right: 115px;">
                     <img src="/images/site/4.svg" style="height: 55px;margin-top: 43px;">
@@ -250,24 +249,25 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
             </ul>
 
         </div>
+        </div>
 
         <!------------------special offers---------------->
-        <div class="col-lg-12" id="discount-image">
-            <div class="col-lg-3 col-sm-3">
+        <div class="row mx-auto" id="discount-image">
+            <a href="1" class="col-lg-3 col-sm-3">
                 <img src="/images/banners/s2.jpg">
-            </div>
+            </a>
 
-            <div class="col-lg-3 col-sm-3">
+            <a href="2" class="col-lg-3 col-sm-3">
                 <img src="/images/banners/s1.jpg">
-            </div>
+            </a>
 
-            <div class="col-lg-3 col-sm-3">
+            <a href="3" class="col-lg-3 col-sm-3">
                 <img src="/images/banners/s3.jpg">
-            </div>
+            </a>
 
-            <div class="col-lg-3 col-sm-3">
+            <a href="4" class="col-lg-3 col-sm-3">
                 <img src="/images/banners/s4.jpg">
-            </div>
+            </a>
         </div>
 
         <!------------------timed offers---------------->
@@ -280,7 +280,6 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
                     {{--                        @endif--}}
                     {{--                    @endforeach--}}
                     <h5>کالای دیجیتال</h5>
-                    <div class="hr"></div>
                 </div>
 
                 <div class="list_carousel" style="overflow:hidden;">
@@ -342,11 +341,10 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
 
                 <div class="carousel-title1">
                     <h6 style="font-size: 13px;font-weight: bold;color: #909090;text-align: center;
-
-margin-top: 28px; width:81%;border-bottom: none !important;">
+                    margin-top: 8px; width:71%;border-bottom: none !important;">
                         پیشنهادهای لحظه‌ای برای شما
                     </h6>
-                    <div id="timer1" class="timer" style="margin-top: 15px"></div>
+                    <div id="timer1" class="timer"></div>
                 </div>
 
                 <div class="list_carousel1" style="overflow:hidden;">
@@ -368,54 +366,103 @@ margin-top: 28px; width:81%;border-bottom: none !important;">
             </div>
         </div>
 
+        <!------------------offers---------------->
         <div class="col-lg-12" id="kala1" style="position: absolute;width: 98%;">
             <div class="card">
                 <div class="carousel-title1">
-                    @foreach($group as $groups)
-                        @if($groups->category_id == 167)
-                            <h6>{{$groups->name}}</h6>
-                        @endif
-                    @endforeach
-                    <div class="hr"></div>
+                    {{--                    @foreach($group as $groups)--}}
+                    {{--                        @if($groups->category_id == 167)--}}
+                    {{--                            <h6>{{$groups->name}}</h6>--}}
+                    {{--                        @endif--}}
+                    {{--                    @endforeach--}}
+                    <h6>گروه کالایی</h6>
                 </div>
 
                 <div class="list_carousel" style="overflow:hidden;">
                     <ul id="foo3">
-                        @foreach($product as $products)
-                            @if($products->category_id == 167)
-                                <li>
-                                    <img src="{{$products->image}}" width="210px" height="210px">
-                                    <span class="text">{{$products->name}}</span>
-                                    <span class="price">{{$products->price}}تومان</span>
-                                </li>
-                            @endif
-                        @endforeach
+                        {{--                        @foreach($product as $products)--}}
+                        {{--                            @if($products->category_id == 167)--}}
+                        {{--                                <li>--}}
+                        {{--                                    <img src="{{$products->image}}" width="210px" height="210px">--}}
+                        {{--                                    <span class="text">{{$products->name}}</span>--}}
+                        {{--                                    <span class="price">{{$products->price}}تومان</span>--}}
+                        {{--                                </li>--}}
+                        {{--                            @endif--}}
+                        {{--                        @endforeach--}}
+                        <li>
+                            <img src="/images/products/g2.jpg" width="210px" height="210px">
+                            <span class="text">کابل usb</span>
+                            <span class="price">120000  تومان</span>
+                        </li>
+                        <li>
+                            <img src="/images/products/g3.jpg" width="210px" height="210px">
+                            <span class="text">کابل usb</span>
+                            <span class="price">120000  تومان</span>
+                        </li>
+                        <li>
+                            <img src="/images/products/g6.jpg" width="210px" height="210px">
+                            <span class="text">کابل usb</span>
+                            <span class="price">120000  تومان</span>
+                        </li>
+                        <li>
+                            <img src="/images/products/g1.jpg" width="210px" height="210px">
+                            <span class="text">کابل usb</span>
+                            <span class="price">120000  تومان</span>
+                        </li>
+                        <li>
+                            <img src="/images/products/g4.jpg" width="210px" height="210px">
+                            <span class="text">کابل usb</span>
+                            <span class="price">120000  تومان</span>
+                        </li>
+                        <li>
+                            <img src="/images/products/g6.jpg" width="210px" height="210px">
+                            <span class="text">کابل usb</span>
+                            <span class="price">120000  تومان</span>
+                        </li>
+                        <li>
+                            <img src="/images/products/g4.jpg" width="210px" height="210px">
+                            <span class="text">کابل usb</span>
+                            <span class="price">120000  تومان</span>
+                        </li>
+                        <li>
+                            <img src="/images/products/g6.jpg" width="210px" height="210px">
+                            <span class="text">کابل usb</span>
+                            <span class="price">120000  تومان</span>
+                        </li>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
 
-                <a id="prev3" class="prev" href="#">&lt;</a> <a id="next3" class="next" href="#">&gt;</a>
+                <a id="prevoffer" class="prev" href="#">&lt;</a>
+                <a id="nextoffer" class="next" href="#">&gt;</a>
 
             </div>
         </div>
-    </div>
 
     <!-----------------------------banners----------------------------->
-    <div class="col-lg-12" id="discount-image" style="position: absolute;margin-top: 27%;margin-right: 3px;">
+    <div class="col-lg-12" id="discount-image" style="margin-top: 27%;margin-right: 3px;">
         <div class="col-lg-3 col-sm-3">
-            <img src="/images/site/b1.jpg">
+            <a href="">
+                <img src="/images/site/b1.jpg">
+            </a>
         </div>
 
         <div class="col-lg-3 col-sm-3">
-            <img src="/images/site/b2.jpg">
+            <a href="">
+                <img src="/images/site/b2.jpg">
+            </a>
         </div>
 
         <div class="col-lg-3 col-sm-3">
-            <img src="/images/site/b3.jpg">
+            <a href="">
+                <img src="/images/site/b3.jpg">
+            </a>
         </div>
 
         <div class="col-lg-3 col-sm-3">
-            <img src="/images/site/b4.jpg">
+            <a href="">
+                <img src="/images/site/b4.jpg">
+            </a>
         </div>
 
     </div>
@@ -424,130 +471,153 @@ margin-top: 28px; width:81%;border-bottom: none !important;">
     <div class="col-lg-12" id="kala1" style="position: absolute;width: 98%; margin-top: 45%;right: 1%;">
         <div class="card">
             <div class="carousel-title1">
-                @foreach($group as $groups)
-                    @if($groups->category_id == 170)
-                        <h5>{{$groups->name}}</h5>
-                    @endif
-                @endforeach
-                <div class="hr"></div>
+{{--                @foreach($group as $groups)--}}
+{{--                    @if($groups->category_id == 170)--}}
+{{--                        <h5>{{$groups->name}}</h5>--}}
+{{--                    @endif--}}
+{{--                @endforeach--}}
+                <h6>گروه فلان</h6>
+
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo5">
-                    @foreach($product as $products)
-                        @if($products->category_id == 170)
-                            <li>
-                                <img src="{{$products->image}}" width="210px" height="210px">
-                                <span class="text">{{$products->name}}</span>
-                                <span class="price">{{$products->price}}تومان</span>
-                            </li>
-                        @endif
-                    @endforeach
+{{--                    @foreach($product as $products)--}}
+{{--                        @if($products->category_id == 170)--}}
+{{--                            <li>--}}
+{{--                                <img src="{{$products->image}}" width="210px" height="210px">--}}
+{{--                                <span class="text">{{$products->name}}</span>--}}
+{{--                                <span class="price">{{$products->price}}تومان</span>--}}
+{{--                            </li>--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
+                    <li>
+                        <img src="/images/products/g1.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g4.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g4.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g4.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
 
             </div>
 
-            <a id="prev3" class="prev" href="#">&lt;</a> <a id="next3" class="next" href="#">&gt;</a>
+            <a id="prevslider" class="prev" href="#">&lt;</a>
+            <a id="nextslider" class="next" href="#">&gt;</a>
 
         </div>
     </div>
 
-    <!-----------------------------banners 2----------------------------->
+    <!-----------------------------banners2----------------------------->
     <div class="col-lg-12" id="kala2" style="">
         <div class="card">
             <div class="carousel-title1">
                 <h6>کالای دیجیتال</h6>
-                <div class="hr"></div>
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo6">
-                    @foreach($product as $products)
-                        @if($products->category_id == 173)
-                            <li>
-                                <img src="{{$products->image}}" width="210px" height="210px">
-                                <span class="text">{{$products->name}}</span>
-                                <span class="price"> {{$products->price}}تومان</span>
-                            </li>
-                        @endif
-                    @endforeach
+{{--                    @foreach($product as $products)--}}
+{{--                        @if($products->category_id == 173)--}}
+{{--                            <li>--}}
+{{--                                <img src="{{$products->image}}" width="210px" height="210px">--}}
+{{--                                <span class="text">{{$products->name}}</span>--}}
+{{--                                <span class="price"> {{$products->price}}تومان</span>--}}
+{{--                            </li>--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
+                    <li>
+                        <img src="/images/products/g4.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g4.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g4.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
 
-            <a id="prev3" class="prev" href="#">&lt;</a> <a id="next3" class="next" href="#">&gt;</a>
+            <a id="prevbanners2" class="prev" href="#">&lt;</a>
+            <a id="nextbanners2" class="next" href="#">&gt;</a>
 
         </div>
     </div>
 
     <!-----------------------------slider----------------------------->
-    <div class="col-lg-12" style="margin-top: 2%;position: absolute;">
+    <div class="row col-12 mx-auto" style="margin-top: 2%;">
 
         <div class="col-lg-6" style="float: right">
-            <img src="/images/banners/k1.jpg" style="width: 100%;">
+            <a href="">
+                <img src="/images/banners/k1.jpg" style="width: 100%;">
+            </a>
         </div>
 
         <div class="col-lg-6" style="float: right">
-            <img src="/images/banners/k2.jpg" style="width: 100%;">
+            <a href="">
+                <img src="/images/banners/k2.jpg" style="width: 100%;">
+            </a>
         </div>
 
-    </div>
-
-    <div class="col-lg-12" id="kala3" style="">
-        <div class="card">
-
-            <div class="carousel-title1">
-                <h6>کالای دیجیتال</h6>
-                <div class="hr"></div>
-            </div>
-
-            <div class="list_carousel" style="overflow:hidden;">
-                <ul id="foo7">
-                    <li>
-                        <img src="/images/products/g1.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g2.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g3.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g5.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-
-            </div>
-
-            <a id="prev3" class="prev" href="#">&lt;</a> <a id="next3" class="next" href="#">&gt;</a>
-
-        </div>
     </div>
 
     <!-----------------------------banner----------------------------->
     <div class="col-lg-12">
-        <img src="/images/banners/bg13.jpg"
-             style="width: 100%;border-radius: 5px;margin-top: 27px; box-shadow:1px 1px 1px #ddd ">
+        <a href="">
+            <img src="/images/banners/bg13.jpg"
+                 style="width: 100%;border-radius: 5px;margin-top: 27px; box-shadow:1px 1px 1px #ddd ">
+        </a>
     </div>
 
     <!-----------------------------slider newest----------------------------->
@@ -556,7 +626,6 @@ margin-top: 28px; width:81%;border-bottom: none !important;">
 
             <div class="carousel-title1">
                 <h6>جدید ترین کالاها</h6>
-                <div class="hr"></div>
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">
@@ -597,76 +666,49 @@ margin-top: 28px; width:81%;border-bottom: none !important;">
 
             </div>
 
-            <a id="prev3" class="prev" href="#">&lt;</a> <a id="next3" class="next" href="#">&gt;</a>
-
-        </div>
-    </div>
-
-    <!-----------------------------slider newest2----------------------------->
-    <div class="col-lg-12" id="kala6" style="">
-        <div class="card">
-            <div class="carousel-title1">
-                <h6>جدیدترین کالا ها</h6>
-                <div class="hr"></div>
-            </div>
-
-            <div class="list_carousel" style="overflow:hidden;">
-                <ul id="foo10">
-                    @foreach($newp as $products)
-                        <li>
-                            <img src="{{$products->image}}" width="210px" height="210px">
-                            <span class="text">{{$products->name}}</span>
-                            <span class="price">{{$products->price}} تومان</span>
-                        </li>
-                    @endforeach
-                </ul>
-                <div class="clearfix"></div>
-
-            </div>
-
-            <a id="prev3" class="prev" href="#">&lt;</a> <a id="next3" class="next" href="#">&gt;</a>
+            <a id="prevnewest" class="prev" href="#">&lt;</a>
+            <a id="nextnewest" class="next" href="#">&gt;</a>
 
         </div>
     </div>
 
     <!------------------Brand---------------->
-        <div class="col-lg-12" id="brand" style="">
-            <div class="card">
-                <div class="carousel-title1">
-                    <h6>برند های ویژه</h6>
-                    <div class="hr"></div>
-                </div>
+    <div class="col-lg-12" id="brand" style="">
+        <div class="card">
+            <div class="carousel-title1">
+                <h6>برند های ویژه</h6>
+            </div>
 
-                <div class="list_carousel" style="overflow:hidden;">
-                    <ul id="foo11">
-                        <li>
-                            <img src="/images/brands/brand.png" width="210px" height="210px">
-                        </li>
-                        <li>
-                            <img src="/images/brands/brand2.png" width="210px" height="210px">
-                        </li>
-                        <li>
-                            <img src="/images/brands/brand5.png" width="210px" height="210px">
-                        </li>
-                        <li>
-                            <img src="/images/brands/brand6.png" width="210px" height="210px">
-                        </li>
-                        <li>
-                            <img src="/images/brands/brnd2.png" width="210px" height="210px">
-                        </li>
-                        <li>
-                            <img src="/images/brands/brand.png" width="210px" height="210px">
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-
-                </div>
-
-                <a id="prev3" class="prev" href="#" style="margin-top: -269px !important; ">&lt;</a>
-                <a id="next3" class="next" href="#">&gt;</a>
+            <div class="list_carousel" style="overflow:hidden;">
+                <ul id="foo11">
+                    <li>
+                        <img src="/images/brands/brand.png" width="210px" height="210px">
+                    </li>
+                    <li>
+                        <img src="/images/brands/brand2.png" width="210px" height="210px">
+                    </li>
+                    <li>
+                        <img src="/images/brands/brand5.png" width="210px" height="210px">
+                    </li>
+                    <li>
+                        <img src="/images/brands/brand6.png" width="210px" height="210px">
+                    </li>
+                    <li>
+                        <img src="/images/brands/brnd2.png" width="210px" height="210px">
+                    </li>
+                    <li>
+                        <img src="/images/brands/brand.png" width="210px" height="210px">
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
 
             </div>
+
+            <a id="prevbrands" class="prev" href="#" style="margin-top: -269px !important; ">&lt;</a>
+            <a id="nextbrands" class="next" href="#">&gt;</a>
+
         </div>
+    </div>
 
 @endsection
 

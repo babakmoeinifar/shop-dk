@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="c-header-search">
-                    <input type="text" class="search-input"
+                    <input type="search" class="search-input"
                            placeholder="نام محصول برند و یا دسته مورد علاقه خود را جستجو کنید...">
                     <button class="search-button">
                         <i class="fa fa-search"></i>
@@ -83,9 +83,9 @@
             <input type="search" placeholder="جستجو از میان دسته ، کالا " class="search">
         </div>
 
-{{--        <span style="float: left;margin-top: -35px;color: #b0aeae;font-size: 21px;margin-left: 13px;">--}}
-{{--            <i class="fas fa-shopping-cart"></i><i class="fa fa-user"></i>--}}
-{{--        </span>--}}
+        <span style="float: left;margin-top: -35px;color: #b0aeae;font-size: 21px;margin-left: 13px;" id="icons">
+            <i class="fas fa-shopping-cart"></i><i class="fa fa-user"></i>
+        </span>
 
     </header>
 </div>
@@ -141,39 +141,39 @@
 
 <div class="navigation">
             <span style="font-size: 30px; cursor: pointer; " class="openNav">
-               <i class="fa fa-bars text-secondary"></i>
+               <i class="fa fa-bars text-secondary">sss</i>
             </span>
 
     <!-- SEC2 -->
     <div id="mysidenav" class="sidenav">
         <a href="javascript:;" class="closebtn">
             <img src="/images/site/digi.png"
-                 style="width: 127px;margin-left: 61px;margin-top: 32px;border-bottom: 1px solid #aaa9a9;">
+                 style="width: 127px;margin-left: 61px;margin-top: 32px;border-bottom: 1px solid #aaa9a9;margin-bottom: 10px">
         </a>
 
         @foreach($menu as $lev1item)
             <ul>
-                <li style="font-size: 13px;margin-top: 6px; color: #000 !important;" data-toggle="collapse"
-                    data-target="#collapse{{$lev1item->id}}" aria-expanded="false" aria-controls="collapseExample">
+                <li style="font-size: 16px;margin-top: 6px;!important;color: #4ac5ff" data-toggle="collapse"
+                    data-target="#collapse{{$lev1item->id}}"  aria-expanded="false" aria-controls="collapse">
                     {{$lev1item->name}}
                 </li>
 
                 @foreach($submenu as $lev2item)
                     @if($lev2item->parent_id == $lev1item->id)
-                        <li class="" style="margin-right: 15px;margin-top: 10px;" class="collapse"
-                            id="collapse{{$lev2item->id}}">
-                            <a style="color: #212121; !important;  font-size: 10px;" class="" data-toggle="collapse"
+                        <li style="margin-right: 15px;margin-top: 5px;" class="collapse"
+                            id="collapse{{$lev1item->id}}">
+                            <a style="color: #212121; !important;  font-size: 14px;" class="" data-toggle="collapse"
                                href="#collapseExample{{$lev2item->id}}" role="button" aria-expanded="false"
                                aria-controls="collapseExample">{{$lev2item->name}}
                             </a>
 
                             @foreach($submenu as $lev3item)
                                 @if($lev3item->parent_id === $lev2item->id)
-                                    <ul style="margin-right: 20px; " class="collapse"
-                                        id="collapseExample{{$lev3item->id}}">
-                                        <li class="" style="">
+                                    <ul class="collapse"
+                                        id="collapseExample{{$lev2item->id}}">
+                                        <li>
                                             <a href=""
-                                               style="color: #212121 !important;font-size: 12px; ">{{$lev3item->name}}</a>
+                                               style="color: #4f5961 !important;font-size: 12px; ">{{$lev3item->name}}</a>
                                         </li>
                                     </ul>
                                 @endif

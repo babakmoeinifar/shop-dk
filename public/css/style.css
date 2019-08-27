@@ -578,7 +578,7 @@ ul#pager.carousel-indicators {
     border-radius: 100%;
 }
 
-.search-bottom {
+.search-bottom, #icons {
     display: none;
 }
 
@@ -626,14 +626,18 @@ ul#pager.carousel-indicators {
         margin-top: 84px;
         border-top: 1px solid;
         padding-top: 8px;
-        margin-right: 11px;
+        margin-right: 21px;
         border-top-color: #afafaf;
         border-bottom: 1px solid #afafaf;
         padding-bottom: 5px;
     }
 
+    #icons {
+        display: block;
+    }
+
     .search-bottom .search {
-        border: 1px solid #1b1e21;
+        border: 1px solid #4f59618c;
         font-size: 10px;
         border-radius: 8px;
         text-align: right;
@@ -641,7 +645,6 @@ ul#pager.carousel-indicators {
         width: 77%;
         display: block;
         text-indent: 43px;
-
     }
 
     nav {
@@ -657,19 +660,15 @@ ul#pager.carousel-indicators {
     }
 
     header {
-
         height: 148px;
     }
 
 
     .header-div {
-
         display: none;
-
     }
 
     .c-header-search {
-
         display: none;
     }
 
@@ -692,7 +691,6 @@ ul#pager.carousel-indicators {
 
     /************menu**********/
     .sidenav {
-
         display: none;
         float: right;
         height: 100%;
@@ -719,7 +717,6 @@ ul#pager.carousel-indicators {
 
     .sidenav ul {
         text-align: right;
-        padding-top: 17px;
         color: #fff;
     }
 }
@@ -944,12 +941,12 @@ ul#pager.carousel-indicators {
 
 .carousel-title1 h6 {
 
-    margin-top: -11px;
+    margin-top: 6px;
     margin-right: 38px;
     font-weight: bold;
     border-bottom: 1px solid #ef5661;
     width: 10%;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 
@@ -1009,7 +1006,7 @@ ul#pager.carousel-indicators {
     text-align: center;
     width: 250px;
     padding: 0;
-    margin: 6px;
+    margin: 0 6px 0 20px;
     display: block;
     float: left;
 }
@@ -1033,101 +1030,58 @@ ul#pager.carousel-indicators {
 }
 
 .timer {
-
     background: #ef5661;
-    width: 100%;
+    width: 100% !important;
     height: 1px;
 }
 
 
 #foo1 li .price {
     color: #fb3449;
-    line-height: 4;
+    line-height: 2;
 }
 
 #foo1 li .text {
-
     line-height: 2;
-
 }
 
-.clearfix {
-    float: none;
-    clear: both;
-}
-
-
-#prev3 {
+#prevoffer, #prevslider , #prevbanners2, #prevnewest, #prevbrands{
     float: right;
-
     position: relative;
-
     z-index: 9999;
-
     font-size: 34px;
-
     color: #9a9a9a;
-
     margin-top: -209px;
-
     width: 70px;
-
     height: 70px;
-
     border-radius: 100%;
-
     background: #fff;
-
     opacity: 0.8;
-
     box-shadow: 2px 2px 1px 0px #eee;
-
     margin-right: -12px;
-
     overflow: visible;
-
     text-align: center;
-
     padding-top: 5px;
 }
 
-#next3 {
-
-
+#nextoffer, #nextslider , #nextbanners2, #nextnewest, #nextbrands{
     float: left;
-
     position: relative;
-
     z-index: 9999;
-
     font-size: 34px;
-
     color: #9a9a9a;
-
     margin-top: -70px;
-
     width: 70px;
-
     height: 70px;
-
     border-radius: 100%;
-
     background: #fff;
-
     opacity: 0.8;
     right: 94%;
-
     box-shadow: 2px 2px 1px 0px #eee;
-
     margin-left: -12px;
-
     overflow: visible;
-
     text-align: center;
-
     padding-top: 5px;
-
-
 }
 
 
