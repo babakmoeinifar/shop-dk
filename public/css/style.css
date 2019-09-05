@@ -15,17 +15,14 @@
 }
 
 body {
-    font-family: 'iransans', serif !important;
-
+    font-family: 'yekan', serif !important;
     background: #f5f5f5;
     color: #4a5f73;
     position: relative;
     padding-top: 120px;
     direction: rtl;
-    font-family: yekan, numberyekan, serif;
     font-size: 16px;
 }
-
 
 .header-c {
     position: absolute;
@@ -344,6 +341,11 @@ li {
 }
 
 /*************** discountSlider ******************/
+#shegeft {
+    margin-top: 9%;
+    position: relative;
+}
+
 #card-discount {
     position: absolute;
     width: 100%;
@@ -393,6 +395,7 @@ li {
     width: auto !important;
     height: auto !important;
 }
+
 ul#pager.carousel-indicators {
     height: 52px !important;
 }
@@ -582,169 +585,7 @@ ul#pager.carousel-indicators {
     display: none;
 }
 
-@media only screen and (max-width: 1000px) {
-    #list_carousel3 .caroufredsel_wrapper {
-        height: 220px !important;
-    }
-
-    #list_carousel3 ul li .text {
-        font-size: 13px;
-    }
-
-    #list_carousel3 ul li .price {
-        font-size: 13px;
-        color: red;
-    }
-
-    #list_carousel3 ul li {
-        width: 120px !important;
-        height: 220px !important;
-        background: #ffffff;
-        border-radius: 4px;
-    }
-
-    #foo4 {
-        height: 220px;
-    }
-
-
-    .disabled-right {
-        display: none;
-    }
-
-    #card-discount {
-        display: none;
-    }
-
-    #card2 #ul {
-        display: none;
-    }
-
-
-    .search-bottom {
-        display: block;
-        margin-top: 84px;
-        border-top: 1px solid;
-        padding-top: 8px;
-        margin-right: 21px;
-        border-top-color: #afafaf;
-        border-bottom: 1px solid #afafaf;
-        padding-bottom: 5px;
-    }
-
-    #icons {
-        display: block;
-    }
-
-    .search-bottom .search {
-        border: 1px solid #4f59618c;
-        font-size: 10px;
-        border-radius: 8px;
-        text-align: right;
-        height: 31px;
-        width: 77%;
-        display: block;
-        text-indent: 43px;
-    }
-
-    nav {
-        display: none;
-    }
-
-    .header-shop {
-        display: none;
-    }
-
-    .c-header-dropdown {
-        display: none;
-    }
-
-    header {
-        height: 148px;
-    }
-
-
-    .header-div {
-        display: none;
-    }
-
-    .c-header-search {
-        display: none;
-    }
-
-    .c-header_row {
-        float: left;
-        width: 176px;
-        position: absolute;
-        left: 4%;
-    }
-
-    .navigation {
-        float: right;
-        z-index: 999;
-        position: absolute;
-        top: 15px;
-        right: 6%;
-        display: block;
-    }
-
-
-    /************menu**********/
-    .sidenav {
-        display: none;
-        float: right;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        width: 252px;
-        right: 0%;
-        background: #fff;
-        overflow-x: hidden;
-        transition: 0.5s;
-        box-shadow: 2px 2px 1px 1px #eeeeee;
-        z-index: 99999;
-    }
-
-
-    .sidenav i {
-        color: #fff;
-        font-size: 17px;
-        float: left;
-        padding-top: 17px;
-        padding-left: 17px;
-    }
-
-
-    .sidenav ul {
-        text-align: right;
-        color: #fff;
-    }
-}
-
-
-@media only screen and (min-width: 1000px) {
-    .navigation {
-        display: none;
-    }
-
-    #list_carousel3 {
-        display: none;
-    }
-
-    #card-discount #ul {
-
-        display: block;
-
-    }
-
-    #card2 .ul {
-        display: none;
-    }
-
-}
-
 #discount-image {
-    position: absolute;
     margin-top: 20px;
     margin-right: -18px;
 }
@@ -764,17 +605,21 @@ ul#pager.carousel-indicators {
 
 #kala .card {
     height: 50px;
-    margin-top: 304px;
+    margin-top: 28px;
     min-height: 351px;
-
 }
 
 
 #kala1 .card {
     height: 50px;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 50px;
     min-height: 351px;
+}
+
+#foo3 li .price, #foo5 li .price, #foo6 li .price, #foo9 li .price {
+    margin-right: 98px;
+    margin-top: 10px;
 }
 
 #kala2 .card {
@@ -784,53 +629,13 @@ ul#pager.carousel-indicators {
     min-height: 351px;
 }
 
-#foo1 li img {
+#foo1 li img, #foo2 li img {
     width: 79%;
 }
 
-#foo2 li img {
-    width: 79%;
-}
-
-#foo3 li img {
+#foo3 li img, #shegeftangiz li img, #foo5 li img, #foo6 li img, #foo7 li img, #foo8 li img, #foo9 li img, #foo10 li img {
     width: 100%;
 }
-
-#foo4 li img {
-    width: 100%;
-}
-
-#foo5 li img {
-    width: 100%;
-}
-
-#foo6 li img {
-    width: 100%;
-}
-
-#foo7 li img {
-    width: 100%;
-}
-
-#foo8 li img {
-    width: 100%;
-}
-
-#foo9 li img {
-    width: 100%;
-}
-
-#foo10 li img {
-    width: 100%;
-}
-
-#kala2 {
-    position: relative;
-    width: 98%;
-    margin-top: 73%;
-    right: 1%;
-}
-
 
 #kala3 .card {
     height: 50px;
@@ -839,28 +644,12 @@ ul#pager.carousel-indicators {
     min-height: 351px;
 }
 
-#kala3 {
-    position: relative;
-    width: 98%;
-    margin-top: 21%;
-    right: 1%;
-}
-
-
 #kala4 .card {
     height: 50px;
     width: 100%;
     margin-top: 20px;
     min-height: 351px;
 }
-
-#kala4 {
-    position: relative;
-    width: 98%;
-    margin-top: 1%;
-    right: 1%;
-}
-
 
 #brand .card {
     height: 50px;
@@ -888,14 +677,14 @@ ul#pager.carousel-indicators {
 .text {
     float: right;
     color: #4a5f73;
-    font-size: 11px;
-    margin-top: 18px;
+    font-size: 12px;
+    margin-top: 8px;
     width: 100%;
 }
 
 .price {
     color: #fb3449;
-    margin-right: 95px;
+    margin-right: 22px;
     float: right;
     font-size: 16px;
 }
@@ -1001,14 +790,18 @@ ul#pager.carousel-indicators {
 }
 
 .list_carousel1 li {
-    font-size: 15px;
+    font-size: 14px;
     color: #999;
     text-align: center;
-    width: 250px;
+    width: 240px;
     padding: 0;
-    margin: 0 6px 0 20px;
+    margin: 0 2px 0 -15px;
     display: block;
     float: left;
+}
+
+.list_carousel1 li .text {
+    font-size: 10px;
 }
 
 .list_carousel1.responsive {
@@ -1019,14 +812,12 @@ ul#pager.carousel-indicators {
 
 #foo2 li .price {
     color: #fb3449;
+    margin-right: 87px;
+    margin-top: 10px;
 }
 
 .caroufredsel_wrapper {
     height: 305px !important;
-}
-
-#foo2 li .text {
-    line-height: 2;
 }
 
 .timer {
@@ -1039,13 +830,11 @@ ul#pager.carousel-indicators {
 #foo1 li .price {
     color: #fb3449;
     line-height: 2;
+    margin-right: 89px;
+    margin-top: 10px;
 }
 
-#foo1 li .text {
-    line-height: 2;
-}
-
-#prevoffer, #prevslider , #prevbanners2, #prevnewest, #prevbrands{
+#prev2, #prevoffer, #prevslider, #prevbanners2, #prevnewest, #prevbrands {
     float: right;
     position: relative;
     z-index: 9999;
@@ -1064,7 +853,7 @@ ul#pager.carousel-indicators {
     padding-top: 5px;
 }
 
-#nextoffer, #nextslider , #nextbanners2, #nextnewest, #nextbrands{
+#next2, #nextoffer, #nextslider, #nextbanners2, #nextnewest, #nextbrands {
     float: left;
     position: relative;
     z-index: 9999;
@@ -1083,47 +872,6 @@ ul#pager.carousel-indicators {
     text-align: center;
     padding-top: 5px;
 }
-
-
-#prev2 {
-    float: right;
-    position: relative;
-    font-size: 34px;
-    color: #9a9a9a;
-    margin-top: -209px;
-    width: 70px;
-    height: 70px;
-    border-radius: 100%;
-    background: #fff;
-    opacity: 0.8;
-    box-shadow: 2px 2px 1px 0px #eee;
-    margin-right: -12px;
-    overflow: visible;
-    text-align: center;
-    padding-top: 12px;
-    z-index: 9999;
-}
-
-#next2 {
-    float: left;
-    position: relative;
-    z-index: 9999;
-    font-size: 34px;
-    color: #9a9a9a;
-    margin-top: -70px;
-    width: 70px;
-    height: 70px;
-    border-radius: 100%;
-    background: #fff;
-    opacity: 0.8;
-    right: 94%;
-    box-shadow: 2px 2px 1px 0px #eee;
-    margin-left: -12px;
-    overflow: visible;
-    text-align: center;
-    padding-top: 12px;
-}
-
 
 .dark {
     background: #000000;
@@ -1139,21 +887,13 @@ ul#pager.carousel-indicators {
 
 #foo2 li {
     font-size: 15px;
-
     color: #999;
-
     text-align: center;
-
     width: 256px;
-
     padding: 0;
-
     margin: 6px;
-
     display: block;
-
     float: left;
-
     height: 296px;
 }
 
@@ -1165,14 +905,10 @@ ul#pager.carousel-indicators {
 
 /**********footer***********/
 footer {
-
-    margin-top: 10%;
     border-top: 1px solid #ddd;
-
 }
 
 .footer-top {
-
     background: #eceff1;
     min-height: 410px;
     width: 100%;
@@ -1181,13 +917,18 @@ footer {
 .footer-bottom {
     background-color: #d7dee0;
     width: 100%;
-    height: 300px;
+    height: 325px;
     color: #515151;
 }
 
 .footer_item {
     height: 129px;
     border-bottom: 1px solid #d3d3d3;
+}
+
+.footer_item ul li img {
+    height: 55px;
+    margin-top: 43px;
 }
 
 .footer_item ul li {
@@ -1204,31 +945,34 @@ footer {
     margin-top: 102px;
 }
 
-.footer-content ul li {
-    float: right;
-
-    text-align: right;
-
-    font-size: 12px;
+.footer-content ul li span {
+    font-weight: bold;
 }
 
+.footer-content ul li {
+    float: right;
+    text-align: right;
+    font-size: 14px;
+}
 
 .footer-content {
-
-
-    margin-top: 15px;
+    margin-top: -204px;
+    padding-top: 223px;
 }
 
 .footer-content ul li a {
     display: block;
     color: #838383;
     line-height: 2.571;
-    font-size: 11px;
+    font-size: 12px;
+}
+
+.footer-content > div > ul li img {
+    width: 130px;
 }
 
 .digi_insta {
     width: 134px;
-
     height: 39px;
     text-align: center;
     border-radius: 9px;
@@ -1237,7 +981,6 @@ footer {
     color: #fff !important;
     font-weight: 700;
     display: inline-block;
-    font-size: 12px;
     font-size: .857rem;
     line-height: 45px;
 }
@@ -1249,13 +992,11 @@ footer {
     line-height: 2;
     color: #6d6d6d;
     margin-right: 35px;
-
     padding-top: 21px;
 }
 
 .footer__description-content aside ul li {
     float: right;
-
     margin-right: 10px;
 }
 
@@ -1270,10 +1011,8 @@ footer {
 
 .footer-left {
     float: left;
-
-    margin-top: -100px;
-
-    margin-left: 64px;
+    margin-top: -124px;
+    margin-left: 23px;
 }
 
 .footer-bottom1 ul li {
@@ -1288,17 +1027,13 @@ footer {
 
 .footer-bottom1 {
     margin-top: 45px;
-
     border-bottom: 1px solid #9b9696;
-
     height: 58px;
 }
-
 
 #ListProduct ul li {
     border: 1px solid #ececec;
     height: 400px;
-
 }
 
 
@@ -1352,16 +1087,10 @@ footer {
 
 .brandsearch {
     width: 100%;
-
-
     position: absolute;
-
     border-top: 1px solid #e0d9d9;
-
     margin-top: 20px;
-
     right: 0px;
-
 }
 
 .brandsearch ul li {
@@ -1424,7 +1153,6 @@ div.ui-slider {
     margin-top: 11px;
     border-right: none;
 }
-
 
 .switch {
     position: relative;
@@ -1501,18 +1229,10 @@ div.ui-slider {
     max-width: 19.2%;
 }
 
-#attr2 {
-
-}
-
 #attr3 {
     top: 70%;
     position: absolute;
     max-width: 19.2%;
-}
-
-#attr4 {
-
 }
 
 .attributeitem li {
@@ -1529,21 +1249,14 @@ div.ui-slider {
     right: 0;
 }
 
-/*.active {*/
-/*    background: #3676ff;*/
-/*    color: #fff !important;*/
-/*}*/
-
 #page {
     border-radius: 100%;
     margin-right: 10px;
-
 }
 
 .page-link {
     border: none !important;
     margin-right: 20px;
-
 }
 
 .showimage {
@@ -1562,16 +1275,14 @@ div.ui-slider {
 
 .select_color1 {
     border: 1px solid #8fbcc7;
-    padding: 6px;
-    padding-right: 6px;
+    /*padding: 6px;*/
     border-radius: 5px;
     padding-right: 38px;
 }
 
 .select_color2 {
     border: 1px solid #ddd;
-    padding: 6px;
-    padding-right: 6px;
+    /*padding: 6px;*/
     border-radius: 5px;
     padding-right: 38px;
     margin-right: 10px;
@@ -1599,7 +1310,6 @@ div.ui-slider {
     margin-top: 50px;
     font-size: 13px;
 }
-
 
 #image {
     margin-top: 97px;
@@ -1656,7 +1366,7 @@ div.ui-slider {
 }
 
 .button_card {
-    padding-left: 126px !important;
+    /*padding-left: 126px !important;*/
     padding: 16px 98px 16px 18px;
     border-radius: 8px;
     background-color: #00bfd6;
@@ -1763,11 +1473,6 @@ div.ui-slider {
     margin-right: 9px;
 }
 
-#attr_p1 li {
-
-}
-
-
 #header-cart-dropdown {
     position: absolute;
     top: calc(82% + 10px);
@@ -1775,12 +1480,214 @@ div.ui-slider {
     width: 323px;
     background-color: #fff;
     box-shadow: 0 2px 9px 0 #d3d9df;
-
     z-index: 123;
     border: 1px solid #000;
 }
 
 #header-cart-dropdown .before {
-
     border-color: transparent transparent #cbc6c6 !important;
+}
+
+@media only screen and (max-width: 1192px) {
+    .footer-content ul li {
+        font-size: 12px;
+    }
+
+    .footer-content > div > ul li img {
+        width: 105px;
+    }
+
+    .footer-left ul li {
+        margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+    .footer-left ul {
+        margin-top: -45px;
+        margin-left: 88px;
+    }
+
+    .footer-left ul li {
+        float: none
+    }
+    .footer-left ul li img {
+        width: 90px;
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    .footer-bottom1 {
+        margin-top: 83px;
+    }
+    .footer-bottom {
+        height: 417px;
+    }
+    .footer-left ul {
+        margin-top: -85px;
+    }
+
+    #shegeft {
+        margin-top: 4%;
+    }
+
+    #list_carousel3 .caroufredsel_wrapper {
+        height: 220px !important;
+    }
+
+    #list_carousel3 ul li .text {
+        font-size: 12px;
+    }
+
+    #list_carousel3 ul li .price {
+        font-size: 15px;
+        color: red;
+        margin-top: 10px;
+    }
+
+    #list_carousel3 ul li {
+        width: 136px !important;
+        height: 220px !important;
+        background: #ffffff;
+        border-radius: 4px;
+    }
+
+    #list_carousel3 ul li img {
+        margin-top: 27px;
+    }
+
+    #shegeftangiz {
+        height: 220px;
+    }
+
+
+    .disabled-right {
+        display: none;
+    }
+
+    #card-discount {
+        display: none;
+    }
+
+    #card2 #ul {
+        display: none;
+    }
+
+
+    .search-bottom {
+        display: block;
+        margin-top: 84px;
+        border-top: 1px solid;
+        padding-top: 8px;
+        margin-right: 21px;
+        border-top-color: #afafaf;
+        border-bottom: 1px solid #afafaf;
+        padding-bottom: 5px;
+    }
+
+    #icons {
+        display: block;
+    }
+
+    .search-bottom .search {
+        border: 1px solid #4f59618c;
+        font-size: 10px;
+        border-radius: 8px;
+        text-align: right;
+        height: 31px;
+        width: 77%;
+        display: block;
+        text-indent: 43px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .header-shop {
+        display: none;
+    }
+
+    .c-header-dropdown {
+        display: none;
+    }
+
+    header {
+        height: 148px;
+    }
+
+
+    .header-div {
+        display: none;
+    }
+
+    .c-header-search {
+        display: none;
+    }
+
+    .c-header_row {
+        float: left;
+        width: 176px;
+        position: absolute;
+        left: 4%;
+    }
+
+    .navigation {
+        float: right;
+        z-index: 999;
+        position: absolute;
+        top: 15px;
+        right: 6%;
+        display: block;
+    }
+
+    /************menu**********/
+    .sidenav {
+        display: none;
+        float: right;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        width: 252px;
+        right: 0%;
+        background: #fff;
+        overflow-x: hidden;
+        transition: 0.5s;
+        box-shadow: 2px 2px 1px 1px #eeeeee;
+        z-index: 99999;
+    }
+
+    .sidenav i {
+        color: #fff;
+        font-size: 17px;
+        float: left;
+        padding-top: 17px;
+        padding-left: 17px;
+    }
+
+    .sidenav ul {
+        text-align: right;
+        color: #fff;
+    }
+}
+
+
+@media only screen and (min-width: 1000px) {
+
+    .navigation {
+        display: none;
+    }
+
+    #list_carousel3 {
+        display: none;
+    }
+
+    #card-discount #ul {
+        display: block;
+    }
+
+    #card2 .ul {
+        display: none;
+    }
+
 }

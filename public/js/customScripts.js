@@ -134,7 +134,7 @@ $('#foo1').carouFredSel({
 });
 
 
-$('#foo4').carouFredSel({
+$('#shegeftangiz').carouFredSel({
     auto: {
         pauseOnHover: 'resume',
         auto: true,

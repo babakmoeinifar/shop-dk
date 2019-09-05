@@ -35,51 +35,49 @@ use App\Helper;
         </div>
     </div>
 
-    <!------------------ Janebi Mobile ---------------->
+    <!------------------ زیر اسلایدر mobile ---------------->
     <div class="col-lg-12" style="margin-top: 31px; position: relative;">
         <div id="list_carousel3" class="list_carousel" style="overflow:hidden;">
-            <h5 style="font-size: 11px;text-align: right;">لوازم جانبی گوشی موبایل</h5>
+            <h5 style="font-size: 14px;text-align: right;">پیشنهادات شگفت انگیز</h5>
 
-            <ul id="foo4">
+            <ul id="shegeftangiz">
                 <li>
-                    <img src="/images/products/g1.jpg" width="110px" height="80px">
+                    <img src="/images/products/g1.jpg" height="80px">
                     <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
                     <span class="price">120000تومان</span>
                 </li>
                 <li>
-                    <img src="/images/products/g2.jpg" width="110px" height="80px">
+                    <img src="/images/products/g2.jpg" height="80px">
                     <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
                     <span class="price">120000تومان</span>
                 </li>
                 <li>
-                    <img src="/images/products/g3.jpg" width="110px" height="80px">
+                    <img src="/images/products/g3.jpg" height="80px">
                     <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
                     <span class="price">120000تومان</span>
                 </li>
                 <li>
-                    <img src="/images/products/g4.jpg" width="110px" height="80px">
+                    <img src="/images/products/g4.jpg" height="80px">
                     <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
                     <span class="price">120000تومان</span>
                 </li>
                 <li>
-                    <img src="/images/products/g5.jpg" width="110px" height="80px">
+                    <img src="/images/products/g5.jpg" height="80px">
                     <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
                     <span class="price">120000تومان</span>
                 </li>
                 <li>
-                    <img src="/images/products/g6.jpg" width="110px" height="80px">
+                    <img src="/images/products/g6.jpg" height="80px">
                     <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
                     <span class="price">120000تومان</span>
                 </li>
             </ul>
             <div class="clearfix"></div>
-
         </div>
 
     </div>
 
     <!------------------ DiscountSLIDER ---------------->
-
     <div class="col-lg-9" style="float: left; margin-top: 15px; left: 2%;max-width: 77% !important;">
         <div class="card carousel slide carousel-fade" id="card-discount" data-ride="carousel">
 
@@ -169,18 +167,17 @@ use App\Helper;
             <a class="left carousel-control-next" href="#card-discount" data-slide="next" id="next">
                 <span class="fa fa-angle-right" style="font-size: 48px;"></span>
             </a>
-
         </div>
 
     </div>
 
+    <!------------------مشاهده همه شگفت انگیز ها---------------->
     <div class="col-lg-2">
         <div class="disabled-right">
             <img src="/images/site/discount.jpg">
             <a href="javasrcipt:;">
                 <span>
                     <i class="fa fa-angle-left"></i>
-
                 </span>
                 <i class="fa fa-angle-left" style="font-size: 15px;float: right;"></i>
                 مشاهده همه شگفت انگیز ها
@@ -189,8 +186,7 @@ use App\Helper;
     </div>
 
     <!------------------زیر اسلایدر---------------->
-
-    <div class="col-lg-12" style="margin-top: 9%;position: relative;">
+    <div class="col-lg-12" id="shegeft">
         <div class="card" style="height: 144px;" id="card2">
             <ul class="ul">
 
@@ -200,7 +196,7 @@ use App\Helper;
             top: 80%;float: right;margin-right: -42px;font-size: 12px;">ضمانت </span>
                 </li>
 
-                <li style="float: right; width:40%">
+                <li style="float: right; width:35%">
                  <span style="position: absolute;
             top: 80%;float: right;margin-right: -26px;font-size: 12px;">7روز ضمانت برگشت</span>
                     <img src="/images/site/3.svg" style="height: 55px;margin-top: 43px;">
@@ -249,29 +245,30 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
             </ul>
 
         </div>
-        </div>
+    </div>
 
-        <!------------------special offers---------------->
-        <div class="row mx-auto" id="discount-image">
-            <a href="1" class="col-lg-3 col-sm-3">
-                <img src="/images/banners/s2.jpg">
-            </a>
+    <!------------------special offers---------------->
+    <div class="row mx-auto" id="discount-image">
+        <a href="1" class="col-lg-3 col-sm-6">
+            <img src="/images/banners/s2.jpg">
+        </a>
 
-            <a href="2" class="col-lg-3 col-sm-3">
-                <img src="/images/banners/s1.jpg">
-            </a>
+        <a href="2" class="col-lg-3 col-sm-6">
+            <img src="/images/banners/s1.jpg">
+        </a>
 
-            <a href="3" class="col-lg-3 col-sm-3">
-                <img src="/images/banners/s3.jpg">
-            </a>
+        <a href="3" class="col-lg-3 col-sm-6">
+            <img src="/images/banners/s3.jpg">
+        </a>
 
-            <a href="4" class="col-lg-3 col-sm-3">
-                <img src="/images/banners/s4.jpg">
-            </a>
-        </div>
+        <a href="4" class="col-lg-3 col-sm-6">
+            <img src="/images/banners/s4.jpg">
+        </a>
+    </div>
 
-        <!------------------timed offers---------------->
-        <div class="col-lg-9 col-xs-12 col-sm-12 col-md-9" id="kala">
+    <!------------------timed offers---------------->
+    <div class="row mx-auto">
+        <div class="col-lg-9 col-sm-12" id="kala">
             <div class="card" style="overflow: hidden">
                 <div class="carousel-title">
                     {{--                    @foreach($group as $groups)--}}
@@ -336,7 +333,7 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
         </div>
 
         <!-----------------------------پیشنهادهای لحظه‌ای----------------------->
-        <div class="col-lg-3" style="float: left;top: -433px;position: relative;">
+        <div class="col-lg-3" style="top: -52px">
             <div class="card" style="height: 353px;top: 81px;">
 
                 <div class="carousel-title1">
@@ -360,106 +357,117 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
                             <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
                             <span class="price">120000تومان</span>
                         </li>
+                        <li>
+                            <img src="/images/products/g4.jpg" width="250px" height="210px">
+                            <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
+                            <span class="price">120000تومان</span>
+                        </li>
+                        <li>
+                            <img src="/images/products/g4.jpg" width="250px" height="210px">
+                            <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
+                            <span class="price">120000تومان</span>
+                        </li>
                     </ul>
                 </div>
 
             </div>
         </div>
+    </div>
 
-        <!------------------offers---------------->
-        <div class="col-lg-12" id="kala1" style="position: absolute;width: 98%;">
-            <div class="card">
-                <div class="carousel-title1">
-                    {{--                    @foreach($group as $groups)--}}
-                    {{--                        @if($groups->category_id == 167)--}}
-                    {{--                            <h6>{{$groups->name}}</h6>--}}
-                    {{--                        @endif--}}
-                    {{--                    @endforeach--}}
-                    <h6>گروه کالایی</h6>
-                </div>
-
-                <div class="list_carousel" style="overflow:hidden;">
-                    <ul id="foo3">
-                        {{--                        @foreach($product as $products)--}}
-                        {{--                            @if($products->category_id == 167)--}}
-                        {{--                                <li>--}}
-                        {{--                                    <img src="{{$products->image}}" width="210px" height="210px">--}}
-                        {{--                                    <span class="text">{{$products->name}}</span>--}}
-                        {{--                                    <span class="price">{{$products->price}}تومان</span>--}}
-                        {{--                                </li>--}}
-                        {{--                            @endif--}}
-                        {{--                        @endforeach--}}
-                        <li>
-                            <img src="/images/products/g2.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g3.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g1.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g4.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g4.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-
-                <a id="prevoffer" class="prev" href="#">&lt;</a>
-                <a id="nextoffer" class="next" href="#">&gt;</a>
-
+    <!------------------offers---------------->
+    <div class="col-lg-12" id="kala1" >
+        <div class="card">
+            <div class="carousel-title">
+                {{--                    @foreach($group as $groups)--}}
+                {{--                        @if($groups->category_id == 167)--}}
+                {{--                            <h6>{{$groups->name}}</h6>--}}
+                {{--                        @endif--}}
+                {{--                    @endforeach--}}
+                <h5>گروه کالایی</h5>
             </div>
-        </div>
 
-    <!-----------------------------banners----------------------------->
-    <div class="col-lg-12" id="discount-image" style="margin-top: 27%;margin-right: 3px;">
-        <div class="col-lg-3 col-sm-3">
+            <div class="list_carousel" style="overflow:hidden;">
+                <ul id="foo3">
+                    {{--                        @foreach($product as $products)--}}
+                    {{--                            @if($products->category_id == 167)--}}
+                    {{--                                <li>--}}
+                    {{--                                    <img src="{{$products->image}}" width="210px" height="210px">--}}
+                    {{--                                    <span class="text">{{$products->name}}</span>--}}
+                    {{--                                    <span class="price">{{$products->price}}تومان</span>--}}
+                    {{--                                </li>--}}
+                    {{--                            @endif--}}
+                    {{--                        @endforeach--}}
+                    <li>
+                        <img src="/images/products/g2.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g3.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g1.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g4.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g4.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                    <li>
+                        <img src="/images/products/g6.jpg" width="210px" height="210px">
+                        <span class="text">کابل usb</span>
+                        <span class="price">120000  تومان</span>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <a id="prevoffer" class="prev" href="#">&lt;</a>
+            <a id="nextoffer" class="next" href="#">&gt;</a>
+
+        </div>
+    </div>
+
+    <!------------------banners---------------->
+    <div class="row mx-auto" id="discount-image">
+        <div class="col-lg-3 col-sm-6">
             <a href="">
                 <img src="/images/site/b1.jpg">
             </a>
         </div>
 
-        <div class="col-lg-3 col-sm-3">
+        <div class="col-lg-3 col-sm-6">
             <a href="">
                 <img src="/images/site/b2.jpg">
             </a>
         </div>
 
-        <div class="col-lg-3 col-sm-3">
+        <div class="col-lg-3 col-sm-6">
             <a href="">
                 <img src="/images/site/b3.jpg">
             </a>
         </div>
 
-        <div class="col-lg-3 col-sm-3">
+        <div class="col-lg-3 col-sm-6">
             <a href="">
                 <img src="/images/site/b4.jpg">
             </a>
@@ -467,30 +475,30 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
 
     </div>
 
-    <!-----------------------------slider----------------------------->
-    <div class="col-lg-12" id="kala1" style="position: absolute;width: 98%; margin-top: 45%;right: 1%;">
+    <!------------------most-selled-products----------------->
+    <div class="col-lg-12" id="kala1" >
         <div class="card">
-            <div class="carousel-title1">
-{{--                @foreach($group as $groups)--}}
-{{--                    @if($groups->category_id == 170)--}}
-{{--                        <h5>{{$groups->name}}</h5>--}}
-{{--                    @endif--}}
-{{--                @endforeach--}}
-                <h6>گروه فلان</h6>
+            <div class="carousel-title">
+                {{--                @foreach($group as $groups)--}}
+                {{--                    @if($groups->category_id == 170)--}}
+                {{--                        <h5>{{$groups->name}}</h5>--}}
+                {{--                    @endif--}}
+                {{--                @endforeach--}}
+                <h5>پرفروش ترین کالاها</h5>
 
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo5">
-{{--                    @foreach($product as $products)--}}
-{{--                        @if($products->category_id == 170)--}}
-{{--                            <li>--}}
-{{--                                <img src="{{$products->image}}" width="210px" height="210px">--}}
-{{--                                <span class="text">{{$products->name}}</span>--}}
-{{--                                <span class="price">{{$products->price}}تومان</span>--}}
-{{--                            </li>--}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
+                    {{--                    @foreach($product as $products)--}}
+                    {{--                        @if($products->category_id == 170)--}}
+                    {{--                            <li>--}}
+                    {{--                                <img src="{{$products->image}}" width="210px" height="210px">--}}
+                    {{--                                <span class="text">{{$products->name}}</span>--}}
+                    {{--                                <span class="price">{{$products->price}}تومان</span>--}}
+                    {{--                            </li>--}}
+                    {{--                        @endif--}}
+                    {{--                    @endforeach--}}
                     <li>
                         <img src="/images/products/g1.jpg" width="210px" height="210px">
                         <span class="text">کابل usb</span>
@@ -537,24 +545,24 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
         </div>
     </div>
 
-    <!-----------------------------banners2----------------------------->
-    <div class="col-lg-12" id="kala2" style="">
+    <!------------------banners2---------------->
+    <div class="col-lg-12" id="kala2">
         <div class="card">
-            <div class="carousel-title1">
-                <h6>کالای دیجیتال</h6>
+            <div class="carousel-title">
+                <h5>کالای دیجیتال</h5>
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo6">
-{{--                    @foreach($product as $products)--}}
-{{--                        @if($products->category_id == 173)--}}
-{{--                            <li>--}}
-{{--                                <img src="{{$products->image}}" width="210px" height="210px">--}}
-{{--                                <span class="text">{{$products->name}}</span>--}}
-{{--                                <span class="price"> {{$products->price}}تومان</span>--}}
-{{--                            </li>--}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
+                    {{--                    @foreach($product as $products)--}}
+                    {{--                        @if($products->category_id == 173)--}}
+                    {{--                            <li>--}}
+                    {{--                                <img src="{{$products->image}}" width="210px" height="210px">--}}
+                    {{--                                <span class="text">{{$products->name}}</span>--}}
+                    {{--                                <span class="price"> {{$products->price}}تومان</span>--}}
+                    {{--                            </li>--}}
+                    {{--                        @endif--}}
+                    {{--                    @endforeach--}}
                     <li>
                         <img src="/images/products/g4.jpg" width="210px" height="210px">
                         <span class="text">کابل usb</span>
@@ -595,16 +603,16 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
         </div>
     </div>
 
-    <!-----------------------------slider----------------------------->
+    <!------------------slider------------------>
     <div class="row col-12 mx-auto" style="margin-top: 2%;">
 
-        <div class="col-lg-6" style="float: right">
+        <div class="col-lg-6">
             <a href="">
                 <img src="/images/banners/k1.jpg" style="width: 100%;">
             </a>
         </div>
 
-        <div class="col-lg-6" style="float: right">
+        <div class="col-lg-6">
             <a href="">
                 <img src="/images/banners/k2.jpg" style="width: 100%;">
             </a>
@@ -612,7 +620,7 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
 
     </div>
 
-    <!-----------------------------banner----------------------------->
+    <!------------------banner------------------>
     <div class="col-lg-12">
         <a href="">
             <img src="/images/banners/bg13.jpg"
@@ -620,12 +628,12 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
         </a>
     </div>
 
-    <!-----------------------------slider newest----------------------------->
-    <div class="col-lg-12" id="kala5" style="">
+    <!------------------slider newest----------->
+    <div class="col-lg-12" id="kala5">
         <div class="card">
 
-            <div class="carousel-title1">
-                <h6>جدید ترین کالاها</h6>
+            <div class="carousel-title">
+                <h5>جدید ترین کالاها</h5>
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">
@@ -673,10 +681,10 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
     </div>
 
     <!------------------Brand---------------->
-    <div class="col-lg-12" id="brand" style="">
+    <div class="col-lg-12" id="brand">
         <div class="card">
-            <div class="carousel-title1">
-                <h6>برند های ویژه</h6>
+            <div class="carousel-title">
+                <h5>برند های ویژه</h5>
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">

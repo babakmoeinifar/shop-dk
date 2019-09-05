@@ -141,7 +141,7 @@
 
 <div class="navigation">
             <span style="font-size: 30px; cursor: pointer; " class="openNav">
-               <i class="fa fa-bars text-secondary">sss</i>
+               <i class="fa fa-bars text-secondary"></i>
             </span>
 
     <!-- SEC2 -->
