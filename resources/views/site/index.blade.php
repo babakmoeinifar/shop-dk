@@ -41,36 +41,13 @@ use App\Helper;
             <h5 style="font-size: 14px;text-align: right;">پیشنهادات شگفت انگیز</h5>
 
             <ul id="shegeftangiz">
+                @foreach($products as $product)
                 <li>
-                    <img src="/images/products/g1.jpg" height="80px">
-                    <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                    <span class="price">120000تومان</span>
+                    <img src="{{ asset($product->image) }}" height="80px">
+                    <span class="text">{{ $product->name }}</span>
+                    <span class="price">{{ $product->price }}تومان</span>
                 </li>
-                <li>
-                    <img src="/images/products/g2.jpg" height="80px">
-                    <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                    <span class="price">120000تومان</span>
-                </li>
-                <li>
-                    <img src="/images/products/g3.jpg" height="80px">
-                    <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                    <span class="price">120000تومان</span>
-                </li>
-                <li>
-                    <img src="/images/products/g4.jpg" height="80px">
-                    <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                    <span class="price">120000تومان</span>
-                </li>
-                <li>
-                    <img src="/images/products/g5.jpg" height="80px">
-                    <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                    <span class="price">120000تومان</span>
-                </li>
-                <li>
-                    <img src="/images/products/g6.jpg" height="80px">
-                    <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                    <span class="price">120000تومان</span>
-                </li>
+                @endforeach
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -78,7 +55,7 @@ use App\Helper;
     </div>
 
     <!------------------ DiscountSLIDER ---------------->
-    <div class="col-lg-9" style="float: left; margin-top: 15px; left: 2%;max-width: 77% !important;">
+    <div class="col-lg-9" style="float: left; margin-top: 15px; left: 2%;max-width: 75% !important;">
         <div class="card carousel slide carousel-fade" id="card-discount" data-ride="carousel">
 
             <ul class="carousel-indicators" id="pager">
@@ -281,48 +258,17 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
 
                 <div class="list_carousel" style="overflow:hidden;">
                     <ul id="foo2">
-                        {{--                        @foreach($product as $products)--}}
-                        {{--                            @if($products->category_id == 166)--}}
-                        <li>
-                            {{--                                    <img src="{{$products->image}}" width="210px" height="210px">--}}
-                            {{--                                    <span class="text">{{$products->name}}</span>--}}
-                            {{--                                    <span class="price">{{$products->price}} تومان</span>--}}
-                            <img src="/images/products/g1.jpg" width="210px" height="210px">
-                            <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g6.jpg" width="210px" height="210px">
-                            <span class="text">کابل usb</span>
-                            <span class="price">120000  تومان</span>
-                        </li>
-                        {{--                            @endif--}}
-                        {{--                        @endforeach--}}
+                        @foreach($products as $product)
+                            {{--                            @if($product->category_id == 166)--}}
+                            <li>
+                                <a href="{{ url($product->category->slug, $product->id) }}">
+                                <img src="{{asset($product->image)}}" width="210px" height="210px">
+                                </a>
+                                <span class="text">{{$product->name}}</span>
+                                <span class="price">{{$product->price}} تومان</span>
+                            </li>
+                            {{--                            @endif--}}
+                        @endforeach
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -346,27 +292,14 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
 
                 <div class="list_carousel1" style="overflow:hidden;">
                     <ul id="foo1">
+                        @foreach($products as $product)
                         <li>
-                            <img src="/images/products/g3.jpg" width="250px" height="210px">
+                            <img src="{{ asset($product->image) }}" class="rounded" width="250px" height="210px">
 
-                            <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                            <span class="price">120000تومان</span>
+                            <span class="text">{{ $product->name }}</span>
+                            <span class="price">{{ $product->price }}تومان</span>
                         </li>
-                        <li>
-                            <img src="/images/products/g4.jpg" width="250px" height="210px">
-                            <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                            <span class="price">120000تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g4.jpg" width="250px" height="210px">
-                            <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                            <span class="price">120000تومان</span>
-                        </li>
-                        <li>
-                            <img src="/images/products/g4.jpg" width="250px" height="210px">
-                            <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                            <span class="price">120000تومان</span>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -375,68 +308,29 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
     </div>
 
     <!------------------offers---------------->
-    <div class="col-lg-12" id="kala1" >
+    <div class="col-lg-12" id="kala1">
         <div class="card">
             <div class="carousel-title">
-                {{--                    @foreach($group as $groups)--}}
-                {{--                        @if($groups->category_id == 167)--}}
-                {{--                            <h6>{{$groups->name}}</h6>--}}
-                {{--                        @endif--}}
-                {{--                    @endforeach--}}
-                <h5>گروه کالایی</h5>
+                @foreach($groups as $group)
+                    @if($group->category_id == 4)
+                        <h5>{{$group->attr_group_name}}</h5>
+                    @endif
+                @endforeach
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo3">
-                    {{--                        @foreach($product as $products)--}}
-                    {{--                            @if($products->category_id == 167)--}}
-                    {{--                                <li>--}}
-                    {{--                                    <img src="{{$products->image}}" width="210px" height="210px">--}}
-                    {{--                                    <span class="text">{{$products->name}}</span>--}}
-                    {{--                                    <span class="price">{{$products->price}}تومان</span>--}}
-                    {{--                                </li>--}}
-                    {{--                            @endif--}}
-                    {{--                        @endforeach--}}
-                    <li>
-                        <img src="/images/products/g2.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g3.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g1.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
+                    @foreach($products as $product)
+                        @if($product->category_id == 2)
+                            <li>
+                                <a href="{{ url($product->category->slug, $product->id) }}">
+                                <img src="{{asset($product->image)}}" width="210px" height="210px">
+                                </a>
+                                <span class="text">{{$product->name}}</span>
+                                <span class="price">{{$product->price}}تومان</span>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -476,64 +370,29 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
     </div>
 
     <!------------------most-selled-products----------------->
-    <div class="col-lg-12" id="kala1" >
+    <div class="col-lg-12" id="kala1">
         <div class="card">
             <div class="carousel-title">
-                {{--                @foreach($group as $groups)--}}
-                {{--                    @if($groups->category_id == 170)--}}
-                {{--                        <h5>{{$groups->name}}</h5>--}}
-                {{--                    @endif--}}
-                {{--                @endforeach--}}
-                <h5>پرفروش ترین کالاها</h5>
-
+                @foreach($groups as $group)
+                    @if($group->category_id == 3)
+                        <h5>{{$group->attr_group_name}}</h5>
+                    @endif
+                @endforeach
             </div>
 
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo5">
-                    {{--                    @foreach($product as $products)--}}
-                    {{--                        @if($products->category_id == 170)--}}
-                    {{--                            <li>--}}
-                    {{--                                <img src="{{$products->image}}" width="210px" height="210px">--}}
-                    {{--                                <span class="text">{{$products->name}}</span>--}}
-                    {{--                                <span class="price">{{$products->price}}تومان</span>--}}
-                    {{--                            </li>--}}
-                    {{--                        @endif--}}
-                    {{--                    @endforeach--}}
-                    <li>
-                        <img src="/images/products/g1.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
+                    @foreach($products as $product)
+                        @if($product->category_id == 3)
+                            <li>
+                                <a href="{{ url($product->category->slug, $product->id) }}">
+                                <img src="{{asset($product->image)}}" width="210px" height="210px">
+                                </a>
+                                <span class="text">{{$product->name}}</span>
+                                <span class="price">{{$product->price}}تومان</span>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
                 <div class="clearfix"></div>
 
@@ -541,64 +400,6 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
 
             <a id="prevslider" class="prev" href="#">&lt;</a>
             <a id="nextslider" class="next" href="#">&gt;</a>
-
-        </div>
-    </div>
-
-    <!------------------banners2---------------->
-    <div class="col-lg-12" id="kala2">
-        <div class="card">
-            <div class="carousel-title">
-                <h5>کالای دیجیتال</h5>
-            </div>
-
-            <div class="list_carousel" style="overflow:hidden;">
-                <ul id="foo6">
-                    {{--                    @foreach($product as $products)--}}
-                    {{--                        @if($products->category_id == 173)--}}
-                    {{--                            <li>--}}
-                    {{--                                <img src="{{$products->image}}" width="210px" height="210px">--}}
-                    {{--                                <span class="text">{{$products->name}}</span>--}}
-                    {{--                                <span class="price"> {{$products->price}}تومان</span>--}}
-                    {{--                            </li>--}}
-                    {{--                        @endif--}}
-                    {{--                    @endforeach--}}
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل usb</span>
-                        <span class="price">120000  تومان</span>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-
-            <a id="prevbanners2" class="prev" href="#">&lt;</a>
-            <a id="nextbanners2" class="next" href="#">&gt;</a>
 
         </div>
     </div>
@@ -638,37 +439,15 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
 
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo9">
-                    <li>
-                        <img src="/images/products/g1.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g2.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g3.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-
-                        <img src="/images/products/g4.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g5.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
-                    <li>
-                        <img src="/images/products/g6.jpg" width="210px" height="210px">
-                        <span class="text">کابل تبدیل USB به لایتنینگ انکر مدل A8121 PowerLin...</span>
-                        <span class="price">120000تومان</span>
-                    </li>
+                    @foreach($newProducts as $product)
+                        <li>
+                            <a href="{{ url($product->category->slug, $product->id) }}">
+                                <img src="{{ asset($product->image) }}" width="210px" height="210px">
+                            </a>
+                            <span class="text">{{ $product->name }}</span>
+                            <span class="price">{{ $product->price }}تومان</span>
+                        </li>
+                    @endforeach
                 </ul>
                 <div class="clearfix"></div>
 

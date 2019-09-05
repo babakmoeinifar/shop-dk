@@ -795,7 +795,7 @@ ul#pager.carousel-indicators {
     text-align: center;
     width: 240px;
     padding: 0;
-    margin: 0 2px 0 -15px;
+    /*margin: 0 2px 0 -15px;*/
     display: block;
     float: left;
 }
@@ -850,7 +850,7 @@ ul#pager.carousel-indicators {
     margin-right: -12px;
     overflow: visible;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 14px;
 }
 
 #next2, #nextoffer, #nextslider, #nextbanners2, #nextnewest, #nextbrands {
@@ -870,7 +870,7 @@ ul#pager.carousel-indicators {
     margin-left: -12px;
     overflow: visible;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 14px;
 }
 
 .dark {

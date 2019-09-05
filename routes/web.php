@@ -5,6 +5,7 @@ Route::get('ajax-city/{state_id}', 'HomeController@ajaxCities')->where('state_id
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
+Route::get('/{category}/{product}', 'HomeController@product');
 
 Route::group(['prefix' => 'shoppy'], function () {
     Route::get('dashboard', 'Admin\DashboardController@index');
