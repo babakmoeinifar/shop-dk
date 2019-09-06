@@ -17,6 +17,7 @@ window.Toast = Swal.mixin({
 });
 
 Vue.component('category', require('./components/admin/category').default);
+Vue.component('discount', require('./components/admin/discount').default);
 Vue.component('product', require('./components/admin/products/product').default);
 Vue.component('add-attr', require('./components/admin/products/addAttr').default);
 

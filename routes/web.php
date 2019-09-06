@@ -5,12 +5,12 @@ Route::get('ajax-city/{state_id}', 'HomeController@ajaxCities')->where('state_id
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::get('/{category}/{product}', 'HomeController@product');
 
 Route::group(['prefix' => 'shoppy'], function () {
     Route::get('dashboard', 'Admin\DashboardController@index');
     Route::resource('categories', 'Admin\CategoryController');
     Route::resource('users', 'Admin\UserController');
+    Route::resource('discounts', 'Admin\DiscountController');
 
     Route::resource('products', 'Admin\ProductController');
     Route::post('add-images-product', 'Admin\ProductController@addImagesProduct');
@@ -20,4 +20,5 @@ Route::group(['prefix' => 'shoppy'], function () {
     Route::post('add-attribute-field', 'Admin\AttributeController@addAttributeField');
 });
 
+Route::get('/{category}/{product}', 'HomeController@product');
 

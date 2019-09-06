@@ -12,6 +12,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderByDesc('id')->get();
+        if (request()->wantsJson()) {
+            return $products;
+        }
         return view('admin.products.index', compact('products'));
     }
 
