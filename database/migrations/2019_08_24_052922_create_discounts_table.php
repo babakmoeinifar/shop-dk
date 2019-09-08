@@ -18,9 +18,10 @@ class CreateDiscountsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->string('value');
             $table->string('name');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->date('begin_date');
             $table->date('end_date');
+            $table->boolean('is_active')->default(1);
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

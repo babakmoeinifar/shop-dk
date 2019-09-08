@@ -184,6 +184,7 @@
                 this.attr_field_form.post('/shoppy/add-attribute-field?product_id=' + this.product_id)
                     .then(() => {
                         this.toastSuccess();
+                        this.getAttrs();
                     })
                     .catch(() => {
                         this.toastError();

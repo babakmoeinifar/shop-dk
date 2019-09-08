@@ -13,68 +13,49 @@
             </div>
 
             <div class="card-body table-responsive p-0">
+
                 <table class="table table-hover text-center table-striped">
                     <thead>
                     <tr>
-                        <th class="p-4 border-b">ID</th>
                         <th class="p-4 border-b">نام</th>
+                        <th class="p-4 border-b">کالا</th>
+                        <th class="p-4 border-b">میزان تخفیف</th>
+                        <th class="p-4 border-b">کد تخفیف</th>
+                        <th class="p-4 border-b">تاریخ شروع</th>
+                        <th class="p-4 border-b">تاریخ پایان</th>
                         <th class="p-4 border-b">وضعیت</th>
-                        <th class="p-4 border-b text-right">عملیات</th>
+                        <th></th>
                     </tr>
                     </thead>
 
                     <tbody>
                     @forelse($discounts as $discount)
-                        <tr class="{{ $discount->is_active ? '' : 'bg-orange' }}">
-                            <td>{{ $discount->id }}</td>
+                        <tr>
                             <td>{{ $discount->name }}</td>
-                            <td class="{{ $discount->is_active == 1 ? 'text-success' : 'text-danger' }} small">
+                            <td>{{ $discount->product->name }}</td>
+                            <td>{{ $discount->value }} %</td>
+                            <td>{{ $discount->code }}</td>
+                            <td>{{ $discount->begin_date }}</td>
+                            <td>{{ $discount->end_date }}</td>
+                            <td>
+                                <span class="p-1 text-light badge bg-{{ $discount->is_active == 1 ? 'success' : 'danger' }}">
                                 {{ $discount->is_active == 1 ? 'فعال' : 'غیرفعال' }}
+                                </span>
                             </td>
                             <td class="row mx-auto">
-                                <button type="button" data-toggle="modal"
-                                        data-target="#pageModal{{ $discount->id }}"
-                                        class="btn btn-link btn-sm">
-                                    <i class="fa fa-eye text-primary" title="مشاهده"></i>
-                                </button>
                                 <a href="{{ url('shoppy/discounts/'. $discount->id. '/edit') }}"
                                    class="btn btn-link btn-sm">
                                     <i class="fa fa-edit text-secondary" title="ویرایش"></i>
                                 </a>
-                                <form action="{{ url('shoppy/disconts/'. $discount->id) }}" method="POST">
+                                <form action="{{ url('shoppy/discounts/'. $discount->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-link btn-sm deleteCategory">
+                                    <button type="submit" class="btn btn-link btn-sm deleteDiscount">
                                         <i class="fa fa-trash text-danger" title="حذف"></i>
                                     </button>
                                 </form>
                             </td>
                         </tr>
-
-                        <!-- The Modal -->
-                        <div class="modal fade" id="pageModal{{ $discount->id }}">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-
-                                    <div class="modal-header" dir="ltr">
-                                        <h4 class="modal-title text-center">جزییات</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-
-                                    <div class="modal-body text-center">
-                                        <h4><small>عنوان دسته: </small>{{ $discount->name }}</h4>
-                                        <h4 dir="rtl"><small>آدرس دسته: </small>{{ $discount->slug }}</h4>
-                                        <hr>
-                                        <b>SEO</b>
-                                        <hr>
-                                        <h4><small>عنوان سئو: </small>{{ $discount->meta_title }}</h4>
-                                        <h4><small>توضیحات سئو: </small>{{ $discount->meta_description }}</h4>
-                                        <h4><small>کلمات کلیدی: </small>{{ $discount->meta_keywords }}</h4>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
 
                     @empty
                         <tr>
@@ -83,6 +64,7 @@
                     @endforelse
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
@@ -90,7 +72,7 @@
 @section('scripts')
     <script>
         $().ready(function () {
-            $('.deleteCategory').click(function () {
+            $('.deleteDiscount').click(function () {
                 return confirm('آیا از حذف تخفیف مورد نظر اطمینان دارید؟');
             });
         });

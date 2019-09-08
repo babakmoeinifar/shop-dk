@@ -6,15 +6,13 @@ use DB;
 
 class Helper
 {
-    public $name1;
 
     public static function attribute($id)
     {
         $attr = AttributeProduct::where('product_id', $id)->first();
         if ($attr) {
             $id1 = $attr->attribute_id;
-            $attr1 = attribute::find($id1);
-            return $attr1->name2;
+            return Attribute::find($id1)->name;
         }
     }
 
@@ -22,10 +20,14 @@ class Helper
     {
         $attr = AttributeFieldProduct::where('product_id', $id)->first();
         if ($attr) {
-            $id1 = $attr->attributeitem_id;
-            return AttributeField::find($id1)->name1;
+            $id1 = $attr->attribute_field_id;
+            return AttributeField::find($id1)->attr_field_name;
         }
     }
+
+
+
+
 
     public static function CategoryRoot($id)
     {

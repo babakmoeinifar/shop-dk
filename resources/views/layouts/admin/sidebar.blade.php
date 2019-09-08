@@ -6,7 +6,7 @@
             <li><a href="{{ url('shoppy/categories') }}"><i class="fa fa-list"></i>مدیریت دسته ها</a></li>
             <li><a href="{{ url('shoppy/users') }}"><i class="fa fa-users"></i>مدیریت کاربران</a></li>
             <li><a href="{{ url('shoppy/products') }}"><i class="fa fa-boxes"></i>مدیریت محصولات</a></li>
-            <li><a href="{{ url('shoppy/discounts') }}"><i class="fa fa-boxes"></i>مدیریت تخفیفات</a></li>
+            <li><a href="{{ url('shoppy/discounts') }}"><i class="fa fa-percent"></i>مدیریت تخفیفات</a></li>
 
             <li><a href="javascript:"><i class="fa fa-th-list"></i>مدیریت سفارشات</a></li>
 

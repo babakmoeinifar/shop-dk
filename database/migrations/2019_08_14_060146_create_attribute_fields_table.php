@@ -13,6 +13,7 @@ class CreateAttributeFieldsTable extends Migration
      */
     public function up()
     {
+        // پارچه ای، کتان، نخ،‌بلند، کوتاه
         Schema::create('attribute_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('attribute_id');

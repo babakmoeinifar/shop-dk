@@ -13,6 +13,7 @@ class CreateAttributesTable extends Migration
      */
     public function up()
     {
+        //جنس، سایز، قد، کشور سازنده، دارای...
         Schema::create('attributes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('attribute_groups_id');

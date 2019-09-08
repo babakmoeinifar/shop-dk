@@ -1,5 +1,7 @@
 @extends('layouts.admin.master')
-
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/persianDatepicker-default.css') }}">
+@endsection
 @section('content')
     <div dir="rtl" class="container text-right">
         @include('partials.sessions')

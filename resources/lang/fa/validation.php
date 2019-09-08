@@ -178,6 +178,11 @@ return array(
         'unit' => 'واحد شمارش',
         'attr_group_name' => 'گروه کالایی',
         'attribute_groups_id' => 'گروه کالایی',
+        'code' => 'کد تخفیف',
+        'begin_date' => 'شروع تخفیف',
+        'end_date' => 'پایان تخفیف',
+        'product_id' => 'محصول',
+        'value' => 'میزان تخفیف',
 
 
     ),

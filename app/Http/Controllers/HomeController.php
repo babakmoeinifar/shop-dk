@@ -23,9 +23,8 @@ class HomeController extends Controller
         $groups = AttributeGroup::orderby('id', 'desc')->get();
         $newProducts = Product::orderby('created_at', 'desc')->get();
         $discounts = Discount::orderby('id', 'desc')->get();
-        $attribute = Attribute::orderby('id', 'desc')->get();
-        $item = AttributeField::orderby('id', 'desc')->get();
-        return view('site.index', compact('menu', 'submenu', 'products', 'newProducts', 'groups', 'attribute', 'item', 'discounts'));
+
+        return view('site.index', compact('menu', 'submenu', 'products', 'newProducts', 'groups', 'discounts'));
     }
 
     public function ajaxCities(Request $request)

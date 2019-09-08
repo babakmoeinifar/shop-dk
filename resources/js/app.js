@@ -25,33 +25,6 @@ Vue.component('add-attr', require('./components/admin/products/addAttr').default
 const app = new Vue({
     el: '#app',
 
-            // users: [],
-            // name: "",
-            // value: "",
-            // code: "",
-            // product_id: "",
-            // begindate: "",
-            // enddate: "",
-            // BrandName: "",
-            // Country: "",
-            // BrandProduct: "",
-            // ImageBrand: "",
-            // Ename: "",
-            // BrandCategory: "",
-            // brand: [],
-            // product: [],
-            // checkbrands: [],
-            // sortpriceA: "",
-            // check_status: "",
-            // attribute: "",
-            // attributeitems: "",
-            // checkattribute: [],
-            // pagination: {
-            //
-            //     'current_page': 1
-
-
-
     // mounted() {
     //     this.ShowProduct();
     // },
