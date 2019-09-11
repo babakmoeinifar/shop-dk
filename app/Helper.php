@@ -44,7 +44,7 @@ class Helper
         $menu = Category::where('id', $id)->first();
         $smenu = Category::where('id', $menu->parent_id)->first();
         $smenus = Category::where('id', $smenu->parent_id)->first();
-        echo "<ul class='categorys'> <li ><i class='icon icon-angle-left'></i><a>$smenus->name</a></li> <li style='padding: 10px'><i class='icon icon-angle-down'></i><a href=''>$smenu->name</a></li> <li style='padding-right: 25px;font-weight: bold;'><i class='icon icon-angle-down'></i><a>$menu->name</a></li>  </ul>";
+        echo "<ul class='categorys'> <li ><i class='fa fa-angle-left'></i><a>$smenus->name</a></li> <li style='padding: 10px'><i class='fa fa-angle-down'></i><a href=''>$smenu->name</a></li> <li style='padding-right: 25px;font-weight: bold;'><i class='fa fa-angle-down'></i><a>$menu->name</a></li>  </ul>";
     }
 
 

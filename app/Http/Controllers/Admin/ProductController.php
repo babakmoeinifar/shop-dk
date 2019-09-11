@@ -32,7 +32,7 @@ class ProductController extends Controller
                         substr(request('image'), 0,
                             strpos(request('image'), ';')))[1])[1];
 
-            Image::make(request('image'))->resize(540, 420)->encode('webp')->save(public_path('images/products/') . $name);
+            Image::make(request('image'))->resize(500, 500)->encode('webp')->save(public_path('images/products/') . $name);
             request()->merge(['image' => 'images/products/' . $name]);
         }
 
@@ -68,7 +68,7 @@ class ProductController extends Controller
             $image = new \App\Image();
             $filename = rand(1111, 99999) . '.' . 'webp';
             $image_path = 'images/products/extra/' . $filename;
-            Image::make($request->file('file'))->resize(540, 420)->encode('webp')->save($image_path);
+            Image::make($request->file('file'))->resize(500, 500)->encode('webp')->save($image_path);
 
             $image->path = $image_path;
             $image->save();

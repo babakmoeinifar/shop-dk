@@ -15,16 +15,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $menu = Category::where('parent_id', 0)->get();
-        $submenu = Category::where('parent_id', '!=', 0)->get();
-
 //        $product = Product::orderby('PID', 'desc')->get();
         $products = Product::get();
         $groups = AttributeGroup::orderby('id', 'desc')->get();
         $newProducts = Product::orderby('created_at', 'desc')->get();
         $discounts = Discount::orderby('id', 'desc')->get();
 
-        return view('site.index', compact('menu', 'submenu', 'products', 'newProducts', 'groups', 'discounts'));
+        return view('site.index', compact('products', 'newProducts', 'groups', 'discounts'));
     }
 
     public function ajaxCities(Request $request)
@@ -32,6 +29,13 @@ class HomeController extends Controller
         $state_id = $request->state_id;
         $cities = City::where('parent_id', '=', $state_id)->get();
         return response()->json($cities);
+    }
+
+    public function category($categoryId)
+    {
+        $products = product::where('category_id', $categoryId)->orderby('id','desc')->get();
+
+        return view('site.category_list' , compact('products', 'categoryId'));
     }
 
     public function product($category,$productId)

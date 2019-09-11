@@ -35,7 +35,34 @@
 {{--<script src="/js/bootstrap-slider.min.js"></script>--}}
 {{--<script src="/js/jquery.slides.min.js"></script>--}}
 {{--<script src="/js/sort.js"></script>--}}
-<script src="{{ asset('js/customScripts.js') }}"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#header-shop").click(function () {
+            $("#header-cart-dropdown").toggle();
+        });
+
+        $(".closebtn").click(function () {
+            $(".sidenav").hide();
+            $(".dark").hide();
+        });
+
+        $(".openNav").click(function () {
+            $(".sidenav").show();
+            $(".dark").show();
+        });
+
+        $(".dark").click(function () {
+            $(".sidenav").hide();
+            $(".dark").hide();
+        });
+
+        $(".c-header-dropdown").click(function () {
+            $(".header-user-dropdown").toggle();
+        });
+    });
+</script>
+@yield('scripts')
 
 </body>
 </html>

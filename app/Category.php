@@ -13,10 +13,10 @@ class Category extends Model
 
     public $timestamps = false;
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+//    public function getRouteKeyName()
+//    {
+//        return 'slug';
+//    }
 
     public function parent() {
         return $this->belongsTo(__CLASS__,'parent_id','id') ;

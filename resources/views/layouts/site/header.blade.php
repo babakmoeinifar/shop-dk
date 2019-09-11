@@ -5,7 +5,7 @@
             <div class="c-header_row">
 
                 <div class="c-header-logo">
-                    <a class="c-header-logo-img"></a>
+                    <a href="/" class="c-header-logo-img"></a>
                 </div>
 
                 <div class="c-header-search">
@@ -29,18 +29,18 @@
                                 <div class="after"></div>
                                 <a class="header-dropdown-login" href="#">ورود به دیجی کالا</a>
                                 <div class="header-dropdown-signup">
-                                    <span>کاربر جدید هستید؟</span>
-                                    <a>ثبت نام </a>
+                                    <span style="font-size: 14px">کاربر جدید هستید؟</span>
+                                    <a href="/">ثبت نام </a>
                                 </div>
 
                                 <div class="header-user">
                                     <i class="fa fa-user"></i>
-                                    <span>پروفایل</span>
+                                    <span><a href="/">پروفایل</a></span>
                                 </div>
 
                                 <div class="header-cart">
                                     <i class="fas fa-shopping-basket"></i>
-                                    <span>سفارشات من</span>
+                                    <span><a href="/">سفارشات من</a></span>
                                 </div>
 
                             </div>
@@ -53,7 +53,7 @@
                         <?php $count = count(Session::get('cart'));  ?>
                         <div id="header-shop" class="header-shop"
                              style="background-color:#00bfd6; color: #fff !important; ">
-                            <div>
+                            <div style="margin-right: -20px;">
                                 <i class="fas fa-shopping-cart"></i>
                                 <a> سبد خرید </a>
                                 <span style="width: 21px;height: 22px;border-radius: 100%;background-color: #fff;color: #00bfd6 !important;
@@ -66,7 +66,7 @@
                         @include('shop')
                     @else
                         <div class="header-shop">
-                            <div>
+                            <div style="margin-right: -20px;">
                                 <i class="fas fa-shopping-cart"></i>
                                 <a>سبد خرید</a>
                                 <span style="width: 21px;height: 22px;border-radius: 100%;background-color: #00bfd6;color: #fff;position: absolute;text-align: center;margin-right: 10px; ">0</span>

@@ -472,4 +472,7 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
     </div>
 
 @endsection
+@section('scripts')
+    <script src="{{ asset('js/customScripts.js') }}"></script>
+@endsection
 

@@ -20,5 +20,6 @@ Route::group(['prefix' => 'shoppy'], function () {
     Route::post('add-attribute-field', 'Admin\AttributeController@addAttributeField');
 });
 
-Route::get('/{category}/{product}', 'HomeController@product');
+Route::get('/search/{category}/', 'HomeController@category');
+Route::get('/search/{category}/{product}', 'HomeController@product');
 
