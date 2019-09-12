@@ -15,8 +15,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-//        $product = Product::orderby('PID', 'desc')->get();
-        $products = Product::get();
+        $products = Product::orderby('id', 'desc')->get();
         $groups = AttributeGroup::orderby('id', 'desc')->get();
         $newProducts = Product::orderby('created_at', 'desc')->get();
         $discounts = Discount::orderby('id', 'desc')->get();
@@ -33,9 +32,11 @@ class HomeController extends Controller
 
     public function category($categoryId)
     {
+        $this_category = Category::findOrFail($categoryId);
+        $main_category = Category::where('id', $this_category->parent_id)->first();
         $products = product::where('category_id', $categoryId)->orderby('id','desc')->get();
 
-        return view('site.category_list' , compact('products', 'categoryId'));
+        return view('site.category_list' , compact('products', 'this_category', 'main_category'));
     }
 
     public function product($category,$productId)

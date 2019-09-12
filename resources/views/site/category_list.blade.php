@@ -27,7 +27,7 @@
                     جستجو در نتایج :
                 </div>
                 <div class="card-body">
-                    <input type="text" class="form-control" placeholder="نام محصول یا برند خود را جستجو کنید"
+                    <input type="text" class="form-control" placeholder="جستجو کنید..."
                            style="font-size: 11px;text-align: left;">
                     <i class="fa fa-search" style="float: right;margin-top: -23px;margin-right: 6px;"></i>
                 </div>
@@ -53,12 +53,13 @@
         </div>
 
 
-        <div class="col-lg-10" style="display: inline-block;margin-top:1%;max-width: 81%;text-align: right;">
+        <div class="col-lg-10" style="display: inline-block;margin-top:3%;max-width: 81%;text-align: right;">
             {{--            {{App\Helper::CategoryRoot($categoryId)}}--}}
-            <a class='category' href='/'>فروشگاه اینترنتی دیجی کالا</a> /
-            <a class='category' href='/search/'>1 </a> /
-            <a class='category' href='/search/'>2 </a> /
-            <a class='category' href='/search/'>3 </a>
+            <div class="breadcrumb mb-0 pb-0" style="background-color: #e9ecef00">
+                    <a class='category' href='/'>دیجی کالا</a>&nbsp;/&nbsp;
+                    <a class='category' href=""> {{ $main_category->name }} </a>&nbsp;/&nbsp;
+                <a class='category text-secondary'>{{ $this_category->name }} </a>
+            </div> <!--END BREADCRUMB-->
         </div>
 
 
@@ -69,19 +70,18 @@
                         <li>
                             مرتب سازی بر اساس:
                         </li>
-                        <li>جدید ترین</li>
+                        <li class="activeSort">جدید ترین</li>
                         <li @click="sortByLowPrice">ارزان ترین</li>
                         <li @click="sortByHigherPrice">گرانترین</li>
                     </ul>
                 </div>
                 <div class="card-body"></div>
                 <div id="ListProduct" style="position: absolute;top: 5%;">
-                    <ul class="col-lg-12" style="padding-left:0px !important; padding-right: 0px !important;"
-                        id="products">
+                    <ul class="row mx-auto p-0" id="products">
                         @foreach($products as $product)
-                            <li class="col-lg-3 product_price" style="float: right;width: 1000px;">
+                            <li class="col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2" >
                                 <a href="">
-                                    <img src="{{ asset($product->image) }}" height="230px" >
+                                    <img src="{{ asset($product->image) }}" class="img-fluid row mx-auto rounded" style="height: 230px;margin-top: 10px">
                                     <span class="text">{{ $product->name}}</span>
                                     <span class="price">{{ $product->price}}تومان</span>
                                     <span><i class="fa fa-star mt-3 float-left text-secondary"> 3.4 </i></span>
