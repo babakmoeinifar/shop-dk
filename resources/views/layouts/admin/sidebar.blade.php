@@ -7,15 +7,10 @@
             <li><a href="{{ url('shoppy/users') }}"><i class="fa fa-users"></i>مدیریت کاربران</a></li>
             <li><a href="{{ url('shoppy/products') }}"><i class="fa fa-boxes"></i>مدیریت محصولات</a></li>
             <li><a href="{{ url('shoppy/discounts') }}"><i class="fa fa-percent"></i>مدیریت تخفیفات</a></li>
+            <li><a href="{{ url('shoppy/brands') }}"><i class="fa fa-box"></i>مدیریت برندها</a></li>
 
             <li><a href="javascript:"><i class="fa fa-th-list"></i>مدیریت سفارشات</a></li>
 
-            <li data-toggle="collapse" data-target="#menu2"><a href="javascript:"><i class="fa fa-cubes"></i>مدیریت تخفیف </a>
-                <ul id="menu" class="collapse">
-                    <li><a href="#">ایجاد تخفیف </a></li>
-                    <li><a href="#">مشاهده تخفیف </a></li>
-                </ul>
-            </li>
 
             <li><a href="javascript:"><i class="fa fa-comments"></i>گفتگو ها </a></li>
         </ul>

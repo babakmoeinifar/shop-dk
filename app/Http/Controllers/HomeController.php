@@ -37,12 +37,10 @@ class HomeController extends Controller
         $main_category = Category::where('id', $this_category->parent_id)->first();
         $zero_category = $main_category ? Category::where('id', $main_category->parent_id)->first() : null;
 
-        $products = product::where('category_id', $categoryId)->orderby('id', 'desc')->get();
-        $brands = Brand::all();
         $attrs = Attribute::all();
         $attributeFields = AttributeField::all();
 
-        return view('site.category_list', compact('products', 'this_category', 'main_category', 'zero_category', 'brands','attrs', 'attributeFields'));
+        return view('site.category_list', compact('this_category', 'main_category', 'zero_category','attrs', 'attributeFields'));
     }
 
     public function product($category, $productId)

@@ -12,6 +12,7 @@ Route::group(['prefix' => 'shoppy'], function () {
     Route::resource('users', 'Admin\UserController');
     Route::resource('discounts', 'Admin\DiscountController');
 
+    Route::resource('brands', 'Admin\BrandController');
     Route::resource('products', 'Admin\ProductController');
     Route::post('add-images-product', 'Admin\ProductController@addImagesProduct');
 
@@ -19,6 +20,7 @@ Route::group(['prefix' => 'shoppy'], function () {
     Route::post('add-attribute', 'Admin\AttributeController@addAttribute');
     Route::post('add-attribute-field', 'Admin\AttributeController@addAttributeField');
 });
+
 
 Route::get('/search/{category}/', 'HomeController@category');
 Route::get('/search/{category}/{product}', 'HomeController@product');

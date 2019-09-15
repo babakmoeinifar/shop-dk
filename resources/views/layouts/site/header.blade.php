@@ -96,7 +96,7 @@
         <span>
             @foreach($menu as $lev1item)
                 <li class="dropdown dropdown-large" id="dropdown-large">
-                    <a href="javascript:" id="dropdown" class="dropdown dropdown-large" data-toggle="dropdown">
+                    <a href="javascript:" id="dropdown" class="dropdown dropdown-large p-2" data-toggle="dropdown">
                         {{$lev1item->name}}
                     </a>
 

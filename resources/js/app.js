@@ -20,6 +20,8 @@ Vue.component('category', require('./components/admin/category').default);
 Vue.component('discount', require('./components/admin/discount').default);
 Vue.component('product', require('./components/admin/products/product').default);
 Vue.component('add-attr', require('./components/admin/products/addAttr').default);
+Vue.component('Brand', require('./components/admin/Brand').default);
+Vue.component('Products', require('./components/Products').default);
 
 
 const app = new Vue({
