@@ -25,20 +25,20 @@ class ProductController extends Controller
 
     public function store()
     {
-        if (request('image')) {
+        if (request('pro_image')) {
             $name = time() . '.'
                 . explode('/',
                     explode(':',
-                        substr(request('image'), 0,
-                            strpos(request('image'), ';')))[1])[1];
+                        substr(request('pro_image'), 0,
+                            strpos(request('pro_image'), ';')))[1])[1];
 
-            Image::make(request('image'))->resize(500, 500)->encode('webp')->save(public_path('images/products/') . $name);
-            request()->merge(['image' => 'images/products/' . $name]);
+            Image::make(request('pro_image'))->resize(500, 500)->encode('webp')->save(public_path('images/products/') . $name);
+            request()->merge(['pro_image' => 'images/products/' . $name]);
         }
 
         $product = Product::create(
             request()->validate([
-                'name' => 'required',
+                'pro_name' => 'required',
                 'category_id' => 'required',
                 'code' => 'nullable',
                 'price' => 'required',
@@ -46,7 +46,7 @@ class ProductController extends Controller
                 'unit' => 'required',
                 'country' => 'required',
                 'desc' => 'nullable',
-                'image' => 'required',
+                'pro_image' => 'required',
                 'meta_keywords' => 'nullable',
             ])
         );

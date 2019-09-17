@@ -21,4 +21,6 @@ Route::get('attribute-groups', 'Api\ApiController@attributeGroups');
 Route::get('attributes', 'Api\ApiController@attributes');
 
 Route::get('product-by-category/{categoryId}', 'Api\ApiController@productByCategory');
+Route::get('attr-by-product', 'Api\ApiController@AttrsByProduct');
+Route::get('filter-products/{categoryId}', 'Api\ApiController@productFilter');
 Route::get('/show-brand/{categoryId}', 'Api\ApiController@showBrand');

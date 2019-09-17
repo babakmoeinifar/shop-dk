@@ -25,8 +25,26 @@ class ApiController extends Controller
         return Product::where('category_id', $categoryId)->get();
     }
 
+    public function productFilter($categoryId)
+    {
+//        return \DB::table('products')
+//            ->leftJoin('brands', 'products.id', '=', 'brands.product_id')
+//            ->get();
+        $products = Product::where('category_id', $categoryId)->get();
+        $brands = Brand::whereIn('product_id', $products->map->id)->get();
+        foreach ($brands as $brand) {
+            $pros[] = Product::where(['id' => $brand->product_id])->get();
+        }
+        return collect($pros)->flatten();
+    }
+
     public function showBrand($categoryId)
     {
         return Brand::where('category_id', $categoryId)->get();
+    }
+
+    public function AttrsByProduct()
+    {
+        return Attribute::all();
     }
 }

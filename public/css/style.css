@@ -1089,7 +1089,7 @@ footer {
 }
 
 #ListProduct ul li:hover {
-    box-shadow: 2px 2px 2px 2px #ddd;
+    box-shadow: 2px 2px 20px #ddd;
     z-index: 999;
 }
 
@@ -1143,24 +1143,19 @@ div.ui-slider {
 }
 
 .max-price {
-    border: 1px solid #ddd;
-    width: 121px;
+    font-size: small;
+    width: 108px;
     float: right;
-    height: 100px;
     text-align: center;
-    padding-top: 33px;
     margin-top: 11px;
 }
 
 .min-price {
-    border: 1px solid #ddd;
-    width: 114px;
+    font-size: small;
+    width: 108px;
     float: left;
-    height: 100px;
     text-align: center;
-    padding-top: 33px;
     margin-top: 11px;
-    border-right: none;
 }
 
 .switch {
@@ -1196,7 +1191,7 @@ div.ui-slider {
     width: 18px;
     height: 18px;
     left: 4px;
-    bottom: 4px;
+    bottom: 2px;
     margin-top: 10px;
     background-color: #fff;
     transition: 2s;
@@ -1213,9 +1208,9 @@ div.ui-slider {
 }
 
 .switch input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(33px);
+    -ms-transform: translateX(33px);
+    transform: translateX(33px);
 }
 
 .switch .round {

@@ -72,7 +72,7 @@
                 <select type="text" :class="{ 'is-danger': form.errors.has('product_id') }"
                         id="product_id" name="product_id" v-model="form.product_id" class="form-control">
                     <template v-for="product in products">
-                        <option :value="product.id">{{ product.name }}</option>
+                        <option :value="product.id">{{ product.pro_name }}</option>
                     </template>
                 </select>
                 <div class="text-danger" v-if="form.errors.has('product_id')">

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'category_id', 'code', 'country',
+        'pro_name', 'category_id', 'code', 'country',
         'price', 'stock', 'desc', 'unit',
-        'image', 'meta_keywords'
+        'pro_image', 'meta_keywords'
     ];
 
     public function attributes()
@@ -22,9 +22,9 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
 
-    public function brands()
+    public function brand()
     {
-        return $this->belongsToMany(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 
     public function images()
@@ -65,4 +65,5 @@ class Product extends Model
             return $coupon->name;
         }
     }
+
 }

@@ -38,7 +38,7 @@
 
 
                     <div class="form-group" :class="{'border border-danger': form.errors.has('image')}">
-                        <label for="image" class="control-label">تصویر محصول</label>
+                        <label for="image" class="control-label">تصویر برند</label>
                         <div class="text-danger" v-if="form.errors.has('image')">
                             {{ form.errors.get('image') }}
                         </div>
@@ -67,7 +67,7 @@
                                 :class="{'border border-danger': form.errors.has('product_id')}">
                             <option value="" disabled>یک کالا را انتخاب نمایید</option>
                             <template v-for="product in products">
-                                <option :value="product.id">{{product.name}}</option>
+                                <option :value="product.id">{{product.pro_name}}</option>
                             </template>
                         </select>
                         <div class="text-danger" v-if="form.errors.has('product_id')">

@@ -38,7 +38,7 @@
                             <td>{{ $brand->name }}</td>
                             <td>{{ $brand->en_name }}</td>
                             <td>{{ $brand->category->name }}</td>
-                            <td>{{ $brand->product->name }}</td>
+                            <td>{{ $brand->product->pro_name }}</td>
                             <td>{{ $brand->country }}</td>
 
                             <td class="row mx-auto">

@@ -9,6 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>shoppy</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery_ui.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/price_range_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-slider.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 {{--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">--}}
     @yield('styles')
@@ -31,10 +34,9 @@
 {{--<script src="/js/jquery.isotope.min.js"></script>--}}
 {{--<script src="/js/vue_isotope.js"></script>--}}
 
-{{--<script src="/js/jquery_ui.js"></script>--}}
-{{--<script src="/js/bootstrap-slider.min.js"></script>--}}
-{{--<script src="/js/jquery.slides.min.js"></script>--}}
-{{--<script src="/js/sort.js"></script>--}}
+<script src="{{ asset('js/bootstrap-slider.min.js') }}"></script>
+<script src="{{ asset('js/jquery_ui.js') }}"></script>
+<script src="{{ asset('js/jquery.slides.min.js') }}"></script>
 <script>
     $(document).ready(function () {
 
@@ -60,6 +62,7 @@
         $(".c-header-dropdown").click(function () {
             $(".header-user-dropdown").toggle();
         });
+
     });
 </script>
 @yield('scripts')

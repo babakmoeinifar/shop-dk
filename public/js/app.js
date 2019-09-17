@@ -1841,18 +1841,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['category_id', 'zero_category', 'main_category'],
   data: function data() {
     return {
       check_status: '',
       brands: '',
-      products: ''
+      checkbrands: '',
+      products: '',
+      attrs: ''
     };
   },
   created: function created() {
     this.ShowBrand();
     this.fetchProducts();
+    this.fetchAttrs();
+    /***********sortBy Range Price***********/
+
+    function showProducts(minPrice, maxPrice) {
+      $("#products li").hide().filter(function () {
+        var price = parseInt($(this).data("price"), 10);
+        return price >= minPrice || price <= maxPrice;
+      }).show();
+    }
+
+    $(function () {
+      var options = {
+        range: true,
+        min: 0,
+        max: 500000,
+        values: [500, 200000],
+        slide: function slide(event, ui) {
+          var min = ui.values[0],
+              max = ui.values[1];
+          $(".max-price").text(max + " تومان ");
+          $(".min-price").text(min + " تومان");
+          showProducts(max, min);
+        }
+      },
+          min,
+          max;
+      $("#slider-range").slider(options);
+      min = $("#slider-range").slider("values", 0);
+      max = $("#slider-range").slider("values", 1);
+      $(".max-price").text(max + " تومان ");
+      $(".min-price").text(min + " تومان");
+      showProducts(max, min);
+    });
+    /***********END sortBy Range Price***********/
   },
   methods: {
     ShowBrand: function ShowBrand() {
@@ -1865,21 +1915,28 @@ __webpack_require__.r(__webpack_exports__);
     fetchProducts: function fetchProducts() {
       var _this2 = this;
 
-      axios.get('/api/product-by-category/' + JSON.parse(this.category_id).id).then(function (response) {
+      axios.get('/api/filter-products/' + JSON.parse(this.category_id).id).then(function (response) {
         _this2.products = response.data;
+      });
+    },
+    fetchAttrs: function fetchAttrs() {
+      var _this3 = this;
+
+      axios.get('/api/attr-by-product/').then(function (response) {
+        _this3.attrs = response.data;
       });
     },
     status: function status(data) {
       var checkBox = document.getElementById("check_status");
 
       if (checkBox.checked === true) {
-        return data.count !== 0;
+        return data.stock !== 0;
       } else {
         return true;
       }
     },
-    filterbrands: function filterbrands(data) {// console.log(this.checkbrands.includes(data.name));
-      // if (this.checkbrands.length == 0) return true;
+    filterbrands: function filterbrands(data) {// console.log(this.checkbrands.includes(data.pro_name));
+      // if (this.checkbrands.length === 0) return true;
       // return  this.checkbrands.includes(data.name);
     },
     orderBy: function orderBy(sorKey) {// this.sortKey = sorKey;
@@ -1892,73 +1949,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sortByHigherPrice: function sortByHigherPrice() {
-      return this.products.sort(function (a) {
+      return this.products.sort(function (a, b) {
         return b.price - a.price;
       });
-    } // ShowProduct: function () {
-    //
-    //     axios.get('/ShowProduct?page=' + this.pagination.current_page).then(response => {
-    //         this.product = response.data.data.data;
-    //         this.pagination = response.data.data;
-    //         console.log(this.product);
-    //     });
-    //
-    //
-    // },
-    //
-    // showattributeitems: function () {
-    //     axios.get('/attributeitems').then(response => {
-    //
-    //         this.attributeitems = response.data
-    //
-    //         //   console.log(this.attributeitems);
-    //
-    //     });
-    //
-    // },
-    // showattribute: function () {
-    //
-    //     axios.get('/attribute').then(response => {
-    //
-    //         this.attribute = response.data
-    //
-    //         //
-    //         //
-    //         // console.log(this.attribute);
-    //
-    //     });
-    //
-    //
-    // },
-    //
-    // addDiscount: function () {
-    //
-    //     var begindate = $("#begindate").val();
-    //     var enddate = $("#enddate").val();
-    //     alert(begindate);
-    //     axios.post('/admin/addDiscount', {
-    //
-    //         name: this.name,
-    //         value: this.value,
-    //         code: this.code,
-    //         product_id: this.product_id,
-    //         enddate: enddate,
-    //         begindate: begindate
-    //
-    //
-    //     }).then(response => {
-    //
-    //
-    //         swal("با موفقیت ذخیره شد ");
-    //
-    //
-    //     }, response => {
-    //         this.error = 1;
-    //         console.log("error");
-    //     });
-    //
-    // },
-
+    }
   }
 });
 
@@ -2974,7 +2968,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: new Form({
         category_id: '',
-        name: '',
+        pro_name: '',
         price: '',
         stock: '',
         country: '',
@@ -2982,7 +2976,7 @@ __webpack_require__.r(__webpack_exports__);
         code: '',
         desc: '',
         meta_keywords: "",
-        image: ""
+        pro_image: ""
       }),
       product_id: "",
       categories: []
@@ -3001,7 +2995,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (file['size'] < 20111775) {
         reader.onloadend = function (file) {
-          _this.form.image = reader.result;
+          _this.form.pro_image = reader.result;
         };
 
         reader.readAsDataURL(file);
@@ -43044,7 +43038,7 @@ var render = function() {
                   "font-size": "13px"
                 }
               },
-              [_vm._v("\n                برند ها\n            ")]
+              [_vm._v("\n                    برند ها\n                ")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
@@ -43077,14 +43071,49 @@ var render = function() {
                         {
                           staticClass: "row",
                           staticStyle: { cursor: "pointer" },
-                          attrs: { for: brand.id }
+                          attrs: { for: "brand" + brand.id }
                         },
                         [
                           _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.checkbrands,
+                                expression: "checkbrands"
+                              }
+                            ],
                             staticClass: "form-check",
-                            attrs: { type: "checkbox", id: brand.id },
-                            domProps: { value: brand.name },
-                            on: { click: _vm.filterbrands }
+                            attrs: { type: "checkbox", id: "brand" + brand.id },
+                            domProps: {
+                              value: brand.id,
+                              checked: Array.isArray(_vm.checkbrands)
+                                ? _vm._i(_vm.checkbrands, brand.id) > -1
+                                : _vm.checkbrands
+                            },
+                            on: {
+                              click: _vm.filterbrands,
+                              change: function($event) {
+                                var $$a = _vm.checkbrands,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = brand.id,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.checkbrands = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.checkbrands = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.checkbrands = $$c
+                                }
+                              }
+                            }
                           }),
                           _vm._v(" "),
                           _c(
@@ -43185,7 +43214,7 @@ var render = function() {
                   "font-size": "13px"
                 }
               },
-              [_vm._v("فقط کالاهای\n                موجود ")]
+              [_vm._v("فقط کالاهای\n                    موجود ")]
             )
           ]
         )
@@ -43193,6 +43222,121 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm._m(1),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-10",
+        staticStyle: {
+          display: "inline-block",
+          "margin-top": "1.5%",
+          "max-width": "81%",
+          "text-align": "right"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "breadcrumb mb-0 pb-0",
+            staticStyle: { "background-color": "#e9ecef00" }
+          },
+          [
+            _c("a", { staticClass: "category", attrs: { href: "/" } }, [
+              _vm._v("فروشگاه اینترنتی دیجی کالا")
+            ]),
+            _c("span", { staticStyle: { color: "#d1d1d1" } }, [_vm._v(" / ")]),
+            _vm._v(" "),
+            _vm.zero_category
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "category",
+                    attrs: { href: "/search/" + _vm.zero_category.id }
+                  },
+                  [
+                    _vm._v(
+                      " " + _vm._s(JSON.parse(_vm.zero_category).name) + " "
+                    )
+                  ]
+                )
+              : _vm._e(),
+            _c("span", { staticStyle: { color: "#d1d1d1" } }, [_vm._v(" / ")]),
+            _vm._v(" "),
+            _vm.main_category
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "category",
+                    attrs: { href: "/search/" + _vm.main_category.id }
+                  },
+                  [
+                    _vm._v(
+                      " " + _vm._s(JSON.parse(_vm.main_category).name) + " "
+                    )
+                  ]
+                )
+              : _vm._e(),
+            _c("span", { staticStyle: { color: "#d1d1d1" } }, [_vm._v(" / ")]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "category font-weight-bold",
+                staticStyle: { color: "#454545" }
+              },
+              [_vm._v(_vm._s(JSON.parse(_vm.category_id).name) + " ")]
+            )
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "span",
+      _vm._l(_vm.attrs, function(attr) {
+        return attr.attribute_groups_id === _vm.category_id
+          ? _c("div", { staticClass: "col-lg-3", attrs: { id: attr.id } }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card-header",
+                    staticStyle: {
+                      "background-color": "#fff",
+                      height: "37px",
+                      "text-align": "right",
+                      "padding-right": "8px",
+                      "padding-top": "5px",
+                      "font-weight": "bold",
+                      "font-size": "13px"
+                    },
+                    attrs: { "data-toggle": "collapse", "data-target": attr.id }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(attr.name) +
+                        "\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "card-body",
+                    staticStyle: { "min-height": "280px" },
+                    attrs: { id: "demo" + _vm.index }
+                  },
+                  [_c("ul", { staticClass: "attributeitem" })]
+                )
+              ])
+            ])
+          : _vm._e()
+      }),
+      0
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -43222,7 +43366,7 @@ var render = function() {
                 _c("ul", { staticClass: "shopheader" }, [
                   _c("li", [
                     _vm._v(
-                      "\n                        مرتب سازی بر اساس:\n                    "
+                      "\n                            مرتب سازی بر اساس:\n                        "
                     )
                   ]),
                   _vm._v(" "),
@@ -43254,32 +43398,48 @@ var render = function() {
                   "ul",
                   { staticClass: "row mx-auto p-0", attrs: { id: "products" } },
                   _vm._l(_vm.products, function(product) {
-                    return _c(
-                      "li",
-                      {
-                        staticClass:
-                          "col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2"
-                      },
-                      [
-                        _c("a", { attrs: { href: "" } }, [
-                          _c("img", {
-                            staticClass: "img-fluid row mx-auto rounded",
-                            staticStyle: { "margin-top": "10px" },
-                            attrs: { src: "/" + product.image }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "text" }, [
-                            _vm._v(_vm._s(product.name))
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "price" }, [
-                            _vm._v(_vm._s(product.price) + "تومان")
-                          ]),
-                          _vm._v(" "),
-                          _vm._m(2, true)
-                        ])
-                      ]
-                    )
+                    return !_vm.filterbrands(product) && _vm.status(product)
+                      ? _c(
+                          "li",
+                          {
+                            staticClass:
+                              "col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2",
+                            staticStyle: { width: "1000px" },
+                            attrs: { "data-price": product.price }
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href:
+                                    /search/ +
+                                    JSON.parse(_vm.category_id).id +
+                                    "/" +
+                                    product.id
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "img-fluid row mx-auto rounded",
+                                  staticStyle: { "margin-top": "10px" },
+                                  attrs: { src: "/" + product.pro_image }
+                                }),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "text" }, [
+                                  _vm._v(_vm._s(product.pro_name))
+                                ]),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "price" }, [
+                                  _vm._v(_vm._s(product.price) + " تومان ")
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(2, true)
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e()
                   }),
                   0
                 )
@@ -43321,7 +43481,11 @@ var staticRenderFns = [
                   "font-size": "13px"
                 }
               },
-              [_vm._v("\n                جستجو در نتایج :\n            ")]
+              [
+                _vm._v(
+                  "\n                    جستجو در نتایج :\n                "
+                )
+              ]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
@@ -43374,7 +43538,11 @@ var staticRenderFns = [
                   "font-size": "14px"
                 }
               },
-              [_vm._v("\n                محدوده قیمت مورد نظر\n            ")]
+              [
+                _vm._v(
+                  "\n                    محدوده قیمت مورد نظر\n                "
+                )
+              ]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
@@ -43382,13 +43550,9 @@ var staticRenderFns = [
                 _c("div", { attrs: { id: "slider-range" } }),
                 _vm._v(" "),
                 _c("p", [
-                  _c("span", { staticClass: "max-price" }, [
-                    _c("span", [_vm._v("از")])
-                  ]),
+                  _c("span", { staticClass: "max-price" }),
                   _vm._v(" "),
-                  _c("span", { staticClass: "min-price" }, [
-                    _c("span", [_vm._v("از")])
-                  ])
+                  _c("span", { staticClass: "min-price" })
                 ])
               ])
             ])
@@ -43600,7 +43764,7 @@ var render = function() {
                   _c(
                     "label",
                     { staticClass: "control-label", attrs: { for: "image" } },
-                    [_vm._v("تصویر محصول")]
+                    [_vm._v("تصویر برند")]
                   ),
                   _vm._v(" "),
                   _vm.form.errors.has("image")
@@ -43744,7 +43908,7 @@ var render = function() {
                     _vm._l(_vm.products, function(product) {
                       return [
                         _c("option", { domProps: { value: product.id } }, [
-                          _vm._v(_vm._s(product.name))
+                          _vm._v(_vm._s(product.pro_name))
                         ])
                       ]
                     })
@@ -44447,7 +44611,7 @@ var render = function() {
               _vm._l(_vm.products, function(product) {
                 return [
                   _c("option", { domProps: { value: product.id } }, [
-                    _vm._v(_vm._s(product.name))
+                    _vm._v(_vm._s(product.pro_name))
                   ])
                 ]
               })
@@ -45120,7 +45284,7 @@ var render = function() {
                     {
                       staticClass: "form-group",
                       class: {
-                        "border border-danger": _vm.form.errors.has("image")
+                        "border border-danger": _vm.form.errors.has("pro_image")
                       }
                     },
                     [
@@ -45128,16 +45292,16 @@ var render = function() {
                         "label",
                         {
                           staticClass: "col-sm-2 control-label",
-                          attrs: { for: "image" }
+                          attrs: { for: "pro_image" }
                         },
                         [_vm._v("تصویر محصول")]
                       ),
                       _vm._v(" "),
-                      _vm.form.errors.has("image")
+                      _vm.form.errors.has("pro_image")
                         ? _c("div", { staticClass: "text-danger" }, [
                             _vm._v(
                               "\n                            " +
-                                _vm._s(_vm.form.errors.get("image")) +
+                                _vm._s(_vm.form.errors.get("pro_image")) +
                                 "\n                        "
                             )
                           ])
@@ -45148,10 +45312,10 @@ var render = function() {
                         attrs: {
                           type: "file",
                           "data-show-loader": "true",
-                          id: "image",
+                          id: "pro_image",
                           "data-max-file-size": "15M",
                           "data-allowed-file-extensions": "jpg png jpeg gif",
-                          name: "image"
+                          name: "pro_image"
                         },
                         on: { change: _vm.updatePhoto }
                       })
@@ -45167,29 +45331,29 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form.name,
-                            expression: "form.name"
+                            value: _vm.form.pro_name,
+                            expression: "form.pro_name"
                           }
                         ],
                         staticClass: "form-control",
-                        class: { "is-danger": _vm.form.errors.has("name") },
-                        attrs: { id: "name", type: "text" },
-                        domProps: { value: _vm.form.name },
+                        class: { "is-danger": _vm.form.errors.has("pro_name") },
+                        attrs: { id: "pro_name", type: "text" },
+                        domProps: { value: _vm.form.pro_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.form, "name", $event.target.value)
+                            _vm.$set(_vm.form, "pro_name", $event.target.value)
                           }
                         }
                       }),
                       _vm._v(" "),
-                      _vm.form.errors.has("name")
+                      _vm.form.errors.has("pro_name")
                         ? _c("div", { staticClass: "text-danger" }, [
                             _vm._v(
                               "\n                                " +
-                                _vm._s(_vm.form.errors.get("name")) +
+                                _vm._s(_vm.form.errors.get("pro_name")) +
                                 "\n                            "
                             )
                           ])
@@ -45679,7 +45843,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "name" } }, [
+    return _c("label", { attrs: { for: "pro_name" } }, [
       _vm._v("نام کالا\n                                "),
       _c("span", { staticClass: "text-danger font-weight-bold" }, [
         _vm._v(" * ")

@@ -3,7 +3,6 @@
 //     lensSize: 100
 // });
 
-// $("#ex2").slider({});
 $('.carousel').carousel();
 $('#pager').carouFredSel();
 

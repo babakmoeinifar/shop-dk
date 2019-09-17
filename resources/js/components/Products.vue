@@ -27,9 +27,9 @@
                     <div class="brandsearch">
                         <ul>
                             <li v-for="brand in brands">
-                                <label :for="brand.id" class="row" style="cursor: pointer">
-                                    <input type="checkbox" @click="filterbrands" :value="brand.name"
-                                           class="form-check" :id="brand.id">
+                                <label :for="'brand'+brand.id" class="row" style="cursor: pointer">
+                                    <input type="checkbox" @click="filterbrands" :value="brand.id"
+                                           class="form-check" :id="'brand'+brand.id" v-model="checkbrands">
                                     <span class="pr-2" style="margin-top: -4px">{{brand.name}}</span>
                                     <span style="margin-right: 100px;margin-top: -4px">{{brand.en_name}}</span>
                                 </label>
@@ -61,54 +61,54 @@
                     <div class="brandsearch">
                         <div id="slider-range"></div>
                         <p>
-                            <span class="max-price"><span>از</span></span>
-                            <span class="min-price"><span>از</span></span>
+                            <span class="max-price"></span>
+                            <span class="min-price"></span>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!--    <div class="col-lg-10" style="display: inline-block;margin-top:3%;max-width: 81%;text-align: right;">-->
-        <!--        <div class="breadcrumb mb-0 pb-0" style="background-color: #e9ecef00">-->
-        <!--            <a class='category' href='/'>فروشگاه اینترنتی دیجی کالا</a><span-->
-        <!--            style="color: #d1d1d1">&nbsp;/&nbsp;</span>-->
-        <!--            <a v-if="zero_category" class='category' href="/search/${zero_category.id}"> {{ zero_category.name }} </a><span-->
-        <!--            style="color: #d1d1d1">&nbsp;/&nbsp;</span>-->
-        <!--            <a v-if="main_category" class='category' href="/search/${main_category.id}"> {{ main_category.name }} </a><span-->
-        <!--            style="color: #d1d1d1">&nbsp;/&nbsp;</span>-->
-        <!--            <a class='category font-weight-bold' style="color: #454545">{{ category_id.name }} </a>-->
-        <!--        </div>-->
-        <!--    </div>-->
+        <div class="col-lg-10" style="display: inline-block;margin-top:1.5%;max-width: 81%;text-align: right;">
+            <div class="breadcrumb mb-0 pb-0" style="background-color: #e9ecef00">
+                <a class='category' href='/'>فروشگاه اینترنتی دیجی کالا</a><span
+                style="color: #d1d1d1">&nbsp;/&nbsp;</span>
+                <a v-if="zero_category" class='category' :href="'/search/'+zero_category.id"> {{
+                    JSON.parse(zero_category).name }} </a><span
+                style="color: #d1d1d1">&nbsp;/&nbsp;</span>
+                <a v-if="main_category" class='category' :href="'/search/'+main_category.id"> {{
+                    JSON.parse(main_category).name }} </a><span
+                style="color: #d1d1d1">&nbsp;/&nbsp;</span>
+                <a class='category font-weight-bold' style="color: #454545">{{ JSON.parse(category_id).name }} </a>
+            </div>
+        </div>
 
-        <!--        <span>
-    {{--            @foreach($attrs as $attr)--}}
-    {{--                <div class="col-lg-3" id="{{ $attr.id }}">--}}
-    {{--                <div class="card">--}}
-    {{--                    <div class="card-header"--}}
-                             {{--                         style="background-color:#fff;height: 37px; text-align: right; padding-right: 8px; padding-top: 5px; font-weight: bold; font-size: 13px;"--}}
-                             {{--                         data-toggle="collapse" :data-target="{{ $attr.id }}">--}}
-    {{--                        {{ $attr.name}}--}}
-    {{--                    </div>--}}
-    {{--                    <div class="card-body" :id="'demo'+index" style="min-height:280px;">--}}
-    {{--                        <ul class="attributeitem">--}}
-    {{--                            @foreach($attributeFields as $attrField)--}}
-    {{--                                <li>--}}
-    {{--                                @if($attrField.attribute_id == $attr.id)--}}
-    {{--                                        <input type="checkbox" name=""--}}
-                                                   {{--                                               v-model="checkattribute"--}}
-                                                   {{--                                               :value="{{$attrField.attr_field_name}}"--}}
-                                                   {{--                                               @click="filterattribute()"> {{$attrField.attr_field_name}}--}}
-    {{--                                    @endif--}}
-    {{--                            </li>--}}
-    {{--                            @endforeach--}}
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--            @endforeach--}}
-    {{--        </span>
-    -->
+        <span>
+                    <div class="col-lg-3" :id="attr.id" v-for="attr in attrs" v-if="attr.attribute_groups_id === category_id">
+                    <div class="card">
+                        <div class="card-header"
+                             style="background-color:#fff;height: 37px; text-align: right; padding-right: 8px; padding-top: 5px; font-weight: bold; font-size: 13px;"
+                             data-toggle="collapse" :data-target="attr.id">
+                            {{ attr.name}}
+                        </div>
+                        <div class="card-body" :id="'demo'+index" style="min-height:280px;">
+                            <ul class="attributeitem">
+<!--                                @foreach($attributeFields as $attrField)-->
+<!--                                    <li>-->
+<!--                                    @if($attrField.attribute_id == $attr.id)-->
+<!--                                            <input type="checkbox" name=""-->
+<!--                                                   v-model="checkattribute"-->
+<!--                                                   :value="{{$attrField.attr_field_name}}"-->
+<!--                                                   @click="filterattribute()"> {{$attrField.attr_field_name}}-->
+<!--                                        @endif-->
+<!--                                </li>-->
+<!--                                @endforeach-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </span>
+
 
         <div class="col-lg-10" style="display: inline-block;margin-top:1%;max-width: 81%;">
             <div class="card" style="min-height:1300px; ">
@@ -125,16 +125,30 @@
                 <div class="card-body"></div>
                 <div id="ListProduct" style="position: absolute;top: 5%;">
                     <ul class="row mx-auto p-0" id="products">
-                        <li class="col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2" v-for="product in products">
-                            <a href="">
-                                <img :src="'/'+product.image" class="img-fluid row mx-auto rounded"
+                        <li class="col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2"
+                            v-for="product in products" :data-price="product.price"
+                            v-if="!filterbrands(product) && status(product)" style="width: 1000px">
+                            <a :href="/search/+JSON.parse(category_id).id+'/'+product.id">
+                                <img :src="'/'+product.pro_image" class="img-fluid row mx-auto rounded"
                                      style="margin-top: 10px">
-                                <span class="text">{{ product.name}}</span>
-                                <span class="price">{{ product.price}}تومان</span>
+                                <span class="text">{{ product.pro_name}}</span>
+                                <span class="price">{{ product.price}} تومان </span>
                                 <span><i class="fa fa-star mt-3 float-left text-secondary"> 3.4 </i></span>
                             </a>
                         </li>
                     </ul>
+                    <!--                    <div >-->
+                    <!--                        <b class="alert alert-warning">-->
+                    <!--                            جستجو برای این ترکیب از فیلترها با هیچ کالایی هم‌خوانی نداشت.-->
+                    <!--                        </b>-->
+                    <!--                        <p style="white-space: pre-line" class="text-right pr-3">-->
+                    <!--                            تلاش کنید:-->
+
+                    <!--                            - تعدادی از فیلترها را حذف کنید.-->
+
+                    <!--                            - در جستجو از عبارت‌های متداول‌تر استفاده کنید.-->
+                    <!--                        </p>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -151,13 +165,50 @@
             return {
                 check_status: '',
                 brands: '',
-                products: ''
+                checkbrands: '',
+                products: '',
+                attrs: '',
             };
         },
 
         created() {
             this.ShowBrand();
             this.fetchProducts();
+            this.fetchAttrs();
+
+            /***********sortBy Range Price***********/
+            function showProducts(minPrice, maxPrice) {
+                $("#products li").hide().filter(function () {
+                    let price = parseInt($(this).data("price"), 10);
+                    return price >= minPrice || price <= maxPrice;
+                }).show();
+            }
+            $(function () {
+                let options = {
+                    range: true,
+                    min: 0,
+                    max: 500000,
+                    values: [500, 200000],
+                    slide: function (event, ui) {
+                        let min = ui.values[0],
+                            max = ui.values[1];
+
+                        $(".max-price").text(max + " تومان ");
+                        $(".min-price").text(min + " تومان");
+
+                        showProducts(max, min);
+                    }
+                }, min, max;
+
+                $("#slider-range").slider(options);
+                min = $("#slider-range").slider("values", 0);
+                max = $("#slider-range").slider("values", 1);
+                $(".max-price").text(max + " تومان ");
+                $(".min-price").text(min + " تومان");
+                showProducts(max, min);
+            });
+            /***********END sortBy Range Price***********/
+
         },
 
         methods: {
@@ -169,23 +220,29 @@
             },
 
             fetchProducts() {
-                axios.get('/api/product-by-category/' + JSON.parse(this.category_id).id).then(response => {
+                axios.get('/api/filter-products/' + JSON.parse(this.category_id).id).then(response => {
                     this.products = response.data;
+                });
+            },
+
+            fetchAttrs() {
+                axios.get('/api/attr-by-product/').then(response => {
+                    this.attrs = response.data;
                 });
             },
 
             status(data) {
                 let checkBox = document.getElementById("check_status");
                 if (checkBox.checked === true) {
-                    return data.count !== 0;
+                    return data.stock !== 0;
                 } else {
                     return true;
                 }
             },
 
-            filterbrands(data){
-                // console.log(this.checkbrands.includes(data.name));
-                // if (this.checkbrands.length == 0) return true;
+            filterbrands(data) {
+                // console.log(this.checkbrands.includes(data.pro_name));
+                // if (this.checkbrands.length === 0) return true;
                 // return  this.checkbrands.includes(data.name);
             },
 
@@ -201,9 +258,8 @@
                 })
             },
 
-            sortByHigherPrice: function () {
-
-                return this.products.sort(function (a) {
+            sortByHigherPrice() {
+                return this.products.sort(function (a, b) {
                     return b.price - a.price;
                 })
 

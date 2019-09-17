@@ -32,10 +32,10 @@
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td>
-                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" width="50"
+                                <img src="{{ asset($product->pro_image) }}" alt="{{ $product->pro_name }}" width="50"
                                      class="rounded-circle">
                             </td>
-                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->pro_name }}</td>
                             <td>{{ $product->category->name }}</td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->stock }}</td>
@@ -75,7 +75,7 @@
                                     </div>
 
                                     <div class="modal-body text-right">
-                                        <h4>{{ $product->name }}</h4>
+                                        <h4>{{ $product->pro_name }}</h4>
                                         <hr>
                                         <p>واحد: {{ $product->unit }}</p>
                                         <p>قیمت: {{ $product->price }}</p>

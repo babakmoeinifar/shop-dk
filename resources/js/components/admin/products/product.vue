@@ -41,25 +41,25 @@
 
                     <form @submit.prevent="add()" @keydown="form.onKeydown($event)">
 
-                        <div class="form-group" :class="{'border border-danger': form.errors.has('image')}">
-                            <label for="image" class="col-sm-2 control-label">تصویر محصول</label>
-                            <div class="text-danger" v-if="form.errors.has('image')">
-                                {{ form.errors.get('image') }}
+                        <div class="form-group" :class="{'border border-danger': form.errors.has('pro_image')}">
+                            <label for="pro_image" class="col-sm-2 control-label">تصویر محصول</label>
+                            <div class="text-danger" v-if="form.errors.has('pro_image')">
+                                {{ form.errors.get('pro_image') }}
                             </div>
-                            <input type="file" class="dropify" data-show-loader="true" id="image"
+                            <input type="file" class="dropify" data-show-loader="true" id="pro_image"
                                    data-max-file-size="15M" data-allowed-file-extensions="jpg png jpeg gif"
-                                   name="image" @change="updatePhoto">
+                                   name="pro_image" @change="updatePhoto">
                         </div>
 
                         <div class="row mt-2">
                             <div class="col-lg-4 form-group">
-                                <label for="name">نام کالا
+                                <label for="pro_name">نام کالا
                                     <span class="text-danger font-weight-bold"> * </span>
                                 </label>
-                                <input id="name" type="text" class="form-control"
-                                       :class="{'is-danger': form.errors.has('name')}" v-model="form.name">
-                                <div class="text-danger" v-if="form.errors.has('name')">
-                                    {{ form.errors.get('name') }}
+                                <input id="pro_name" type="text" class="form-control"
+                                       :class="{'is-danger': form.errors.has('pro_name')}" v-model="form.pro_name">
+                                <div class="text-danger" v-if="form.errors.has('pro_name')">
+                                    {{ form.errors.get('pro_name') }}
                                 </div>
                             </div>
 
@@ -194,7 +194,7 @@
             return {
                 form: new Form({
                     category_id: '',
-                    name: '',
+                    pro_name: '',
                     price: '',
                     stock: '',
                     country: '',
@@ -202,7 +202,7 @@
                     code: '',
                     desc: '',
                     meta_keywords: "",
-                    image: "",
+                    pro_image: "",
                 }),
                 product_id: "",
                 categories: [],
@@ -220,7 +220,7 @@
                 let reader = new FileReader();
                 if (file['size'] < 20111775) {
                     reader.onloadend = (file) => {
-                        this.form.image = reader.result;
+                        this.form.pro_image = reader.result;
                     };
                     reader.readAsDataURL(file);
                 } else {

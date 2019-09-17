@@ -39,8 +39,8 @@
             <ul id="shegeftangiz">
                 @foreach($products as $product)
                     <li>
-                        <img src="{{ asset($product->image) }}" height="80px">
-                        <span class="text">{{ $product->name }}</span>
+                        <img src="{{ asset($product->pro_image) }}" height="80px">
+                        <span class="text">{{ $product->pro_name }}</span>
                         <span class="price">{{ $product->price }}تومان</span>
                     </li>
                 @endforeach
@@ -62,7 +62,7 @@
                         @if($product->id == $discount->product_id)
                             <li data-target="#card-discount" data-slide-to="{{$i++}}" class="@if($loop->first) active @endif">
                                 <a href="">
-                                    <span>{{$product->name}}</span>
+                                    <span>{{$product->pro_name}}</span>
                                 </a>
                             </li>
                         @endif
@@ -77,13 +77,13 @@
                     @foreach($discounts as $discount)
                         @if($product->id == $discount->product_id)
                             <div class="carousel-item @if($loop->first) active @endif" id="carousel-item">
-                                <img src="{{ asset($product->image) }}">
+                                <img src="{{ asset($product->pro_image) }}">
                                 <div class="carousel-price">
                                     <span>{{ number_format($product->price) }}</span>
                                     <h4>{{ number_format($product->price * $discount->value /100) }} تومان</h4>
                                     <p>تخفیف {{$discount->value}}%</p>
                                 </div>
-                                <div class="carousel-title"> {{ $product->name }} </div>
+                                <div class="carousel-title"> {{ $product->pro_name }} </div>
                                 <div class="atrr">
                                     <ul>
                                         <li>
@@ -236,9 +236,9 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
                             {{--                            @if($product->category_id == 166)--}}
                             <li>
                                 <a href="{{ url($product->category->slug, $product->id) }}">
-                                    <img src="{{asset($product->image)}}" width="210px" height="210px">
+                                    <img src="{{asset($product->pro_image)}}" width="210px" height="210px">
                                 </a>
-                                <span class="text">{{$product->name}}</span>
+                                <span class="text">{{$product->pro_name}}</span>
                                 <span class="price">{{$product->price}} تومان</span>
                             </li>
                             {{--                            @endif--}}
@@ -268,9 +268,9 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
                     <ul id="foo1">
                         @foreach($products as $product)
                             <li>
-                                <img src="{{ asset($product->image) }}" class="rounded" width="250px" height="210px">
+                                <img src="{{ asset($product->pro_image) }}" class="rounded" width="250px" height="210px">
 
-                                <span class="text">{{ $product->name }}</span>
+                                <span class="text">{{ $product->pro_name }}</span>
                                 <span class="price">{{ $product->price }}تومان</span>
                             </li>
                         @endforeach
@@ -298,9 +298,9 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
                         @if($product->category_id == 2)
                             <li>
                                 <a href="{{ url($product->category->slug, $product->id) }}">
-                                    <img src="{{asset($product->image)}}" width="210px" height="210px">
+                                    <img src="{{asset($product->pro_image)}}" width="210px" height="210px">
                                 </a>
-                                <span class="text">{{$product->name}}</span>
+                                <span class="text">{{$product->pro_name}}</span>
                                 <span class="price">{{$product->price}}تومان</span>
                             </li>
                         @endif
@@ -360,9 +360,9 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
                         @if($product->category_id == 3)
                             <li>
                                 <a href="{{ url($product->category->slug, $product->id) }}">
-                                    <img src="{{asset($product->image)}}" width="210px" height="210px">
+                                    <img src="{{asset($product->pro_image)}}" width="210px" height="210px">
                                 </a>
-                                <span class="text">{{$product->name}}</span>
+                                <span class="text">{{$product->pro_name}}</span>
                                 <span class="price">{{$product->price}}تومان</span>
                             </li>
                         @endif
@@ -416,9 +416,9 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
                     @foreach($newProducts as $product)
                         <li>
                             <a href="{{ url($product->category->slug, $product->id) }}">
-                                <img src="{{ asset($product->image) }}" width="210px" height="210px">
+                                <img src="{{ asset($product->pro_image) }}" width="210px" height="210px">
                             </a>
-                            <span class="text">{{ $product->name }}</span>
+                            <span class="text">{{ $product->pro_name }}</span>
                             <span class="price">{{ $product->price }}تومان</span>
                         </li>
                     @endforeach

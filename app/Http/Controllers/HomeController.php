@@ -46,6 +46,6 @@ class HomeController extends Controller
     public function product($category, $productId)
     {
         $product = Product::findOrFail($productId);
-        dd($product->name);
+        dd($product->pro_name);
     }
 }
