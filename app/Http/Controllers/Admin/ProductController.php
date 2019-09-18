@@ -39,7 +39,7 @@ class ProductController extends Controller
         $product = Product::create(
             request()->validate([
                 'pro_name' => 'required',
-                'category_id' => 'required',
+                'pro_category_id' => 'required',
                 'code' => 'nullable',
                 'price' => 'required',
                 'stock' => 'required',

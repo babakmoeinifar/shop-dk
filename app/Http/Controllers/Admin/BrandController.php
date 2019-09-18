@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Brand;
 use App\Http\Controllers\Controller;
-use App\Product;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class BrandController extends Controller

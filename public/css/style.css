@@ -1102,9 +1102,7 @@ footer {
 }
 
 .brandsearch ul li {
-    display: inline-flex;
-    position: relative;
-    float: right;
+    display: flex;
 }
 
 .brandsearch ul {
@@ -1221,36 +1219,13 @@ div.ui-slider {
     border-radius: 50%;
 }
 
-#attr0 {
-    top: 71%;
-    position: absolute;
-    max-width: 19.2%;
-}
-
-#attr1 {
-    top: 92%;
-    position: absolute;
-    max-width: 19.2%;
-}
-
-#attr3 {
-    top: 70%;
-    position: absolute;
-    max-width: 19.2%;
-}
-
-.attributeitem li {
-    text-align: right;
-    margin-top: 12px;
-}
-
 .attributeitem li input {
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 .attributeitem {
     position: absolute;
-    right: 0;
+    right: -10px;
 }
 
 #page {

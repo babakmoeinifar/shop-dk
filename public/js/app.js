@@ -1688,6 +1688,79 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pagination.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pagination.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['pagination', 'offset'],
+  methods: {
+    isCurrentPage: function isCurrentPage(page) {
+      return this.pagination.current_page === page;
+    },
+    changePage: function changePage(page) {
+      console.log(page);
+
+      if (page > this.pagination.last_page) {
+        page = this.pagination.last_page;
+      }
+
+      this.pagination.current_page = page;
+      this.$emit('paginate');
+    }
+  },
+  computed: {
+    pages: function pages() {
+      var pages = [];
+      var from = this.pagination.current_page - Math.floor(this.offset / 2);
+
+      if (from < 1) {
+        from = 1;
+      }
+
+      var to = from + this.offset - 1;
+
+      if (to > this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      while (from <= to) {
+        pages.push(from);
+        from++;
+      }
+
+      return pages;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Products.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Products.vue?vue&type=script&lang=js& ***!
@@ -1850,22 +1923,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['category_id', 'zero_category', 'main_category'],
+  props: ['this_category', 'zero_category', 'main_category'],
   data: function data() {
     return {
       check_status: '',
       brands: '',
       checkbrands: '',
+      checkattribute: '',
       products: '',
-      attrs: ''
+      attrs: '',
+      attributefields: '',
+      pagination: {
+        current_page: 1
+      }
     };
   },
   created: function created() {
     this.ShowBrand();
     this.fetchProducts();
     this.fetchAttrs();
-    /***********sortBy Range Price***********/
+    this.fetchAttrFields();
+    /***********JQUERY sortBy Range Price***********/
 
     function showProducts(minPrice, maxPrice) {
       $("#products li").hide().filter(function () {
@@ -1903,15 +2040,16 @@ __webpack_require__.r(__webpack_exports__);
     ShowBrand: function ShowBrand() {
       var _this = this;
 
-      axios.get('/api/show-brand/' + JSON.parse(this.category_id).id).then(function (response) {
+      axios.get('/api/show-brand/' + JSON.parse(this.this_category).id).then(function (response) {
         _this.brands = response.data;
       });
     },
     fetchProducts: function fetchProducts() {
       var _this2 = this;
 
-      axios.get('/api/filter-products/' + JSON.parse(this.category_id).id).then(function (response) {
-        _this2.products = response.data;
+      axios.get('/api/filter-products/?category=' + JSON.parse(this.this_category).id + '&page=' + this.pagination.current_page).then(function (response) {
+        _this2.products = response.data.data.data;
+        _this2.pagination = response.data.data;
       });
     },
     fetchAttrs: function fetchAttrs() {
@@ -1919,6 +2057,13 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/attr-by-product/').then(function (response) {
         _this3.attrs = response.data;
+      });
+    },
+    fetchAttrFields: function fetchAttrFields() {
+      var _this4 = this;
+
+      axios.get('/api/attr-field-by-attr/').then(function (response) {
+        _this4.attributefields = response.data;
       });
     },
     status: function status(data) {
@@ -1947,6 +2092,10 @@ __webpack_require__.r(__webpack_exports__);
       return this.products.sort(function (a, b) {
         return b.price - a.price;
       });
+    },
+    filterattribute: function filterattribute(data) {// console.log(this.checkattribute.includes(data.attr_field_name));
+      // if (this.checkattribute.length === 0) return true;
+      // return  this.checkattribute.includes(data.attr_field_name);
     }
   }
 });
@@ -2962,7 +3111,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: new Form({
-        category_id: '',
+        pro_category_id: '',
         pro_name: '',
         price: '',
         stock: '',
@@ -42990,6 +43139,97 @@ AlertSuccess_component.options.__file = "AlertSuccess.vue"
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pagination.vue?vue&type=template&id=d7acf176&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pagination.vue?vue&type=template&id=d7acf176& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("nav", { staticClass: "row mx-auto mt-2" }, [
+    _c(
+      "ul",
+      { staticClass: "pagination" },
+      [
+        _c("li", { staticClass: "page-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "page-link",
+              attrs: {
+                "aria-label": "Previous",
+                disabled: _vm.pagination.current_page <= 1
+              },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.changePage(_vm.pagination.current_page - 1)
+                }
+              }
+            },
+            [_vm._v("«")]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.pages, function(page) {
+          return _c("li", { staticClass: "page-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "page-link",
+                class: _vm.isCurrentPage(page) ? "active" : "",
+                attrs: { id: "page" },
+                on: {
+                  click: function($event) {
+                    return _vm.changePage(page)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(page))]
+            )
+          ])
+        }),
+        _vm._v(" "),
+        _c("li", { staticClass: "page-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "page-link",
+              attrs: {
+                "aria-label": "Next",
+                disabled:
+                  _vm.pagination.current_page >= _vm.pagination.last_page
+              },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.changePage(_vm.pagination.current_page + 1)
+                }
+              }
+            },
+            [_vm._v("»")]
+          )
+        ])
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Products.vue?vue&type=template&id=57b394cf&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Products.vue?vue&type=template&id=57b394cf& ***!
@@ -43007,238 +43247,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    { staticClass: "row" },
     [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col-lg-3",
-          staticStyle: {
-            top: "25%",
-            position: "absolute",
-            "max-width": "19.2%"
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "card", staticStyle: { "min-height": "280px" } },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "card-header",
-                  staticStyle: {
-                    "background-color": "#fff",
-                    height: "37px",
-                    "text-align": "right",
-                    "padding-right": "8px",
-                    "padding-top": "5px",
-                    "font-weight": "bold",
-                    "font-size": "13px"
-                  }
-                },
-                [_vm._v("\n                    برند ها\n                ")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  staticStyle: {
-                    "font-size": "11px",
-                    "text-align": "left",
-                    height: "40px"
-                  },
-                  attrs: { type: "text", placeholder: "نام برند را جستجو کنید" }
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fa fa-search",
-                  staticStyle: {
-                    float: "right",
-                    "margin-top": "-30px",
-                    "margin-right": "6px"
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "brandsearch" }, [
-                  _c(
-                    "ul",
-                    _vm._l(_vm.brands, function(brand) {
-                      return _c("li", [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "row",
-                            staticStyle: { cursor: "pointer" },
-                            attrs: { for: "brand" + brand.id }
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.checkbrands,
-                                  expression: "checkbrands"
-                                }
-                              ],
-                              staticClass: "form-check",
-                              attrs: {
-                                type: "checkbox",
-                                id: "brand" + brand.id
-                              },
-                              domProps: {
-                                value: brand.id,
-                                checked: Array.isArray(_vm.checkbrands)
-                                  ? _vm._i(_vm.checkbrands, brand.id) > -1
-                                  : _vm.checkbrands
-                              },
-                              on: {
-                                click: _vm.filterbrands,
-                                change: function($event) {
-                                  var $$a = _vm.checkbrands,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = brand.id,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        (_vm.checkbrands = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (_vm.checkbrands = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
-                                    }
-                                  } else {
-                                    _vm.checkbrands = $$c
-                                  }
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "pr-2",
-                                staticStyle: { "margin-top": "-4px" }
-                              },
-                              [_vm._v(_vm._s(brand.name))]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticStyle: {
-                                  "margin-right": "100px",
-                                  "margin-top": "-4px"
-                                }
-                              },
-                              [_vm._v(_vm._s(brand.en_name))]
-                            )
-                          ]
-                        )
-                      ])
-                    }),
-                    0
-                  )
-                ])
-              ])
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col-lg-3",
-          staticStyle: {
-            top: "46%",
-            position: "absolute",
-            "max-width": "19.2%"
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "card", staticStyle: { "min-height": "29px" } },
-            [
-              _c("label", { staticClass: "switch" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.check_status,
-                      expression: "check_status"
-                    }
-                  ],
-                  attrs: { type: "checkbox", id: "check_status" },
-                  domProps: {
-                    checked: Array.isArray(_vm.check_status)
-                      ? _vm._i(_vm.check_status, null) > -1
-                      : _vm.check_status
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.status()
-                    },
-                    change: function($event) {
-                      var $$a = _vm.check_status,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.check_status = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.check_status = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.check_status = $$c
-                      }
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "slider round" })
-              ]),
-              _vm._v(" "),
-              _c(
-                "p",
-                {
-                  staticStyle: {
-                    "margin-top": "-31px",
-                    "text-align": "right",
-                    "margin-right": "94px",
-                    "font-size": "13px"
-                  }
-                },
-                [_vm._v("فقط کالاهای\n                    موجود ")]
-              )
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _vm._l(_vm.attrs, function(attr, index) {
-        return _c("span", [
-          _c(
-            "div",
-            { staticClass: "col-lg-3", attrs: { id: "attr" + index } },
-            [
-              _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "col-lg-3 mt-2" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { "min-height": "180px" } },
+              [
                 _c(
                   "div",
                   {
@@ -43251,228 +43268,623 @@ var render = function() {
                       "padding-top": "5px",
                       "font-weight": "bold",
                       "font-size": "13px"
-                    },
-                    attrs: {
-                      "data-toggle": "collapse",
-                      "data-target": "#demo" + index
                     }
                   },
                   [
                     _vm._v(
-                      "\n                            " +
-                        _vm._s(attr.name) +
-                        "\n                        "
+                      "\n                        دسته بندی نتایج\n                    "
                     )
                   ]
                 ),
                 _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("ul", { staticClass: "categories" }, [
+                    _vm.zero_category.length
+                      ? _c("li", [
+                          _c("i", { staticClass: "fa fa-angle-left" }),
+                          _vm._v(" "),
+                          _c("a", [
+                            _vm._v(_vm._s(JSON.parse(_vm.zero_category).name))
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.main_category
+                      ? _c("li", { staticStyle: { padding: "10px" } }, [
+                          _c("i", { staticClass: "fa fa-angle-down" }),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href:
+                                  "/search/" + JSON.parse(_vm.main_category).id
+                              }
+                            },
+                            [_vm._v(_vm._s(JSON.parse(_vm.main_category).name))]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      {
+                        staticStyle: {
+                          "padding-right": "25px",
+                          "font-weight": "bold"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-angle-down" }),
+                        _c("a", [
+                          _vm._v(_vm._s(JSON.parse(_vm.this_category).name))
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { "min-height": "29px" } },
+              [
+                _c("label", { staticClass: "switch" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.check_status,
+                        expression: "check_status"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: "check_status" },
+                    domProps: {
+                      checked: Array.isArray(_vm.check_status)
+                        ? _vm._i(_vm.check_status, null) > -1
+                        : _vm.check_status
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.status()
+                      },
+                      change: function($event) {
+                        var $$a = _vm.check_status,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.check_status = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.check_status = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.check_status = $$c
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "slider round" })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticStyle: {
+                      "margin-top": "-31px",
+                      "text-align": "right",
+                      "margin-right": "94px",
+                      "font-size": "13px"
+                    }
+                  },
+                  [_vm._v("فقط کالاهای\n                        موجود ")]
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { "min-height": "280px" } },
+              [
                 _c(
                   "div",
                   {
-                    staticClass: "card-body",
-                    staticStyle: { "min-height": "280px" },
-                    attrs: { id: "demo" + index }
+                    staticClass: "card-header",
+                    staticStyle: {
+                      "background-color": "#fff",
+                      height: "37px",
+                      "text-align": "right",
+                      "padding-right": "8px",
+                      "padding-top": "5px",
+                      "font-weight": "bold",
+                      "font-size": "13px"
+                    }
                   },
-                  [_c("ul", { staticClass: "attributeitem" })]
-                )
-              ])
-            ]
-          )
-        ])
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col-lg-10",
-          staticStyle: {
-            display: "inline-block",
-            "margin-top": "1.5%",
-            "max-width": "81%",
-            "text-align": "right"
-          }
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "breadcrumb mb-0 pb-0",
-              staticStyle: { "background-color": "#e9ecef00" }
-            },
-            [
-              _c("a", { staticClass: "category", attrs: { href: "/" } }, [
-                _vm._v("فروشگاه اینترنتی دیجی کالا")
-              ]),
-              _c("span", { staticStyle: { color: "#d1d1d1" } }, [
-                _vm._v(" / ")
-              ]),
-              _vm._v(" "),
-              _vm.zero_category
-                ? _c(
-                    "a",
-                    {
-                      staticClass: "category",
-                      attrs: { href: "/search/" + _vm.zero_category.id }
+                  [
+                    _vm._v(
+                      "\n                        برند ها\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    staticStyle: {
+                      "font-size": "11px",
+                      "text-align": "left",
+                      height: "40px"
                     },
-                    [
-                      _vm._v(
-                        " " + _vm._s(JSON.parse(_vm.zero_category).name) + " "
-                      )
-                    ]
-                  )
-                : _vm._e(),
-              _c("span", { staticStyle: { color: "#d1d1d1" } }, [
-                _vm._v(" / ")
-              ]),
-              _vm._v(" "),
-              _vm.main_category
-                ? _c(
-                    "a",
-                    {
-                      staticClass: "category",
-                      attrs: { href: "/search/" + _vm.main_category.id }
-                    },
-                    [
-                      _vm._v(
-                        " " + _vm._s(JSON.parse(_vm.main_category).name) + " "
-                      )
-                    ]
-                  )
-                : _vm._e(),
-              _c("span", { staticStyle: { color: "#d1d1d1" } }, [
-                _vm._v(" / ")
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "category font-weight-bold",
-                  staticStyle: { color: "#454545" }
-                },
-                [_vm._v(_vm._s(JSON.parse(_vm.category_id).name) + " ")]
-              )
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col-lg-10",
-          staticStyle: {
-            display: "inline-block",
-            "margin-top": "1%",
-            "max-width": "81%"
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "card", staticStyle: { "min-height": "1300px" } },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "card-header",
-                  staticStyle: {
-                    "background-color": "#fff !important",
-                    "border-bottom": "none"
-                  }
-                },
-                [
-                  _c("ul", { staticClass: "shopheader" }, [
-                    _c("li", [
-                      _vm._v(
-                        "\n                            مرتب سازی بر اساس:\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "activeSort" }, [
-                      _vm._v("جدید ترین")
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { on: { click: _vm.sortByLowPrice } }, [
-                      _vm._v("ارزان ترین")
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { on: { click: _vm.sortByHigherPrice } }, [
-                      _vm._v("گرانترین")
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticStyle: { position: "absolute", top: "5%" },
-                  attrs: { id: "ListProduct" }
-                },
-                [
-                  _c(
-                    "ul",
-                    {
-                      staticClass: "row mx-auto p-0",
-                      attrs: { id: "products" }
-                    },
-                    _vm._l(_vm.products, function(product) {
-                      return !_vm.filterbrands(product) && _vm.status(product)
-                        ? _c(
-                            "li",
-                            {
-                              staticClass:
-                                "col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2",
-                              staticStyle: { width: "1000px" },
-                              attrs: { "data-price": product.price }
-                            },
-                            [
+                    attrs: {
+                      type: "text",
+                      placeholder: "نام برند را جستجو کنید"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fa fa-search",
+                    staticStyle: {
+                      float: "right",
+                      "margin-top": "-30px",
+                      "margin-right": "6px"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "brandsearch" }, [
+                    _c(
+                      "ul",
+                      _vm._l(_vm.brands, function(brand) {
+                        return brand.category_id ===
+                          JSON.parse(_vm.this_category).id
+                          ? _c("li", [
                               _c(
-                                "a",
+                                "label",
                                 {
-                                  attrs: {
-                                    href:
-                                      /search/ +
-                                      JSON.parse(_vm.category_id).id +
-                                      "/" +
-                                      product.id
-                                  }
+                                  staticClass: "row",
+                                  staticStyle: { cursor: "pointer" },
+                                  attrs: { for: "brand" + brand.id }
                                 },
                                 [
-                                  _c("img", {
-                                    staticClass:
-                                      "img-fluid row mx-auto rounded",
-                                    staticStyle: { "margin-top": "10px" },
-                                    attrs: { src: "/" + product.pro_image }
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.checkbrands,
+                                        expression: "checkbrands"
+                                      }
+                                    ],
+                                    staticClass: "form-check",
+                                    attrs: {
+                                      type: "checkbox",
+                                      id: "brand" + brand.id
+                                    },
+                                    domProps: {
+                                      value: brand.id,
+                                      checked: Array.isArray(_vm.checkbrands)
+                                        ? _vm._i(_vm.checkbrands, brand.id) > -1
+                                        : _vm.checkbrands
+                                    },
+                                    on: {
+                                      click: _vm.filterbrands,
+                                      change: function($event) {
+                                        var $$a = _vm.checkbrands,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = brand.id,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (_vm.checkbrands = $$a.concat([
+                                                $$v
+                                              ]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (_vm.checkbrands = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          _vm.checkbrands = $$c
+                                        }
+                                      }
+                                    }
                                   }),
                                   _vm._v(" "),
-                                  _c("span", { staticClass: "text" }, [
-                                    _vm._v(_vm._s(product.pro_name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("span", { staticClass: "price" }, [
-                                    _vm._v(_vm._s(product.price) + " تومان ")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._m(2, true)
+                                  _c(
+                                    "ul",
+                                    {
+                                      staticClass: "row mx-auto pr-0",
+                                      staticStyle: { "margin-top": "-4px" }
+                                    },
+                                    [
+                                      _c("li", { staticClass: "col-6" }, [
+                                        _vm._v(_vm._s(brand.name))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("li", { staticClass: "col-6" }, [
+                                        _vm._v(_vm._s(brand.en_name))
+                                      ])
+                                    ]
+                                  )
                                 ]
                               )
-                            ]
+                            ])
+                          : _vm._e()
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-lg-12" },
+            _vm._l(_vm.attrs, function(attr, index) {
+              return attr.attribute_groups_id ===
+                JSON.parse(_vm.this_category).id
+                ? _c(
+                    "div",
+                    { staticClass: "card", attrs: { id: "attr" + index } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-header",
+                          staticStyle: {
+                            "background-color": "#fff",
+                            height: "37px",
+                            "text-align": "right",
+                            "padding-right": "8px",
+                            "padding-top": "5px",
+                            "font-weight": "bold",
+                            "font-size": "13px",
+                            cursor: "pointer"
+                          },
+                          attrs: {
+                            "data-toggle": "collapse",
+                            "data-target": "#attr" + attr.id
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-angle-left" }),
+                          _vm._v(
+                            " " + _vm._s(attr.name) + "\n                    "
                           )
-                        : _vm._e()
-                    }),
-                    0
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-body collapse",
+                          staticStyle: { "min-height": "280px" },
+                          attrs: { id: "attr" + attr.id }
+                        },
+                        [
+                          _c(
+                            "ul",
+                            { staticClass: "attributeitem" },
+                            _vm._l(_vm.attributefields, function(
+                              attributefield
+                            ) {
+                              return attributefield.attribute_id === attr.id
+                                ? _c("li", { staticClass: "text-right" }, [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticStyle: { cursor: "pointer" },
+                                        attrs: {
+                                          for:
+                                            "attributefield" + attributefield.id
+                                        }
+                                      },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.checkattribute,
+                                              expression: "checkattribute"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "checkbox",
+                                            id:
+                                              "attributefield" +
+                                              attributefield.id
+                                          },
+                                          domProps: {
+                                            value: attributefield.id,
+                                            checked: Array.isArray(
+                                              _vm.checkattribute
+                                            )
+                                              ? _vm._i(
+                                                  _vm.checkattribute,
+                                                  attributefield.id
+                                                ) > -1
+                                              : _vm.checkattribute
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.filterattribute()
+                                            },
+                                            change: function($event) {
+                                              var $$a = _vm.checkattribute,
+                                                $$el = $event.target,
+                                                $$c = $$el.checked
+                                                  ? true
+                                                  : false
+                                              if (Array.isArray($$a)) {
+                                                var $$v = attributefield.id,
+                                                  $$i = _vm._i($$a, $$v)
+                                                if ($$el.checked) {
+                                                  $$i < 0 &&
+                                                    (_vm.checkattribute = $$a.concat(
+                                                      [$$v]
+                                                    ))
+                                                } else {
+                                                  $$i > -1 &&
+                                                    (_vm.checkattribute = $$a
+                                                      .slice(0, $$i)
+                                                      .concat(
+                                                        $$a.slice($$i + 1)
+                                                      ))
+                                                }
+                                              } else {
+                                                _vm.checkattribute = $$c
+                                              }
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              attributefield.attr_field_name
+                                            ) +
+                                            "\n                                "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
+                            }),
+                            0
+                          )
+                        ]
+                      )
+                    ]
                   )
-                ]
-              )
-            ]
+                : _vm._e()
+            }),
+            0
           )
-        ]
-      )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-9" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c(
+              "div",
+              {
+                staticClass: "breadcrumb mb-2 pb-0",
+                staticStyle: { "background-color": "#e9ecef00" }
+              },
+              [
+                _c("a", { staticClass: "category", attrs: { href: "/" } }, [
+                  _vm._v("فروشگاه اینترنتی دیجی کالا")
+                ]),
+                _vm._v(" "),
+                _vm.zero_category
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "category",
+                        attrs: {
+                          href: "/search/" + JSON.parse(_vm.zero_category).id
+                        }
+                      },
+                      [
+                        _c("span", { staticStyle: { color: "#d1d1d1" } }, [
+                          _vm._v(" / ")
+                        ]),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(JSON.parse(_vm.zero_category).name) +
+                            " "
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.main_category
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "category",
+                        attrs: {
+                          href: "/search/" + JSON.parse(_vm.main_category).id
+                        }
+                      },
+                      [
+                        _c("span", { staticStyle: { color: "#d1d1d1" } }, [
+                          _vm._v(" / ")
+                        ]),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(JSON.parse(_vm.main_category).name) +
+                            " "
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _c("span", { staticStyle: { color: "#d1d1d1" } }, [
+                  _vm._v(" / ")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "category font-weight-bold",
+                    staticStyle: { color: "#454545" }
+                  },
+                  [_vm._v(_vm._s(JSON.parse(_vm.this_category).name) + " ")]
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { "min-height": "1300px" } },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card-header",
+                    staticStyle: {
+                      "background-color": "#fff !important",
+                      "border-bottom": "none"
+                    }
+                  },
+                  [
+                    _c("ul", { staticClass: "shopheader" }, [
+                      _c("li", [
+                        _vm._v(
+                          "\n                                مرتب سازی بر اساس:\n                            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "activeSort" }, [
+                        _vm._v("جدید ترین")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { on: { click: _vm.sortByLowPrice } }, [
+                        _vm._v("ارزان ترین")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { on: { click: _vm.sortByHigherPrice } }, [
+                        _vm._v("گرانترین")
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: { position: "absolute", top: "5%" },
+                    attrs: { id: "ListProduct" }
+                  },
+                  [
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "row mx-auto p-0",
+                        attrs: { id: "products" }
+                      },
+                      _vm._l(_vm.products, function(product) {
+                        return !_vm.filterbrands(product) &&
+                          _vm.status(product) &&
+                          !_vm.filterattribute(product)
+                          ? _c(
+                              "li",
+                              {
+                                staticClass:
+                                  "col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2",
+                                staticStyle: { "min-width": "200px" },
+                                attrs: { "data-price": product.price }
+                              },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        /search/ +
+                                        JSON.parse(_vm.this_category).id +
+                                        "/" +
+                                        product.id
+                                    }
+                                  },
+                                  [
+                                    _c("img", {
+                                      staticClass:
+                                        "img-fluid row mx-auto rounded",
+                                      staticStyle: { "margin-top": "10px" },
+                                      attrs: { src: "/" + product.pro_image }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "text" }, [
+                                      _vm._v(_vm._s(product.pro_name))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "price" }, [
+                                      _vm._v(_vm._s(product.price) + " تومان ")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._m(2, true)
+                                  ]
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.pagination.last_page > 1
+        ? _c("pagination", {
+            attrs: { pagination: _vm.pagination, offset: "5" },
+            on: {
+              paginate: function($event) {
+                return _vm.fetchProducts()
+              }
+            }
+          })
+        : _vm._e()
     ],
-    2
+    1
   )
 }
 var staticRenderFns = [
@@ -43480,13 +43892,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-lg-3",
-        staticStyle: { top: "16%", position: "absolute", "max-width": "19.2%" }
-      },
-      [
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-12" }, [
         _c(
           "div",
           { staticClass: "card", staticStyle: { "min-height": "100px" } },
@@ -43507,7 +43914,7 @@ var staticRenderFns = [
               },
               [
                 _vm._v(
-                  "\n                    جستجو در نتایج :\n                "
+                  "\n                        جستجو در نتایج :\n                    "
                 )
               ]
             ),
@@ -43530,20 +43937,15 @@ var staticRenderFns = [
             ])
           ]
         )
-      ]
-    )
+      ])
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-lg-3",
-        staticStyle: { top: "50%", position: "absolute", "max-width": "19.2%" }
-      },
-      [
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-12" }, [
         _c(
           "div",
           { staticClass: "card", staticStyle: { "min-height": "280px" } },
@@ -43564,7 +43966,7 @@ var staticRenderFns = [
               },
               [
                 _vm._v(
-                  "\n                    محدوده قیمت مورد نظر\n                "
+                  "\n                        محدوده قیمت مورد نظر\n                    "
                 )
               ]
             ),
@@ -43582,8 +43984,8 @@ var staticRenderFns = [
             ])
           ]
         )
-      ]
-    )
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -45507,15 +45909,17 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.category_id,
-                              expression: "form.category_id"
+                              value: _vm.form.pro_category_id,
+                              expression: "form.pro_category_id"
                             }
                           ],
                           staticClass: "form-control",
                           class: {
-                            "border-danger": _vm.form.errors.has("category_id")
+                            "border-danger": _vm.form.errors.has(
+                              "pro_category_id"
+                            )
                           },
-                          attrs: { id: "category", name: "category_id" },
+                          attrs: { id: "category", name: "pro_category_id" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -45528,7 +45932,7 @@ var render = function() {
                                 })
                               _vm.$set(
                                 _vm.form,
-                                "category_id",
+                                "pro_category_id",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
@@ -45554,11 +45958,11 @@ var render = function() {
                         2
                       ),
                       _vm._v(" "),
-                      _vm.form.errors.has("category_id")
+                      _vm.form.errors.has("pro_category_id")
                         ? _c("div", { staticClass: "text-danger" }, [
                             _vm._v(
                               "\n                                " +
-                                _vm._s(_vm.form.errors.get("category_id")) +
+                                _vm._s(_vm.form.errors.get("pro_category_id")) +
                                 "\n                            "
                             )
                           ])
@@ -58520,85 +58924,9 @@ Vue.component('product', __webpack_require__(/*! ./components/admin/products/pro
 Vue.component('add-attr', __webpack_require__(/*! ./components/admin/products/addAttr */ "./resources/js/components/admin/products/addAttr.vue")["default"]);
 Vue.component('Brand', __webpack_require__(/*! ./components/admin/Brand */ "./resources/js/components/admin/Brand.vue")["default"]);
 Vue.component('Products', __webpack_require__(/*! ./components/Products */ "./resources/js/components/Products.vue")["default"]);
+Vue.component('Pagination', __webpack_require__(/*! ./components/Pagination */ "./resources/js/components/Pagination.vue")["default"]);
 var app = new Vue({
-  el: '#app' // mounted() {
-  //     this.ShowProduct();
-  // },
-  // computed: {
-  //     products: function () {
-  //
-  //         return _.orderBy(this.products, 'price', 'desc');
-  //         console.log(_.orderBy(this.products, 'price', 'desc'));
-  //     }
-  // },
-  // created: function () {
-  //
-  //     this.ShowBrand();
-  //     this.ShowProduct();
-  //     this.showattribute();
-  //     this.showattributeitems();
-  // },
-  // methods: {
-  //
-  // addCart: function (id) {
-  //     alert(id);
-  //     axios.post('/addcart', {
-  //
-  //         id: id
-  //
-  //
-  //     }).then(response => {
-  //         location.href = '/cart';
-  //     }, response => {
-  //         this.error = 1;
-  //         console.log("error");
-  //     });
-  //
-  // },
-  //
-  //
-  // filterattribute: function (data) {
-  //     console.log(this.checkattribute.includes(data.name1));
-  //
-  //     if (this.checkattribute.length == 0) return true;
-  //
-  //     console.log(this.checkattribute.includes(data.name1));
-  // },
-  //
-  // /**********filter brands**************/
-  //
-  // filterbrands: function filterbrands(data) {
-  //
-  //     console.log(this.checkbrands.includes(data.name));
-  //
-  //     if (this.checkbrands.length == 0) return true;
-  //
-  //     return this.checkbrands.includes(data.name);
-  //
-  //
-  // },
-  // orderBy: function (sorKey) {
-  //     this.sortKey = sorKey
-  //     this.sortSettings[sorKey] = !this.sortSettings[sorKey]
-  //     this.desc = this.sortSettings[sorKey]
-  //
-  // },
-  // sortByLowPrice: function () {
-  //
-  //     return this.product.sort(function (a, b) {
-  //         return a.price - b.price;
-  //     })
-  //
-  //
-  // },
-  //
-  // sortByHigherPrice: function () {
-  //
-  //     return this.product.sort(function (a) {
-  //         return b.price - a.price;
-  //     })
-  // },
-
+  el: '#app'
 });
 
 /***/ }),
@@ -58645,6 +58973,75 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Pagination.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/Pagination.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Pagination_vue_vue_type_template_id_d7acf176___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pagination.vue?vue&type=template&id=d7acf176& */ "./resources/js/components/Pagination.vue?vue&type=template&id=d7acf176&");
+/* harmony import */ var _Pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pagination.vue?vue&type=script&lang=js& */ "./resources/js/components/Pagination.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Pagination_vue_vue_type_template_id_d7acf176___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Pagination_vue_vue_type_template_id_d7acf176___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Pagination.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Pagination.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Pagination.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Pagination.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pagination.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Pagination.vue?vue&type=template&id=d7acf176&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Pagination.vue?vue&type=template&id=d7acf176& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_d7acf176___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Pagination.vue?vue&type=template&id=d7acf176& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pagination.vue?vue&type=template&id=d7acf176&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_d7acf176___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_d7acf176___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

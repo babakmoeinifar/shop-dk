@@ -233,7 +233,7 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
                 <div class="list_carousel" style="overflow:hidden;">
                     <ul id="foo2">
                         @foreach($products as $product)
-                            {{--                            @if($product->category_id == 166)--}}
+                            {{--                            @if($product->pro_category_id == 166)--}}
                             <li>
                                 <a href="{{ url($product->category->slug, $product->id) }}">
                                     <img src="{{asset($product->pro_image)}}" width="210px" height="210px">
@@ -295,7 +295,7 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo3">
                     @foreach($products as $product)
-                        @if($product->category_id == 2)
+                        @if($product->pro_category_id == 2)
                             <li>
                                 <a href="{{ url($product->category->slug, $product->id) }}">
                                     <img src="{{asset($product->pro_image)}}" width="210px" height="210px">
@@ -357,7 +357,7 @@ top: 80%;float: right;margin-right: -13px;font-size: 12px;">تحویل اکسپ�
             <div class="list_carousel" style="overflow:hidden;">
                 <ul id="foo5">
                     @foreach($products as $product)
-                        @if($product->category_id == 3)
+                        @if($product->pro_category_id == 3)
                             <li>
                                 <a href="{{ url($product->category->slug, $product->id) }}">
                                     <img src="{{asset($product->pro_image)}}" width="210px" height="210px">

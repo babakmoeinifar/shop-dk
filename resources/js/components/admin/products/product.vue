@@ -103,16 +103,16 @@
                                 <label for="category">انتخاب دسته کالا
                                     <span class="text-danger font-weight-bold"> * </span>
                                 </label>
-                                <select id="category" class="form-control" name="category_id"
-                                        :class="{'border-danger': form.errors.has('category_id')}"
-                                        v-model="form.category_id">
+                                <select id="category" class="form-control" name="pro_category_id"
+                                        :class="{'border-danger': form.errors.has('pro_category_id')}"
+                                        v-model="form.pro_category_id">
                                     <option value="" disabled>یک دسته بندی را انتخاب نمایید</option>
                                     <template v-for="category in categories">
                                         <option :value="category.id">{{ category.name }}</option>
                                     </template>
                                 </select>
-                                <div class="text-danger" v-if="form.errors.has('category_id')">
-                                    {{ form.errors.get('category_id') }}
+                                <div class="text-danger" v-if="form.errors.has('pro_category_id')">
+                                    {{ form.errors.get('pro_category_id') }}
                                 </div>
                             </div>
 
@@ -193,7 +193,7 @@
         data() {
             return {
                 form: new Form({
-                    category_id: '',
+                    pro_category_id: '',
                     pro_name: '',
                     price: '',
                     stock: '',

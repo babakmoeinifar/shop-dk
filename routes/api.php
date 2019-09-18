@@ -13,14 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 Route::get('attribute-groups', 'Api\ApiController@attributeGroups');
 Route::get('attributes', 'Api\ApiController@attributes');
 
 Route::get('product-by-category/{categoryId}', 'Api\ApiController@productByCategory');
 Route::get('attr-by-product', 'Api\ApiController@AttrsByProduct');
-Route::get('filter-products/{categoryId}', 'Api\ApiController@productFilter');
+Route::get('attr-field-by-attr', 'Api\ApiController@AttrFieldsByAttr');
+Route::get('filter-products/', 'Api\ApiController@productFilter');
 Route::get('/show-brand/{categoryId}', 'Api\ApiController@showBrand');

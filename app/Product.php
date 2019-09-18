@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'pro_name', 'category_id', 'code', 'country',
+        'pro_name', 'pro_category_id', 'code', 'country',
         'price', 'stock', 'desc', 'unit',
         'pro_image', 'meta_keywords'
     ];
@@ -46,11 +46,6 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function coupons()
-    {
-        return $this->hasMany(Coupon::class);
     }
 
     public function sizes()
