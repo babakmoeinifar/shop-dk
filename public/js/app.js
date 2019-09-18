@@ -1850,11 +1850,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['category_id', 'zero_category', 'main_category'],
   data: function data() {
@@ -43010,293 +43005,239 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-3",
-        staticStyle: { top: "25%", position: "absolute", "max-width": "19.2%" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "card", staticStyle: { "min-height": "280px" } },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "card-header",
-                staticStyle: {
-                  "background-color": "#fff",
-                  height: "37px",
-                  "text-align": "right",
-                  "padding-right": "8px",
-                  "padding-top": "5px",
-                  "font-weight": "bold",
-                  "font-size": "13px"
-                }
-              },
-              [_vm._v("\n                    برند ها\n                ")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("input", {
-                staticClass: "form-control",
-                staticStyle: {
-                  "font-size": "11px",
-                  "text-align": "left",
-                  height: "40px"
+  return _c(
+    "div",
+    {},
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "col-lg-3",
+          staticStyle: {
+            top: "25%",
+            position: "absolute",
+            "max-width": "19.2%"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "card", staticStyle: { "min-height": "280px" } },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "card-header",
+                  staticStyle: {
+                    "background-color": "#fff",
+                    height: "37px",
+                    "text-align": "right",
+                    "padding-right": "8px",
+                    "padding-top": "5px",
+                    "font-weight": "bold",
+                    "font-size": "13px"
+                  }
                 },
-                attrs: { type: "text", placeholder: "نام برند را جستجو کنید" }
-              }),
+                [_vm._v("\n                    برند ها\n                ")]
+              ),
               _vm._v(" "),
-              _c("i", {
-                staticClass: "fa fa-search",
-                staticStyle: {
-                  float: "right",
-                  "margin-top": "-30px",
-                  "margin-right": "6px"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "brandsearch" }, [
-                _c(
-                  "ul",
-                  _vm._l(_vm.brands, function(brand) {
-                    return _c("li", [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "row",
-                          staticStyle: { cursor: "pointer" },
-                          attrs: { for: "brand" + brand.id }
-                        },
-                        [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.checkbrands,
-                                expression: "checkbrands"
-                              }
-                            ],
-                            staticClass: "form-check",
-                            attrs: { type: "checkbox", id: "brand" + brand.id },
-                            domProps: {
-                              value: brand.id,
-                              checked: Array.isArray(_vm.checkbrands)
-                                ? _vm._i(_vm.checkbrands, brand.id) > -1
-                                : _vm.checkbrands
-                            },
-                            on: {
-                              click: _vm.filterbrands,
-                              change: function($event) {
-                                var $$a = _vm.checkbrands,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = brand.id,
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 &&
-                                      (_vm.checkbrands = $$a.concat([$$v]))
+              _c("div", { staticClass: "card-body" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  staticStyle: {
+                    "font-size": "11px",
+                    "text-align": "left",
+                    height: "40px"
+                  },
+                  attrs: { type: "text", placeholder: "نام برند را جستجو کنید" }
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fa fa-search",
+                  staticStyle: {
+                    float: "right",
+                    "margin-top": "-30px",
+                    "margin-right": "6px"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "brandsearch" }, [
+                  _c(
+                    "ul",
+                    _vm._l(_vm.brands, function(brand) {
+                      return _c("li", [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "row",
+                            staticStyle: { cursor: "pointer" },
+                            attrs: { for: "brand" + brand.id }
+                          },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.checkbrands,
+                                  expression: "checkbrands"
+                                }
+                              ],
+                              staticClass: "form-check",
+                              attrs: {
+                                type: "checkbox",
+                                id: "brand" + brand.id
+                              },
+                              domProps: {
+                                value: brand.id,
+                                checked: Array.isArray(_vm.checkbrands)
+                                  ? _vm._i(_vm.checkbrands, brand.id) > -1
+                                  : _vm.checkbrands
+                              },
+                              on: {
+                                click: _vm.filterbrands,
+                                change: function($event) {
+                                  var $$a = _vm.checkbrands,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = brand.id,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.checkbrands = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.checkbrands = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
                                   } else {
-                                    $$i > -1 &&
-                                      (_vm.checkbrands = $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1)))
+                                    _vm.checkbrands = $$c
                                   }
-                                } else {
-                                  _vm.checkbrands = $$c
                                 }
                               }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticClass: "pr-2",
-                              staticStyle: { "margin-top": "-4px" }
-                            },
-                            [_vm._v(_vm._s(brand.name))]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticStyle: {
-                                "margin-right": "100px",
-                                "margin-top": "-4px"
-                              }
-                            },
-                            [_vm._v(_vm._s(brand.en_name))]
-                          )
-                        ]
-                      )
-                    ])
-                  }),
-                  0
-                )
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "pr-2",
+                                staticStyle: { "margin-top": "-4px" }
+                              },
+                              [_vm._v(_vm._s(brand.name))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticStyle: {
+                                  "margin-right": "100px",
+                                  "margin-top": "-4px"
+                                }
+                              },
+                              [_vm._v(_vm._s(brand.en_name))]
+                            )
+                          ]
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ])
               ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-3",
-        staticStyle: { top: "46%", position: "absolute", "max-width": "19.2%" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "card", staticStyle: { "min-height": "29px" } },
-          [
-            _c("label", { staticClass: "switch" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.check_status,
-                    expression: "check_status"
-                  }
-                ],
-                attrs: { type: "checkbox", id: "check_status" },
-                domProps: {
-                  checked: Array.isArray(_vm.check_status)
-                    ? _vm._i(_vm.check_status, null) > -1
-                    : _vm.check_status
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.status()
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "col-lg-3",
+          staticStyle: {
+            top: "46%",
+            position: "absolute",
+            "max-width": "19.2%"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "card", staticStyle: { "min-height": "29px" } },
+            [
+              _c("label", { staticClass: "switch" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.check_status,
+                      expression: "check_status"
+                    }
+                  ],
+                  attrs: { type: "checkbox", id: "check_status" },
+                  domProps: {
+                    checked: Array.isArray(_vm.check_status)
+                      ? _vm._i(_vm.check_status, null) > -1
+                      : _vm.check_status
                   },
-                  change: function($event) {
-                    var $$a = _vm.check_status,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && (_vm.check_status = $$a.concat([$$v]))
+                  on: {
+                    click: function($event) {
+                      return _vm.status()
+                    },
+                    change: function($event) {
+                      var $$a = _vm.check_status,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.check_status = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.check_status = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
                       } else {
-                        $$i > -1 &&
-                          (_vm.check_status = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
+                        _vm.check_status = $$c
                       }
-                    } else {
-                      _vm.check_status = $$c
                     }
                   }
-                }
-              }),
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "slider round" })
+              ]),
               _vm._v(" "),
-              _c("span", { staticClass: "slider round" })
-            ]),
-            _vm._v(" "),
-            _c(
-              "p",
-              {
-                staticStyle: {
-                  "margin-top": "-31px",
-                  "text-align": "right",
-                  "margin-right": "94px",
-                  "font-size": "13px"
-                }
-              },
-              [_vm._v("فقط کالاهای\n                    موجود ")]
-            )
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-10",
-        staticStyle: {
-          display: "inline-block",
-          "margin-top": "1.5%",
-          "max-width": "81%",
-          "text-align": "right"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "breadcrumb mb-0 pb-0",
-            staticStyle: { "background-color": "#e9ecef00" }
-          },
-          [
-            _c("a", { staticClass: "category", attrs: { href: "/" } }, [
-              _vm._v("فروشگاه اینترنتی دیجی کالا")
-            ]),
-            _c("span", { staticStyle: { color: "#d1d1d1" } }, [_vm._v(" / ")]),
-            _vm._v(" "),
-            _vm.zero_category
-              ? _c(
-                  "a",
-                  {
-                    staticClass: "category",
-                    attrs: { href: "/search/" + _vm.zero_category.id }
-                  },
-                  [
-                    _vm._v(
-                      " " + _vm._s(JSON.parse(_vm.zero_category).name) + " "
-                    )
-                  ]
-                )
-              : _vm._e(),
-            _c("span", { staticStyle: { color: "#d1d1d1" } }, [_vm._v(" / ")]),
-            _vm._v(" "),
-            _vm.main_category
-              ? _c(
-                  "a",
-                  {
-                    staticClass: "category",
-                    attrs: { href: "/search/" + _vm.main_category.id }
-                  },
-                  [
-                    _vm._v(
-                      " " + _vm._s(JSON.parse(_vm.main_category).name) + " "
-                    )
-                  ]
-                )
-              : _vm._e(),
-            _c("span", { staticStyle: { color: "#d1d1d1" } }, [_vm._v(" / ")]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "category font-weight-bold",
-                staticStyle: { color: "#454545" }
-              },
-              [_vm._v(_vm._s(JSON.parse(_vm.category_id).name) + " ")]
-            )
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "span",
-      _vm._l(_vm.attrs, function(attr) {
-        return attr.attribute_groups_id === _vm.category_id
-          ? _c("div", { staticClass: "col-lg-3", attrs: { id: attr.id } }, [
+              _c(
+                "p",
+                {
+                  staticStyle: {
+                    "margin-top": "-31px",
+                    "text-align": "right",
+                    "margin-right": "94px",
+                    "font-size": "13px"
+                  }
+                },
+                [_vm._v("فقط کالاهای\n                    موجود ")]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._l(_vm.attrs, function(attr, index) {
+        return _c("span", [
+          _c(
+            "div",
+            { staticClass: "col-lg-3", attrs: { id: "attr" + index } },
+            [
               _c("div", { staticClass: "card" }, [
                 _c(
                   "div",
@@ -43311,7 +43252,10 @@ var render = function() {
                       "font-weight": "bold",
                       "font-size": "13px"
                     },
-                    attrs: { "data-toggle": "collapse", "data-target": attr.id }
+                    attrs: {
+                      "data-toggle": "collapse",
+                      "data-target": "#demo" + index
+                    }
                   },
                   [
                     _vm._v(
@@ -43327,129 +43271,209 @@ var render = function() {
                   {
                     staticClass: "card-body",
                     staticStyle: { "min-height": "280px" },
-                    attrs: { id: "demo" + _vm.index }
+                    attrs: { id: "demo" + index }
                   },
                   [_c("ul", { staticClass: "attributeitem" })]
                 )
               ])
-            ])
-          : _vm._e()
+            ]
+          )
+        ])
       }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-10",
-        staticStyle: {
-          display: "inline-block",
-          "margin-top": "1%",
-          "max-width": "81%"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "card", staticStyle: { "min-height": "1300px" } },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "card-header",
-                staticStyle: {
-                  "background-color": "#fff !important",
-                  "border-bottom": "none"
-                }
-              },
-              [
-                _c("ul", { staticClass: "shopheader" }, [
-                  _c("li", [
-                    _vm._v(
-                      "\n                            مرتب سازی بر اساس:\n                        "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "activeSort" }, [
-                    _vm._v("جدید ترین")
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { on: { click: _vm.sortByLowPrice } }, [
-                    _vm._v("ارزان ترین")
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { on: { click: _vm.sortByHigherPrice } }, [
-                    _vm._v("گرانترین")
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "col-lg-10",
+          staticStyle: {
+            display: "inline-block",
+            "margin-top": "1.5%",
+            "max-width": "81%",
+            "text-align": "right"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "breadcrumb mb-0 pb-0",
+              staticStyle: { "background-color": "#e9ecef00" }
+            },
+            [
+              _c("a", { staticClass: "category", attrs: { href: "/" } }, [
+                _vm._v("فروشگاه اینترنتی دیجی کالا")
+              ]),
+              _c("span", { staticStyle: { color: "#d1d1d1" } }, [
+                _vm._v(" / ")
+              ]),
+              _vm._v(" "),
+              _vm.zero_category
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "category",
+                      attrs: { href: "/search/" + _vm.zero_category.id }
+                    },
+                    [
+                      _vm._v(
+                        " " + _vm._s(JSON.parse(_vm.zero_category).name) + " "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _c("span", { staticStyle: { color: "#d1d1d1" } }, [
+                _vm._v(" / ")
+              ]),
+              _vm._v(" "),
+              _vm.main_category
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "category",
+                      attrs: { href: "/search/" + _vm.main_category.id }
+                    },
+                    [
+                      _vm._v(
+                        " " + _vm._s(JSON.parse(_vm.main_category).name) + " "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _c("span", { staticStyle: { color: "#d1d1d1" } }, [
+                _vm._v(" / ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "category font-weight-bold",
+                  staticStyle: { color: "#454545" }
+                },
+                [_vm._v(_vm._s(JSON.parse(_vm.category_id).name) + " ")]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "col-lg-10",
+          staticStyle: {
+            display: "inline-block",
+            "margin-top": "1%",
+            "max-width": "81%"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "card", staticStyle: { "min-height": "1300px" } },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "card-header",
+                  staticStyle: {
+                    "background-color": "#fff !important",
+                    "border-bottom": "none"
+                  }
+                },
+                [
+                  _c("ul", { staticClass: "shopheader" }, [
+                    _c("li", [
+                      _vm._v(
+                        "\n                            مرتب سازی بر اساس:\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "activeSort" }, [
+                      _vm._v("جدید ترین")
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { on: { click: _vm.sortByLowPrice } }, [
+                      _vm._v("ارزان ترین")
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { on: { click: _vm.sortByHigherPrice } }, [
+                      _vm._v("گرانترین")
+                    ])
                   ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticStyle: { position: "absolute", top: "5%" },
-                attrs: { id: "ListProduct" }
-              },
-              [
-                _c(
-                  "ul",
-                  { staticClass: "row mx-auto p-0", attrs: { id: "products" } },
-                  _vm._l(_vm.products, function(product) {
-                    return !_vm.filterbrands(product) && _vm.status(product)
-                      ? _c(
-                          "li",
-                          {
-                            staticClass:
-                              "col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2",
-                            staticStyle: { width: "1000px" },
-                            attrs: { "data-price": product.price }
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href:
-                                    /search/ +
-                                    JSON.parse(_vm.category_id).id +
-                                    "/" +
-                                    product.id
-                                }
-                              },
-                              [
-                                _c("img", {
-                                  staticClass: "img-fluid row mx-auto rounded",
-                                  staticStyle: { "margin-top": "10px" },
-                                  attrs: { src: "/" + product.pro_image }
-                                }),
-                                _vm._v(" "),
-                                _c("span", { staticClass: "text" }, [
-                                  _vm._v(_vm._s(product.pro_name))
-                                ]),
-                                _vm._v(" "),
-                                _c("span", { staticClass: "price" }, [
-                                  _vm._v(_vm._s(product.price) + " تومان ")
-                                ]),
-                                _vm._v(" "),
-                                _vm._m(2, true)
-                              ]
-                            )
-                          ]
-                        )
-                      : _vm._e()
-                  }),
-                  0
-                )
-              ]
-            )
-          ]
-        )
-      ]
-    )
-  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticStyle: { position: "absolute", top: "5%" },
+                  attrs: { id: "ListProduct" }
+                },
+                [
+                  _c(
+                    "ul",
+                    {
+                      staticClass: "row mx-auto p-0",
+                      attrs: { id: "products" }
+                    },
+                    _vm._l(_vm.products, function(product) {
+                      return !_vm.filterbrands(product) && _vm.status(product)
+                        ? _c(
+                            "li",
+                            {
+                              staticClass:
+                                "col-lg-3 col-md-4 col-sm-6 col-12 product_price mb-2",
+                              staticStyle: { width: "1000px" },
+                              attrs: { "data-price": product.price }
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href:
+                                      /search/ +
+                                      JSON.parse(_vm.category_id).id +
+                                      "/" +
+                                      product.id
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass:
+                                      "img-fluid row mx-auto rounded",
+                                    staticStyle: { "margin-top": "10px" },
+                                    attrs: { src: "/" + product.pro_image }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "text" }, [
+                                    _vm._v(_vm._s(product.pro_name))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "price" }, [
+                                    _vm._v(_vm._s(product.price) + " تومان ")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._m(2, true)
+                                ]
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    }),
+                    0
+                  )
+                ]
+              )
+            ]
+          )
+        ]
+      )
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {

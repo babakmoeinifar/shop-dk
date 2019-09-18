@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <div class="col-lg-3" style="top: 16%;position: absolute;max-width: 19.2%;">
             <div class="card" style="min-height:100px;">
                 <div class="card-header"
@@ -69,6 +69,28 @@
             </div>
         </div>
 
+        <span v-for="(attr, index) in attrs" >
+                    <div class="col-lg-3" :id="'attr'+index" >
+                    <div class="card">
+                        <div class="card-header"
+                             style="background-color:#fff;height: 37px; text-align: right; padding-right: 8px; padding-top: 5px; font-weight: bold; font-size: 13px;"
+                             data-toggle="collapse" :data-target="'#demo'+index">
+                            {{ attr.name}}
+                        </div>
+                        <div class="card-body" :id="'demo'+index" style="min-height:280px;">
+                            <ul class="attributeitem">
+<!--                                    <li v-for="attributefield in attributefields" v-if="attributefield.attribute_id == attr.id ">-->
+                                <!--                                            <input type="checkbox" -->
+                                <!--                                                   v-model="checkattribute"-->
+                                <!--                                                   :value="attributefield.attr_field_name"-->
+                                <!--                                                   @click="filterattribute()"> {{attributefield.attr_field_name}}-->
+                                <!--                                </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </span>
+
         <div class="col-lg-10" style="display: inline-block;margin-top:1.5%;max-width: 81%;text-align: right;">
             <div class="breadcrumb mb-0 pb-0" style="background-color: #e9ecef00">
                 <a class='category' href='/'>فروشگاه اینترنتی دیجی کالا</a><span
@@ -82,33 +104,6 @@
                 <a class='category font-weight-bold' style="color: #454545">{{ JSON.parse(category_id).name }} </a>
             </div>
         </div>
-
-        <span>
-                    <div class="col-lg-3" :id="attr.id" v-for="attr in attrs" v-if="attr.attribute_groups_id === category_id">
-                    <div class="card">
-                        <div class="card-header"
-                             style="background-color:#fff;height: 37px; text-align: right; padding-right: 8px; padding-top: 5px; font-weight: bold; font-size: 13px;"
-                             data-toggle="collapse" :data-target="attr.id">
-                            {{ attr.name}}
-                        </div>
-                        <div class="card-body" :id="'demo'+index" style="min-height:280px;">
-                            <ul class="attributeitem">
-<!--                                @foreach($attributeFields as $attrField)-->
-<!--                                    <li>-->
-<!--                                    @if($attrField.attribute_id == $attr.id)-->
-<!--                                            <input type="checkbox" name=""-->
-<!--                                                   v-model="checkattribute"-->
-<!--                                                   :value="{{$attrField.attr_field_name}}"-->
-<!--                                                   @click="filterattribute()"> {{$attrField.attr_field_name}}-->
-<!--                                        @endif-->
-<!--                                </li>-->
-<!--                                @endforeach-->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </span>
-
 
         <div class="col-lg-10" style="display: inline-block;margin-top:1%;max-width: 81%;">
             <div class="card" style="min-height:1300px; ">
